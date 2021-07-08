@@ -2,7 +2,7 @@ import React from "react";
 import App from "next/app";
 import Router from 'next/router';
 
-
+import 'antd/dist/antd.css';
 // import { pixelsCode } from '@Src/Utils/Constants';
 // import { pageView } from "@Src/Utils/GoogleAnalyticsUtil";
 

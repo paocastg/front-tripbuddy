@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "antd": "^4.16.6",
     "express": "^4.17.1",
     "next": "^11.0.2-canary.3",
     "node-fetch": "^2.6.1",
