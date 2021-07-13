@@ -1,4 +1,4 @@
-import React , { useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 const HomePage = ({ name }) => {
   useEffect(() => {
@@ -11,14 +11,13 @@ const HomePage = ({ name }) => {
   )
 }
 
-export async function getStaticProps() {
-
+export async function getStaticProps () {
   const name = 'Ana'
 
   return {
     props: {
-      name,
-    },
+      name
+    }
   }
 }
 

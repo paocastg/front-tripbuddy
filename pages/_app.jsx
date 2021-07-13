@@ -1,29 +1,19 @@
-import React from "react";
-import App from "next/app";
-import Router from 'next/router';
+import React from 'react'
+import App from 'next/app'
+import Router from 'next/router'
 
-import 'antd/dist/antd.css';
-// import { pixelsCode } from '@Src/Utils/Constants';
-// import { pageView } from "@Src/Utils/GoogleAnalyticsUtil";
+import 'antd/dist/antd.css'
 
 class MyApp extends App {
-  componentDidMount() {
-    // window.fbq('init', pixelsCode.codeFaceAffiliation);
-    // window.fbq('init', pixelsCode.codeFaceUneteOnp);
-    // window.fbq('track', 'PageView');
-
-    Router.events.on('routeChangeComplete', this.handleRouteChange);
+  componentDidMount () {
+    Router.events.on('routeChangeComplete', this.handleRouteChange)
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     Router.events.off('routeChangeComplete', this.handleRouteChange)
   }
 
-  handleRouteChange = (url) => {
-    pageView(url)
-  }
-
-  render() {
+  render () {
     const { Component, pageProps } = this.props
     return <Component {...pageProps} />
   }

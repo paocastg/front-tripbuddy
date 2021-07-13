@@ -1,16 +1,17 @@
 const next = require('next')
 const express = require('express')
-const { parse } = require("url")
+// eslint-disable-next-line node/no-deprecated-api
+const { parse } = require('url')
 
 global.fetch = require('node-fetch')
 
 // Next App
 const nextApp = next({
   dev: true
-});
+})
 
 // Next Handle
-const nextHandle = nextApp.getRequestHandler();
+const nextHandle = nextApp.getRequestHandler()
 
 nextApp
   .prepare()
@@ -23,25 +24,25 @@ nextApp
       { slug: '/login', file: '/Modules/Public/LoginPage' }
     ]
 
-    for (let route of routes) {
+    for (const route of routes) {
       app.get(route.slug, (req, res) => {
-        const parsedUrl = parse(req.url, true);
-        const { query } = parsedUrl;
-        nextApp.render(req, res, route.file, query);
-      });
+        const parsedUrl = parse(req.url, true)
+        const { query } = parsedUrl
+        nextApp.render(req, res, route.file, query)
+      })
     }
 
-    app.get("*", (req, res) => nextHandle(req, res));
+    app.get('*', (req, res) => nextHandle(req, res))
 
     app.listen(3030, err => {
       if (err) {
-        throw err;
+        throw err
       }
 
-      console.log("Running server on http://localhost:3030");
-    });
+      console.log('Running server on http://localhost:3030')
+    })
   })
   .catch(err => {
-    console.error(err.stack);
-    process.exit(1);
-  });
+    console.error(err.stack)
+    process.exit(1)
+  })
