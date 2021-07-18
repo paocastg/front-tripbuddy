@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import HeaderSection from 'sections/Public/HomePage/HeaderSection'
 
 const HomePage = ({ name }) => {
   useEffect(() => {
@@ -7,7 +6,6 @@ const HomePage = ({ name }) => {
   }, [])
   return (
     <div>
-    <HeaderSection/>
       <h1>HomePage {name}</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quis
