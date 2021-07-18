@@ -22,8 +22,9 @@ nextApp
     const routes = [
       { slug: '/', file: '/Modules/Public/HomePage' },
       { slug: '/login', file: '/Modules/Public/LoginPage' },
-      { slug: '/destination', file: '/Modules/Private/SelectPage/Destination' }
-
+      { slug: '/select', file: '/Modules/Private/SelectPage' },
+      { slug: '/destination', file: '/Modules/Private/DestinationPage' },
+      { slug: '/recommendation', file: '/Modules/Private/RecommendationPage' }
     ]
 
     for (const route of routes) {

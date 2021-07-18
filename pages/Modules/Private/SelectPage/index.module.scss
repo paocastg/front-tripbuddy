@@ -1,0 +1,20 @@
+.container {
+	width: 250px;
+	margin: 15px;
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: center;
+	border: solid;
+	border-radius: .5rem;
+}
+
+.section {
+	height: 380px;
+	margin-top: 20vh;
+	margin-left: 10vw;
+	margin-right: 10vw;
+	display: flex;
+	align-items: stretch;
+	flex-wrap: wrap;
+	justify-content: center;
+}
