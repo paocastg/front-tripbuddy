@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import styles from './index.module.scss'
 import Icon from '@ant-design/icons'
 
-const CustomSvgIcon = ({ name, svg, AddCategoryAndActivitySelected }) => {
+const CustomSvgIcon = ({ svg, AddCategoryAndActivitySelected, el }) => {
   const [selected, setSelected] = useState(false)
+  // console.log(el.nombre_categoria)
+  // console.log(el.nombre_actividad)
   const CustomIcon = props => <Icon component={svg} {...props} />
 
   const handleIconClick = (e) => {
-    AddCategoryAndActivitySelected(name)
+    // AddCategoryAndActivitySelected(name)
     setSelected(prev => !prev)
   }
 
