@@ -9,7 +9,7 @@ const LoginPage = () => {
     <div>
       <h1 className={styles.red}>Iniciar Sesion</h1>
       <Alert message="Este es un mensaje" type="success" />
-      <FormSection />
+      <FormSection style={{ textAlign: 'center' }} />
     </div>
   )
 }

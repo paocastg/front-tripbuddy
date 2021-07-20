@@ -1,0 +1,148 @@
+﻿{
+    "destinos": [
+        {
+            "id": "01",
+            "nombre": "Amazonas",
+            "descripcion": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imagen": "https://picsum.photos/200/300?random=1"
+        },
+        {
+            "id": "02",
+            "nombre": "Ancash",
+            "descripcion": "Aliquam tincidunt mauris eu risus.",
+            "imagen": "https://picsum.photos/200/300?random=2"
+        },
+        {
+            "id": "03",
+            "nombre": "Apurimac",
+            "descripcion": "Vestibulum auctor dapibus neque.",
+            "imagen": "https://picsum.photos/200/300?random=3"
+        },
+        {
+            "id": "04",
+            "nombre": "Arequipa",
+            "descripcion": "Nunc dignissim risus id metus.",
+            "imagen": "https://picsum.photos/200/300?random=4"
+        },
+        {
+            "id": "05",
+            "nombre": "Ayacucho",
+            "descripcion": "Cras ornare tristique elit.",
+            "imagen": "https://picsum.photos/200/300?random=5"
+        },
+        {
+            "id": "06",
+            "nombre": "Cajamarca",
+            "descripcion": "Vivamus vestibulum ntulla nec ante.",
+            "imagen": "https://picsum.photos/200/300?random=6"
+        },
+        {
+            "id": "07",
+            "nombre": "Cuzco",
+            "descripcion": "Praesent placerat risus quis eros.",
+            "imagen": "https://picsum.photos/200/300?random=7"
+        },
+        {
+            "id": "08",
+            "nombre": "La Libertad",
+            "descripcion": "Fusce pellentesque suscipit nibh.",
+            "imagen": "https://picsum.photos/200/300?random=8"
+        },
+        {
+            "id": "09",
+            "nombre": "Huancavelica",
+            "descripcion": "Integer vitae libero ac risus egestas placerat.",
+            "imagen": "https://picsum.photos/200/300?random=9"
+        },
+        {
+            "id": "10",
+            "nombre": "Huanuco",
+            "descripcion": "Vestibulum commodo felis quis tortor.",
+            "imagen": "https://picsum.photos/200/300?random=10"
+        },
+        {
+            "id": "11",
+            "nombre": "Ica",
+            "descripcion": "Ut aliquam sollicitudin leo.",
+            "imagen": "https://picsum.photos/200/300?random=11"
+        },
+        {
+            "id": "12",
+            "nombre": "Junin",
+            "descripcion": "Cras iaculis ultricies nulla.",
+            "imagen": "https://picsum.photos/200/300?random=12"
+        },
+        {
+            "id": "13",
+            "nombre": "Lambayeque",
+            "descripcion": "Donec quis dui at dolor tempor interdum.",
+            "imagen": "https://picsum.photos/200/300?random=13"
+        },
+        {
+            "id": "14",
+            "nombre": "Lima",
+            "descripcion": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "imagen": "https://picsum.photos/200/300?random=14"
+        },
+        {
+            "id": "15",
+            "nombre": "Loreto",
+            "descripcion": "Aliquam tincidunt mauris eu risus.",
+            "imagen": "https://picsum.photos/200/300?random=15"
+        },
+        {
+            "id": "16",
+            "nombre": "Madre de Dios",
+            "descripcion": "Vestibulum auctor dapibus neque.",
+            "imagen": "https://picsum.photos/200/300?random=16"
+        },
+        {
+            "id": "17",
+            "nombre": "Moquegua",
+            "descripcion": "Nunc dignissim risus id metus.",
+            "imagen": "https://picsum.photos/200/300?random=17"
+        },
+        {
+            "id": "18",
+            "nombre": "Pasco",
+            "descripcion": "Cras ornare tristique elit.",
+            "imagen": "https://picsum.photos/200/300?random=18"
+        },
+        {
+            "id": "19",
+            "nombre": "Piura",
+            "descripcion": "Vivamus vestibulum ntulla nec ante.",
+            "imagen": "https://picsum.photos/200/300?random=19"
+        },
+        {
+            "id": "20",
+            "nombre": "Puno",
+            "descripcion": "Praesent placerat risus quis eros.",
+            "imagen": "https://picsum.photos/200/300?random=20"
+        },
+        {
+            "id": "21",
+            "nombre": "San Martin",
+            "descripcion": "Fusce pellentesque suscipit nibh.",
+            "imagen": "https://picsum.photos/200/300?random=21"
+        },
+        {
+            "id": "22",
+            "nombre": "Tacna",
+            "descripcion": "Integer vitae libero ac risus egestas placerat.",
+            "imagen": "https://picsum.photos/200/300?random=22"
+        },
+        {
+            "id": "23",
+            "nombre": "Tumbes",
+            "descripcion": "Vestibulum commodo felis quis tortor.",
+            "imagen": "https://picsum.photos/200/300?random=23"
+        },
+        {
+            "id": "24",
+            "nombre": "Ucayali",
+            "descripcion": "Ut aliquam sollicitudin leo.",
+            "imagen": "https://picsum.photos/200/300?random=24"
+        }
+    ]
+}
