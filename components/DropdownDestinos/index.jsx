@@ -3,14 +3,17 @@ import { Menu, Dropdown, Button, Space } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 
 const menu = () => {
+  const handleClick = e => {
+    console.log('click ', e)
+  }
   return (
     <div>
-    <Menu openKeys="horizontal">
+    <Menu
+      onClick={handleClick}
+      style={{ width: 256 }}
+    >
     <Menu.Item key="sub1">
-      <a target="_blank" rel="noopener noreferrer">
-        Adultos
-      </a>
-      <Space >
+
         <Button shape="circle" >
         -
       </Button>
@@ -18,12 +21,11 @@ const menu = () => {
       <Button shape="circle" >
         +
       </Button>
-      </Space>
+        Adultos
+
     </Menu.Item>
+    <Menu.Divider />
     <Menu.Item key="sub2">
-      <a target="_blank" rel="noopener noreferrer" >
-       Adolescentes
-      </a>
       <Button shape="circle">
         -
       </Button>
@@ -31,11 +33,11 @@ const menu = () => {
       <Button shape="circle">
         +
       </Button>
+       Adolescentes
     </Menu.Item>
+    <Menu.Divider />
     <Menu.Item key="sub3">
-      <a target="_blank" rel="noopener noreferrer">
         Niños
-      </a>
       <Button shape="circle">
         -
       </Button>
