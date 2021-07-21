@@ -1,6 +1,5 @@
 import React from 'react'
 import FormSection from 'sections/Private/Destination/FormSection'
-// import styles from './index.module.scss'
 
 import { Layout } from 'antd'
 
