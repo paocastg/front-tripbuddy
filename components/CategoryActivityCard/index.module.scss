@@ -1,0 +1,39 @@
+.card {
+	margin: 20px 10px 20px 10px;
+	padding: 5px;
+	width: 85px;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+  border: 2px solid;
+	border-radius: .2rem;
+	cursor: pointer;
+}
+
+.selectedCard {
+	margin: 20px 10px 20px 10px;
+	padding: 5px;
+	width: 85px;
+	height: 100px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+  background-color: #00B2E3;
+	border-radius: .3rem;
+	cursor: pointer;
+}
+
+.text {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: .7em;
+	line-height: 1.1;
+}
+
+.image {
+	width: 60px;
+	height: 60px;
+}

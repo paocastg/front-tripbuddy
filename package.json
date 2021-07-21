@@ -25,6 +25,7 @@
     "url-polyfill": "^1.1.12"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.6.2",
     "eslint": "^7.30.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
