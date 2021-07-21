@@ -36,7 +36,7 @@ const RecommendationPage = () => {
     }
     getCategory()
     getActivity()
-  }, [urlCategory, urlActivity])
+  }, [])
   return (
     <div className={styles.main} >
       <CategoryActivities dbCategory={dbCategory} dbActivity={dbActivity} />
