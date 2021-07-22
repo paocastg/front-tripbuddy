@@ -2,6 +2,7 @@
 	font-size: 1.2em;
 	color: #000000;
 	border-color: #000000;
+	font-style: bold;
 	// margin: 10px 2.5px 0px 2.5px;
 	// padding-top: 6px;
 	// padding-bottom: 6px;
@@ -46,4 +47,17 @@
 	flex-wrap: wrap;
 	
 }
+.form {
+	margin-bottom: 0!important;
 
+}
+.formbtn{
+	display:inline-block!important;
+	width: calc(32% - 10px)!important;
+	margin: 0 8px!important;
+
+}
+.slider{
+	margin-left:20%;
+	margin-right: 20%;
+}

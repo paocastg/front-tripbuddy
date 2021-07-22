@@ -21,19 +21,20 @@ const SliderAlojamiento = () => {
   return (
     <div>
       <Form>
-        <Form.Item style={{ marginBottom: 0 }}>
-          <Form.Item style={{ display: 'inline-block', width: 'calc(33% - 10px)' }}>
+        <Form.Item className={styles.form}>
+          <Form.Item className={styles.formbtn}>
             <Button onClick={handleShowSlider} size="large" className={styles.btn} ><strong>Quiero un Hotel</strong></Button>
           </Form.Item>
-          <Form.Item style={{ display: 'inline-block', width: 'calc(33% - 10px)', margin: '0 8px' }}>
+          <Form.Item className={styles.formbtn}>
             <Button onClick={handleShowSlider2} size="large" className={styles.btn} ><strong>Consigueme un Airbnb</strong></Button>
           </Form.Item>
-          <Form.Item style={{ display: 'inline-block', width: 'calc(33% - 10px)' }}>
+          <Form.Item className={styles.formbtn}>
             <Button size="large" className={styles.btn} ><strong>No, gracias</strong></Button>
           </Form.Item>
         </Form.Item>
+        <br/>
         {show && (
-          <Form.Item id='Slider' style={{ marginLeft: '20%', marginRight: '20%' }} >
+          <Form.Item className={styles.slider} >
             <section className={styles.section}>
               <div>
                 <Slider
