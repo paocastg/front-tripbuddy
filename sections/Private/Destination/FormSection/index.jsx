@@ -1,53 +1,39 @@
 import React from 'react'
-import DropdownMenu from 'components/DropdownDestinos'
+import DropdownMenu from 'components/DropdownMenu'
 import SelectDestinos from 'components/SelectDestinos'
-import { Form, DatePicker, Space, Tooltip, Button } from 'antd'
+import { Form, DatePicker, Tooltip } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import SliderAlojamiento from 'components/SliderAlojamiento'
+
+import styles from './index.module.scss'
 
 const { RangePicker } = DatePicker
 
 const FormSection = () => {
   return (
-    <div>
+    <section className={styles.section}>
       <Form >
         <Form.Item >
           <SelectDestinos />
         </Form.Item>
-        <Form.Item>
-          <Space direction="horizontal">
-          <RangePicker/>
-          <DropdownMenu/>
-        </Space>
+        <Form.Item style={{ marginBottom: 0 }}>
+          <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 12px)' }}>
+            <RangePicker size= "large" style={{ width: '100%' }} />
+          </Form.Item>
+          <Form.Item style={{ display: 'inline-block', margin: '0 8px' }}>
+            <DropdownMenu />
+          </Form.Item>
         </Form.Item>
-        <Form.Item>
-          <Space direction="horizontal">
-            <h1>Te gustaria incluir alojamiento</h1>
+        <br/>
+        <Form.Item >
+          <h3 align="center">
+            Te gustaria incluir alojamiento &nbsp;
             <Tooltip title="Extra information">
               <QuestionCircleOutlined/>
             </Tooltip>
-          </Space>
-          <br/>
-          <Space>
-            <Button size="large"> Quiero un Hotel</Button>
-            <Button size="large">Consigueme un Airbnb</Button>
-            <Button size="large">No, gracias</Button>
-          </Space>
+          </h3>
         </Form.Item>
-        <Form.Item>
-          <SliderAlojamiento/>
-        </Form.Item>
-        <br/><br/>
-        <Form.Item>
-        <Space>
-            <Button size="large"> Atrás </Button>
-            <Button size="large">Siguiente</Button>
-          </Space>
-        </Form.Item>
-
       </Form>
-    </div>
+    </section>
   )
 }
-
 export default FormSection

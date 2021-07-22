@@ -1,8 +1,25 @@
-.red {
-  color: red;
+
+
+.main {
+	margin-top: 80px;
+	
 }
-.site-layout-content {
-  min-height: 280px;
-  padding: 24px;
-  background: #fff;
+.customSvgIcon:hover {
+	background-color: #00B2E3;
+	border: thin;
 }
+
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.section > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+
