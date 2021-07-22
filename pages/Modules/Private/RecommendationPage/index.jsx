@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import styles from './index.module.scss'
 import CategoryActivities from 'sections/Private/Recommentation/CategoryActivitySection'
+import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivitiesSection'
 const axios = require('axios')
 
 const RecommendationPage = () => {
   const [dbCategory, setDbCategory] = useState(null)
   const [dbActivity, setDbActivity] = useState(null)
 
-  const urlCategory = 'http://localhost:3000/categoria'
-  const urlActivity = 'http://localhost:3000/actividad'
+  const urlCategory = 'http://127.0.0.1:8000/category/'
+  const urlActivity = 'http://127.0.0.1:8000/activity/'
 
   useEffect(() => {
     const getCategory = async () => {
@@ -40,6 +41,7 @@ const RecommendationPage = () => {
   return (
     <div className={styles.main} >
       <CategoryActivities dbCategory={dbCategory} dbActivity={dbActivity} />
+      <OtherActivitiesSection/>
     </div>
   )
 }

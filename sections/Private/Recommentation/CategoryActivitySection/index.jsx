@@ -17,9 +17,10 @@ const CategoryActivities = ({ dbCategory, dbActivity }) => {
         {dbCategory &&
           dbCategory.map((el) => (
             <CategoryActivityCard
-              key={el.id_categoria}
-              name={el.nombre_categoria}
-              id={el.id_categoria}
+              key={el.id}
+              id={el.id}
+              name={el.name}
+              img={el.image}
             />
           ))}
       </div>
@@ -28,9 +29,10 @@ const CategoryActivities = ({ dbCategory, dbActivity }) => {
         {dbActivity &&
           dbActivity.map((el) => (
             <CategoryActivityCard
-              key={el.id_actividad}
-              name={el.nombre_actividad}
-              id={el.id_actividad}
+              key={el.id}
+              name={el.name}
+              id={el.id}
+              img={el.image}
             />
           ))}
       </div>
