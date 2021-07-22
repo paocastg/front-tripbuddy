@@ -10,7 +10,12 @@ const marks = {
 const SliderAlojamiento = () => {
   return (
     <div>
-      <Slider marks={marks} step={null} defaultValue={50} />
+      <Slider
+        marks={marks}
+        step={null}
+        defaultValue={50}
+        tipFormatter={null}
+      />
     </div>
   )
 }

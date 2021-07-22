@@ -6,7 +6,6 @@ const { Option } = Select
 
 const SelectDestinos = () => {
   const [seleccionados, setSeleccionados] = useState([])
-  // const [id, setId] = useState(0)
   const [datos, setDatos] = useState('')
 
   useEffect(() => {
@@ -21,13 +20,6 @@ const SelectDestinos = () => {
     }
   }
 
-  // const handleSearch = value => {
-  //   if (id) {
-  //     fetch(id, datos => setDatos({ datos }))
-  //   } else {
-  //     alert('usuario no existe')
-  //   }
-  // }
   const handleChange = id => {
     console.log('id', id)
     setSeleccionados([...seleccionados, ...id])
@@ -45,7 +37,6 @@ const SelectDestinos = () => {
       <Select
         mode="multiple"
         placeholder="Destinos"
-        style={{ width: '50%' }}
         onChange={handleChange}
       >
         {options}
