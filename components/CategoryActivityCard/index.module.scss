@@ -12,6 +12,10 @@
 	cursor: pointer;
 }
 
+.card:hover {
+  background-color: rgba(0,178,227,0.3);
+}
+
 .selectedCard {
 	margin: 20px 10px 20px 10px;
 	padding: 5px;
@@ -21,7 +25,7 @@
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-  background-color: #00B2E3;
+  background-color: rgba(0,178,227,0.3);
 	border-radius: .3rem;
 	cursor: pointer;
 }
