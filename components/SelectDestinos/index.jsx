@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Select } from 'antd'
 import axios from 'axios'
+// import styles from './index.module.scss'
 
 const { Option } = Select
 
@@ -25,8 +26,6 @@ const SelectDestinos = () => {
     setSeleccionados([...seleccionados, ...id])
   }
 
-  console.log('op', datos)
-
   const options = datos && datos.map(d =>
   <Option key={d.id}>
     {d.nombre}
@@ -35,6 +34,7 @@ const SelectDestinos = () => {
   return (
     <div>
       <Select
+        style={{ width: '95%' }}
         mode="multiple"
         placeholder="Destinos"
         onChange={handleChange}

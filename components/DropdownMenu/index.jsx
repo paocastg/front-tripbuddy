@@ -103,7 +103,10 @@ const DropdownMenu = () => {
         size="large"
       >
           {<UserOutlined />} {suma} Personas
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </Dropdown.Button>
+
     </div>
   )
 }
