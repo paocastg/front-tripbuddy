@@ -15,11 +15,11 @@ const FormSection = () => {
         <Form.Item >
           <SelectDestinos />
         </Form.Item>
-        <Form.Item style={{ marginBottom: 0 }}>
-          <Form.Item style={{ display: 'inline-block', width: 'calc(50% - 12px)' }}>
+        <Form.Item className={styles.form}>
+          <Form.Item className={styles.rangepicker}>
             <RangePicker size= "large" style={{ width: '100%' }} />
           </Form.Item>
-          <Form.Item style={{ display: 'inline-block', margin: '0 8px' }}>
+          <Form.Item className={styles.dropdown}>
             <DropdownMenu />
           </Form.Item>
         </Form.Item>
