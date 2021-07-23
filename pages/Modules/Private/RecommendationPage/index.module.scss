@@ -1,0 +1,106 @@
+.main {
+	margin-top: 80px;
+}
+
+.main > div {
+	margin-top: 100px;
+}
+
+.hiddenSection {
+	position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+	background-color: #fff;
+	visibility: hidden;
+  transition: transform .3s ease, opacity 0.5s ease;
+  /* De arriba */
+  transform: translate(0, -100%);
+  /* De abajo */
+  transform: translate(0, 100%);
+  /* De left*/
+  transform: translate(-100%, 0);
+	/* De right */
+  transform: translate(100%, 0);
+}
+
+.isActive {
+	position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+	background-color: #fff;
+  visibility: visible;
+  transition: transform .3s ease, opacity 0.5s ease;
+	transform: translate(0,0);
+}
+
+.hiddenSectionCategory {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+	background-color: #fff;
+	visibility: hidden;
+  transition: transform .3s ease, opacity 0.5s ease;
+  /* De arriba */
+  transform: translate(0, -100%);
+  /* De abajo */
+  transform: translate(0, 100%);
+	/* De right */
+  transform: translate(100%, 0);
+  /* De left*/
+  transform: translate(-100%, 0);
+}
+
+.isActiveCategory {
+	position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+	background-color: #fff;
+  visibility: visible;
+  transition: transform .3s ease, opacity 0.5s ease;
+	transform: translate(0,0);
+}
+
+.hiddenSectionForm {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+	background-color: #fff;
+	visibility: hidden;
+  transition: transform .3s ease, opacity 0.5s ease;
+  /* De arriba */
+  transform: translate(0, -100%);
+  /* De abajo */
+  transform: translate(0, 100%);
+  /* De left*/
+  transform: translate(-100%, 0);
+	/* De right */
+  transform: translate(100%, 0);
+}
+
+.isActiveForm {
+	position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+	background-color: #fff;
+  visibility: visible;
+  transition: transform .3s ease, opacity 0.5s ease;
+	transform: translate(0,0);
+}

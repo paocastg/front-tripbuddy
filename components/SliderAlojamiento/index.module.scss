@@ -1,0 +1,63 @@
+.btn {
+	font-size: 1.2em;
+	color: #000000;
+	border-color: #000000;
+	font-style: bold;
+	// margin: 10px 2.5px 0px 2.5px;
+	// padding-top: 6px;
+	// padding-bottom: 6px;
+	// padding-left: 30px;
+	// padding-right: 30px;
+	border: 1px solid;
+	border-radius: 4px;
+	background-color: #fff;
+	width: 100%;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #00B2E3;
+    border-color: #000000;
+}
+.btn:active {
+	background: #00B2E3;
+  }
+
+
+.main {
+	margin-top: 80px;
+	
+}
+.customSvgIcon:hover {
+	background-color: #00B2E3;
+	border: thin;
+}
+
+.section {
+	display:contents;
+	flex-direction: column;
+	align-items: center;
+	
+}
+
+.section > div {
+	display: contents;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	
+}
+.form {
+	margin-bottom: 0!important;
+
+}
+.formbtn{
+	display:inline-block!important;
+	width: calc(32% - 10px)!important;
+	margin: 0 8px!important;
+
+}
+.slider{
+	margin-left:20%;
+	margin-right: 20%;
+}
