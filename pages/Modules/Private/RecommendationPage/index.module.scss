@@ -1,12 +1,12 @@
-.main {
+/* .main {
+	margin-top: 30px;
+} */
+
+.main > div {
 	margin-top: 80px;
 }
 
-.main > div {
-	margin-top: 100px;
-}
-
-.hiddenSection {
+.hiddenRight {
 	position: absolute;
   top: 0;
   bottom: 0;
@@ -26,7 +26,7 @@
   transform: translate(100%, 0);
 }
 
-.isActive {
+.visible {
 	position: absolute;
   top: 0;
   bottom: 0;
@@ -39,7 +39,7 @@
 	transform: translate(0,0);
 }
 
-.hiddenSectionCategory {
+.hiddenLeft {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -59,7 +59,7 @@
   transform: translate(-100%, 0);
 }
 
-.isActiveCategory {
+/* .isActiveCategory {
 	position: absolute;
   top: 0;
   bottom: 0;
@@ -70,29 +70,9 @@
   visibility: visible;
   transition: transform .3s ease, opacity 0.5s ease;
 	transform: translate(0,0);
-}
+} */
 
-.hiddenSectionForm {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-	background-color: #fff;
-	visibility: hidden;
-  transition: transform .3s ease, opacity 0.5s ease;
-  /* De arriba */
-  transform: translate(0, -100%);
-  /* De abajo */
-  transform: translate(0, 100%);
-  /* De left*/
-  transform: translate(-100%, 0);
-	/* De right */
-  transform: translate(100%, 0);
-}
-
-.isActiveForm {
+/* .isActiveForm {
 	position: absolute;
   top: 0;
   bottom: 0;
@@ -103,4 +83,23 @@
   visibility: visible;
   transition: transform .3s ease, opacity 0.5s ease;
 	transform: translate(0,0);
+} */
+
+/* ============ Formulario ============ */
+.customSvgIcon:hover {
+	background-color: #00B2E3;
+	border: thin;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.section > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }

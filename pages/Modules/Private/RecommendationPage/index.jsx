@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styles from './index.module.scss'
 import Button from 'components/Button'
+import H2 from 'components/H2'
+import SliderAlojamiento from 'components/SliderAlojamiento'
+import FormSection from 'sections/Private/Recommentation/FormSection'
+import { Row, Col } from 'antd'
 import CategoryActivities from 'sections/Private/Recommentation/CategoryActivitySection'
 import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivitiesSection'
+import { useRouter } from 'next/router'
 const axios = require('axios')
 
 const RecommendationPage = () => {
@@ -11,8 +16,13 @@ const RecommendationPage = () => {
   const [dbCategory, setDbCategory] = useState(null)
   const [dbActivity, setDbActivity] = useState(null)
 
+  const router = useRouter()
+
   const urlCategory = 'http://127.0.0.1:8000/category/'
   const urlActivity = 'http://127.0.0.1:8000/activity/'
+
+  // console.log(toggleOne)
+  // console.log(toggleTwo)
 
   useEffect(() => {
     const getCategory = async () => {
@@ -52,24 +62,35 @@ const RecommendationPage = () => {
 
   return (
     <div className={styles.main}>
-      <div
-        className={
-          toggleOne ? styles.isActiveForm : styles.hiddenSectionCategory
-        }
-      >
-        <h2>Formulario de Destinos</h2>
-        <section>
-          <Button onClick={() => console.log('Atrás')}>Atrás</Button>
-          <Button onClick={handleToggleOne}>Siguiente</Button>
+      <div className={toggleOne ? styles.hiddenLeft : styles.visible}>
+        <Row>
+          <Col span={12} offset={6}>
+            <H2>
+              Elige tu destino y las fechas <br /> en que piensas viajar
+            </H2>
+            <FormSection />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12} offset={6}>
+            <SliderAlojamiento />
+          </Col>
+        </Row>
+        <br />
+        <section className={styles.section}>
+          <div>
+            <Button onClick={() => router.push('/select')}>Atrás</Button>
+            <Button onClick={handleToggleOne}>Siguiente</Button>
+          </div>
         </section>
       </div>
       <div
         className={
           toggleTwo
-            ? styles.hiddenSectionCategory
+            ? styles.hiddenLeft
             : toggleOne
-              ? styles.hiddenSectionForm
-              : styles.isActiveCategory
+              ? styles.visible
+              : styles.hiddenRight
         }
       >
         <CategoryActivities
@@ -79,7 +100,7 @@ const RecommendationPage = () => {
           handleClickBefore={handleToggleOne}
         />
       </div>
-      <div className={toggleTwo ? styles.isActive : styles.hiddenSection}>
+      <div className={toggleTwo ? styles.visible : styles.hiddenRight}>
         <OtherActivitiesSection handleClickBefore={handleToggleTwo} />
       </div>
     </div>
