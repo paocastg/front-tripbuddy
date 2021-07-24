@@ -3,6 +3,7 @@ import App from 'next/app'
 import Router from 'next/router'
 
 import 'antd/dist/antd.css'
+import '../statics/assets/styles/style.scss'
 
 class MyApp extends App {
   componentDidMount () {

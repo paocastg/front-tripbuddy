@@ -1,0 +1,64 @@
+.wrapper {
+  background-color: #00B2E3;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-family: 'Geomanist-Regular';
+  color: #fff;
+}
+
+.footer_options {
+  display: flex;
+  & > div {
+    width: 25%;
+    padding: 0px 20px;
+    & > h2 {
+      font-family: 'Geomanist-Bold';
+      font-size: 2em;
+      color: white;
+      font-weight: bolder;
+      padding: 20px 0px;
+      border-bottom: 1px solid white;
+    }
+    & > a {
+      display: block;
+      color: white;
+      margin: 7px 0px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.footer_desc {
+  padding: 20px 0px;
+  background-color: #005E9E;
+  color: white;
+  text-align: center;
+}
+
+@media screen and (max-width: 1024px) {
+  .footer_options {
+    display: block;
+    & > div {
+      width: 100%;
+      padding: 0px;
+      & > h2 {
+        font-family: 'Geomanist-Bold';
+        font-size: 2em;
+        color: white;
+        font-weight: bolder;
+        padding: 20px 0px;
+        border-bottom: 1px solid white;
+      }
+      & > a {
+        display: block;
+        color: white;
+        margin: 7px 0px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

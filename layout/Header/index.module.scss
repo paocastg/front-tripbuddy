@@ -1,0 +1,44 @@
+.wrapper {
+  height: 70px;
+  border-bottom: 5px solid #00B2E3;
+  & > div {
+    height: 100%;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.header_user {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.user {
+  height: 47px;
+  width: 150px;
+  padding-left: 15px;
+  line-height: 47px;
+}
+
+.header_button {
+  border: 1px solid #00B2E3;
+  color: #00b2e3;
+  padding: 6px 12px;
+  font-size: 1.2em;
+  background-color: white;
+  border-radius: 4px;
+  outline: none;
+  height: 37px;
+  cursor: pointer;
+  transition: .3s ease-in;
+  &:hover {
+    color: white;
+    background-color: #00b2e3;
+    transition: .3s ease-out;
+  }
+}
