@@ -1,46 +1,37 @@
 .btn {
 	font-size: 1.2em;
 	color: #000000;
-	border-color: #000000;
-	font-style: bold;
-	// margin: 10px 2.5px 0px 2.5px;
-	// padding-top: 6px;
-	// padding-bottom: 6px;
-	// padding-left: 30px;
-	// padding-right: 30px;
+	border-color: #00B2E3;
+	margin: 10px 2px 0px 2px;
+	padding: 4px 10px;
 	border: 1px solid;
 	border-radius: 4px;
 	background-color: #fff;
-	width: 100%;
+	width: 222px;
 }
 
 .btn:hover {
     color: #fff;
     background-color: #00B2E3;
-    border-color: #000000;
+    border-color: #00B2E3;
 }
 .btn:active {
 	background: #00B2E3;
   }
 
-
-.main {
-	margin-top: 80px;
-	
-}
 .customSvgIcon:hover {
 	background-color: #00B2E3;
 	border: thin;
 }
 
-.section {
+.sectionSlider {
 	display:contents;
 	flex-direction: column;
 	align-items: center;
 	
 }
 
-.section > div {
+.sectionSlider > div {
 	display: contents;
 	justify-content: center;
 	align-items: center;
@@ -60,4 +51,16 @@
 .slider{
 	margin-left:20%;
 	margin-right: 20%;
+}
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.section > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }

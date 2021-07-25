@@ -20,18 +20,15 @@ const SliderAlojamiento = () => {
 
   return (
     <div>
-      <Form>
-        <Form.Item className={styles.form}>
-          <Form.Item className={styles.formbtn}>
-            <Button
+      <section>
+          <div>
+          <Button
               onClick={handleShowSlider}
               size="large"
               className={styles.btn}
             >
               <strong>Quiero un Hotel</strong>
             </Button>
-          </Form.Item>
-          <Form.Item className={styles.formbtn}>
             <Button
               onClick={handleShowSlider2}
               size="large"
@@ -39,20 +36,19 @@ const SliderAlojamiento = () => {
             >
               <strong>Consigueme un Airbnb</strong>
             </Button>
-          </Form.Item>
-          <Form.Item className={styles.formbtn}>
             <Button
               onClick={handleShowSlider}
               size="large" className={styles.btn}
             >
               <strong>No, gracias</strong>
             </Button>
-          </Form.Item>
-        </Form.Item>
+          </div>
+        </section>
+      <Form>
         <br/>
         {show && (
           <Form.Item className={styles.slider} >
-            <section className={styles.section}>
+            <section className={styles.sectionSlider}>
               <div>
                 <Slider
                 marks={marks}
