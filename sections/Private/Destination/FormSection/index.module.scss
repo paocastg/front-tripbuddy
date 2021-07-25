@@ -15,3 +15,14 @@
 	align-items: center;
 	flex-wrap: wrap;
 }
+.rangepicker {
+	display:inline-block;
+	 width: calc(50% - 12px);
+}
+.form {
+	margin-bottom: 0 ;
+}
+.dropdown {
+	display: inline-block;
+	margin: 0 8px;
+}
