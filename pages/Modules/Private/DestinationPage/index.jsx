@@ -20,24 +20,6 @@ const Destination = () => {
       </Row>
       <Row>
         <Col span={12} offset={6}>
-          <H2>Elige tu destino y las fechas <br/> en que piensas viajar</H2>
-          <FormSection />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={12} offset={6}>
-          <H2>Elige tu destino y las fechas <br/> en que piensas viajar</H2>
-          <FormSection />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={12} offset={6}>
-          <H2>Elige tu destino y las fechas <br/> en que piensas viajar</H2>
-          <FormSection />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={12} offset={6}>
           <SliderAlojamiento/>
         </Col>
       </Row>
