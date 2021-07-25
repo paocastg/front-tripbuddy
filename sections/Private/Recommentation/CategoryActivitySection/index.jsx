@@ -4,7 +4,7 @@ import Button from 'components/Button'
 import H2 from 'components/H2'
 import styles from './index.module.scss'
 
-const CategoryActivities = ({ dbCategory, dbActivity }) => {
+const CategoryActivities = ({ dbCategory, dbActivity, handleClickNext, handleClickBefore }) => {
   const AddCategoryAndActivitySelected = (data) => {
     // update
     console.log(data)
@@ -17,9 +17,10 @@ const CategoryActivities = ({ dbCategory, dbActivity }) => {
         {dbCategory &&
           dbCategory.map((el) => (
             <CategoryActivityCard
-              key={el.id_categoria}
-              name={el.nombre_categoria}
-              id={el.id_categoria}
+              key={el.id}
+              id={el.id}
+              name={el.name}
+              img={el.image}
             />
           ))}
       </div>
@@ -28,15 +29,16 @@ const CategoryActivities = ({ dbCategory, dbActivity }) => {
         {dbActivity &&
           dbActivity.map((el) => (
             <CategoryActivityCard
-              key={el.id_actividad}
-              name={el.nombre_actividad}
-              id={el.id_actividad}
+              key={el.id}
+              name={el.name}
+              id={el.id}
+              img={el.image}
             />
           ))}
       </div>
       <div>
-        <Button onClick={() => console.log('Atrás')}>Atrás</Button>
-        <Button onClick={() => console.log('Siguiente')}>Siguiente</Button>
+        <Button onClick={handleClickBefore}>Atrás</Button>
+        <Button onClick={handleClickNext}>Siguiente</Button>
       </div>
     </section>
   )

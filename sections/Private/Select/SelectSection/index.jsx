@@ -6,8 +6,8 @@ const SelectSection = () => {
   const router = useRouter()
   return (
     <div className={styles.container} >
-      <Box text='Conozco mi destino' onClick={() => router.push('/destination')} />
-      <Box text='Quiero Recomendaciones' onClick={() => router.push('/recommendation')} />
+      <Box text='Conozco mi destino' img='conozco-mi-destino.png' onClick={() => router.push('/destination')} />
+      <Box text='Quiero Recomendaciones' img='quiero-recomendaciones.png' onClick={() => router.push('/recommendation')} />
     </div>
   )
 }
