@@ -1,10 +1,13 @@
 import SelectSection from 'sections/Private/Select/SelectSection'
+import Wrapper from 'layout/Wrapper'
 
 const SelectPage = () => {
   return (
-    <section>
-      <SelectSection/>
-    </section>
+    <Wrapper>
+      <section>
+        <SelectSection />
+      </section>
+    </Wrapper>
   )
 }
 
