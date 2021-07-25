@@ -12,24 +12,30 @@ const Destination = () => {
   const router = useRouter()
   return (
     <Wrapper>
-      <Row>
-        <Col span={12} offset={6}>
-          <H2>Elige tu destino y las fechas <br/> en que piensas viajar</H2>
-          <FormSection />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={12} offset={6}>
-          <SliderAlojamiento/>
-        </Col>
-      </Row>
-      <br/>
-      <section className={styles.section}>
-        <div>
-        <Button onClick={() => router.push('/select')}>Atrás</Button>
-        <Button onClick={() => console.log('Siguiente')}>Siguiente</Button>
+      <div className={styles.main}>
+        <div className={styles.visible}>
+          <Row className={styles.main}>
+            <Col span={12} offset={6}>
+              <H2>
+                Elige tu destino y las fechas <br /> en que piensas viajar
+              </H2>
+              <FormSection />
+            </Col>
+          </Row>
+          <Row>
+            <Col span={12} offset={6}>
+              <SliderAlojamiento />
+            </Col>
+          </Row>
+          <br />
+          <section className={styles.section}>
+            <div>
+              <Button onClick={() => router.push('/select')}>Atrás</Button>
+              <Button onClick={() => console.log('Siguiente')}>Siguiente</Button>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
     </Wrapper>
   )
 }
