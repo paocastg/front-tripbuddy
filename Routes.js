@@ -1,6 +1,7 @@
 export const RoutesPrivate = {
   LoginPage: { slug: '/login', file: '/Modules/Public/LoginPage' },
-  SelectPage: { slug: '/select', file: '/Modules/Private/SelectPage' }
+  SelectPage: { slug: '/select', file: '/Modules/Private/SelectPage' },
+  ConfirmationPage: { slug: '/confirmation', file: '/Modules/Private/ConfirmationPage' }
 }
 
 export const RoutesPublic = {

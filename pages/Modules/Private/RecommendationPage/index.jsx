@@ -103,8 +103,8 @@ const RecommendationPage = () => {
               <FormSection />
             </Col>
           </Row>
-          <Row>
-            <Col span={12} offset={6}>
+          <Row justify="center">
+            <Col span={24}>
               <SliderAlojamiento />
             </Col>
           </Row>

@@ -1,12 +1,18 @@
-
-
-.main {
-	margin-top: 80px;
-	
+.main > div {
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
-.customSvgIcon:hover {
-	background-color: #00B2E3;
-	border: thin;
+.visible {
+	position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+	background-color: #fff;
+  visibility: visible;
+  transition: transform .3s ease, opacity 0.5s ease;
+	transform: translate(0,0);
 }
 
 .section {
@@ -21,5 +27,3 @@
 	align-items: center;
 	flex-wrap: wrap;
 }
-
-
