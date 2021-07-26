@@ -14,8 +14,8 @@ const Destination = () => {
     <Wrapper>
       <div className={styles.main}>
         <div className={styles.visible}>
-          <Row className={styles.main}>
-            <Col span={12} offset={6}>
+          <Row>
+            <Col span={24} >
               <H2>
                 Elige tu destino y las fechas <br /> en que piensas viajar
               </H2>
@@ -23,7 +23,7 @@ const Destination = () => {
             </Col>
           </Row>
           <Row>
-            <Col span={12} offset={6}>
+            <Col span={24} >
               <SliderAlojamiento />
             </Col>
           </Row>
@@ -31,7 +31,7 @@ const Destination = () => {
           <section className={styles.section}>
             <div>
               <Button onClick={() => router.push('/select')}>Atrás</Button>
-              <Button onClick={() => console.log('Siguiente')}>Siguiente</Button>
+              <Button onClick={() => router.push('/confirmation')}>Siguiente</Button>
             </div>
           </section>
         </div>
