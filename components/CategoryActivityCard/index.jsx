@@ -1,17 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 // import concierto from 'assets/images/icon-conciertos.png'
 import styles from './index.module.scss'
 
 const CategoryActivityCard = ({
   name,
-  AddCategoryAndActivitySelected,
+  saveCategoryActivity,
+  deleteCategoryActivity,
   img,
+  field,
   id
 }) => {
   const [selected, setSelected] = useState(false)
 
+  useEffect(() => {
+    const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
+      activity: [],
+      category: []
+    }
+    console.log(myQuotationInit)
+
+    if (myQuotationInit.activity.includes(id) && field === 'activity') {
+      setSelected(true)
+    } else if (myQuotationInit.category.includes(id) && field === 'category') {
+      setSelected(true)
+    } else {
+      setSelected(false)
+    }
+  }, [])
+
   const handleIconClick = (e) => {
-    // AddCategoryAndActivitySelected(name)
+    if (!selected) {
+      saveCategoryActivity(id, field)
+    } else {
+      deleteCategoryActivity(id, field)
+    }
     setSelected((prev) => !prev)
   }
   return (

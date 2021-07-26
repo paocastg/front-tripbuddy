@@ -4,12 +4,14 @@ import Button from 'components/Button'
 import H2 from 'components/H2'
 import styles from './index.module.scss'
 
-const CategoryActivities = ({ dbCategory, dbActivity, handleClickNext, handleClickBefore }) => {
-  const AddCategoryAndActivitySelected = (data) => {
-    // update
-    console.log(data)
-  }
-
+const CategoryActivities = ({
+  dbCategory,
+  dbActivity,
+  handleClickNext,
+  handleClickBefore,
+  saveCategoryActivity,
+  deleteCategoryActivity
+}) => {
   return (
     <section className={styles.section}>
       <H2>Seleccione la categoria que mejor describe tu viaje</H2>
@@ -21,6 +23,9 @@ const CategoryActivities = ({ dbCategory, dbActivity, handleClickNext, handleCli
               id={el.id}
               name={el.name}
               img={el.image}
+              saveCategoryActivity={saveCategoryActivity}
+              deleteCategoryActivity={deleteCategoryActivity}
+              field="category"
             />
           ))}
       </div>
@@ -33,6 +38,9 @@ const CategoryActivities = ({ dbCategory, dbActivity, handleClickNext, handleCli
               name={el.name}
               id={el.id}
               img={el.image}
+              saveCategoryActivity={saveCategoryActivity}
+              deleteCategoryActivity={deleteCategoryActivity}
+              field="activity"
             />
           ))}
       </div>

@@ -16,6 +16,7 @@ const RecommendationPage = () => {
   const [toggleTwo, setToggleTwo] = useState(false)
   const [dbCategory, setDbCategory] = useState(null)
   const [dbActivity, setDbActivity] = useState(null)
+  const [myQuotation, setMyQuotation] = useState(null)
 
   const router = useRouter()
 
@@ -51,6 +52,13 @@ const RecommendationPage = () => {
     }
     getCategory()
     getActivity()
+
+    // get of localStorage
+    const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
+      activity: [],
+      category: []
+    }
+    setMyQuotation(myQuotationInit)
   }, [])
 
   const handleToggleOne = () => {
@@ -59,6 +67,28 @@ const RecommendationPage = () => {
 
   const handleToggleTwo = () => {
     setToggleTwo((prev) => !prev)
+  }
+
+  const saveCategoryActivity = (id, field) => {
+    // save id in localStorage
+    const quotation = {
+      ...myQuotation,
+      [field]: [...myQuotation[field], id]
+    }
+
+    setMyQuotation(quotation)
+    localStorage.setItem('myQuotation', JSON.stringify(quotation))
+  }
+
+  const deleteCategoryActivity = (id, field) => {
+    const fieldFiltered = myQuotation[field].filter((el) => el !== id)
+    const quotation = {
+      ...myQuotation,
+      [field]: fieldFiltered
+    }
+
+    setMyQuotation(quotation)
+    localStorage.setItem('myQuotation', JSON.stringify(quotation))
   }
 
   return (
@@ -98,6 +128,8 @@ const RecommendationPage = () => {
           <CategoryActivities
             dbCategory={dbCategory}
             dbActivity={dbActivity}
+            saveCategoryActivity={saveCategoryActivity}
+            deleteCategoryActivity={deleteCategoryActivity}
             handleClickNext={handleToggleTwo}
             handleClickBefore={handleToggleOne}
           />
