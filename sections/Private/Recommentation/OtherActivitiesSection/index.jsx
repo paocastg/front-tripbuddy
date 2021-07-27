@@ -3,11 +3,13 @@ import H2 from 'components/H2'
 import CustomTooltip from 'components/CustomTooltip'
 import Button from 'components/Button'
 import styles from './index.module.scss'
+import { useRouter } from 'next/router'
 import { Select } from 'antd'
 
 const { Option } = Select
 
 const OtherActivitiesSection = ({ handleClickBefore }) => {
+  const router = useRouter()
   return (
     <section className={styles.section} >
       <H2>Otras Actividades</H2>
@@ -29,7 +31,7 @@ const OtherActivitiesSection = ({ handleClickBefore }) => {
       </Select>
       <div style={{ marginTop: '100px' }} >
         <Button onClick={handleClickBefore}>Atrás</Button>
-        <Button onClick={() => console.log('Siguiente')}>Siguiente</Button>
+        <Button onClick={() => router.push('/confirmation')}>Siguiente</Button>
       </div>
 
     </section>
