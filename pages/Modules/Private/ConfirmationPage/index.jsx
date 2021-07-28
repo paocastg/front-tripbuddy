@@ -7,13 +7,23 @@ import Button from 'components/Button'
 
 const ConfirmationPage = () => {
   const router = useRouter()
+
+  const handlePrev = () => {
+    const selectDestination = JSON.parse(localStorage.getItem('selectDestination'))
+    // console.log(selectDestination)
+    if (selectDestination) {
+      router.push('/destination')
+    } else {
+      router.push('/recommendation')
+    }
+  }
   return (
     <Wrapper>
       <div className={styles.main}>
         <FormSection/>
         <section className={styles.section}>
           <div>
-            <Button onClick={() => router.push('/destination')}>Atrás</Button>
+            <Button onClick={handlePrev}>Atrás</Button>
             <Button onClick={() => router.push('')}>Siguiente</Button>
           </div>
         </section>

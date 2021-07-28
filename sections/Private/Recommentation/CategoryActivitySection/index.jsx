@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CategoryActivityCard from 'components/CategoryActivityCard'
 import Button from 'components/Button'
 import H2 from 'components/H2'
 import styles from './index.module.scss'
+import { useRouter } from 'next/router'
 
 const CategoryActivities = ({
   dbCategory,
@@ -12,6 +13,10 @@ const CategoryActivities = ({
   saveCategoryActivity,
   deleteCategoryActivity
 }) => {
+  const [selectOtherActivities, setSelectOtherActivities] = useState(false)
+  const router = useRouter()
+
+  console.log(selectOtherActivities)
   return (
     <section className={styles.section}>
       <H2>Seleccione la categoria que mejor describe tu viaje</H2>
@@ -40,13 +45,14 @@ const CategoryActivities = ({
               img={el.image}
               saveCategoryActivity={saveCategoryActivity}
               deleteCategoryActivity={deleteCategoryActivity}
+              setSelectOtherActivities={setSelectOtherActivities}
               field="activity"
             />
           ))}
       </div>
       <div>
         <Button onClick={handleClickBefore}>Atrás</Button>
-        <Button onClick={handleClickNext}>Siguiente</Button>
+        <Button onClick={selectOtherActivities ? handleClickNext : () => router.push('/confirmation')}>Siguiente</Button>
       </div>
     </section>
   )

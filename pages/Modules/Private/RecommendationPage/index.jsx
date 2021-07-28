@@ -23,8 +23,8 @@ const RecommendationPage = () => {
   const urlCategory = 'http://127.0.0.1:8000/category/'
   const urlActivity = 'http://127.0.0.1:8000/activity/'
 
-  // console.log(toggleOne)
-  // console.log(toggleTwo)
+  // console.log('toggleOne', toggleOne)
+  // console.log('toggleTwo', toggleTwo)
 
   useEffect(() => {
     const getCategory = async () => {
@@ -59,14 +59,47 @@ const RecommendationPage = () => {
       category: []
     }
     setMyQuotation(myQuotationInit)
+
+    // read myToggle storage
+    const myToggle = JSON.parse(localStorage.getItem('myToggle')) || { toggleOne, toggleTwo }
+    setToggleOne(myToggle.toggleOne)
+    setToggleTwo(myToggle.toggleTwo)
   }, [])
 
   const handleToggleOne = () => {
     setToggleOne((prev) => !prev)
+    // set item myToggle
+    if (!toggleOne) {
+      const toggle = {
+        toggleOne: true,
+        toggleTwo: false
+      }
+      localStorage.setItem('myToggle', JSON.stringify(toggle))
+    } else {
+      const toggle = {
+        toggleOne: false,
+        toggleTwo: false
+      }
+      localStorage.setItem('myToggle', JSON.stringify(toggle))
+    }
   }
 
   const handleToggleTwo = () => {
     setToggleTwo((prev) => !prev)
+    // set item myToggle
+    if (!toggleTwo) {
+      const toggle = {
+        toggleOne: true,
+        toggleTwo: true
+      }
+      localStorage.setItem('myToggle', JSON.stringify(toggle))
+    } else {
+      const toggle = {
+        toggleOne: true,
+        toggleTwo: false
+      }
+      localStorage.setItem('myToggle', JSON.stringify(toggle))
+    }
   }
 
   const saveCategoryActivity = (id, field) => {
@@ -76,17 +109,20 @@ const RecommendationPage = () => {
       [field]: [...myQuotation[field], id]
     }
 
+    // update localStorage
     setMyQuotation(quotation)
     localStorage.setItem('myQuotation', JSON.stringify(quotation))
   }
 
   const deleteCategoryActivity = (id, field) => {
+    // delete id in localStorage
     const fieldFiltered = myQuotation[field].filter((el) => el !== id)
     const quotation = {
       ...myQuotation,
       [field]: fieldFiltered
     }
 
+    // update locaStorage
     setMyQuotation(quotation)
     localStorage.setItem('myQuotation', JSON.stringify(quotation))
   }
