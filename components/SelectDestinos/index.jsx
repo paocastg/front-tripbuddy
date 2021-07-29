@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Select } from 'antd'
 import axios from 'axios'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
-// import styles from './index.module.scss'
+import styles from './index.module.scss'
 
 const { Option } = Select
 
@@ -37,7 +37,7 @@ const SelectDestinos = () => {
   return (
     <div>
       <Select
-        style={{ width: '95%' }}
+        className={styles.select}
         mode="multiple"
         placeholder="Destinos"
         onChange={handleChange}

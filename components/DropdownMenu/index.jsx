@@ -105,6 +105,7 @@ const DropdownMenu = () => {
   return (
     <div>
       <Dropdown.Button
+        className= {styles.dropdown}
         overlay={menu}
         onVisibleChange={handleVisibleChange}
         visible={state.visible}
@@ -114,7 +115,7 @@ const DropdownMenu = () => {
       >
           {<UserOutlined />} {suma} Personas
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </Dropdown.Button>
 
     </div>

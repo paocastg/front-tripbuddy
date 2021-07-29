@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { DatePicker } from 'antd'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
-import moment from 'moment'
-
+import styles from './index.module.scss'
 const { RangePicker } = DatePicker
 
 const RangePickers = () => {
@@ -26,10 +25,12 @@ const RangePickers = () => {
   return (
     <div>
       <RangePicker
-      showTime={{
-        hideDisabledOptions: true,
-        defaultValue: [dateStart, dateEnd]
-      }}
+        className={styles.rangepicker}
+        size= "large"
+        showTime={{
+          hideDisabledOptions: true,
+          defaultValue: [dateStart, dateEnd]
+        }}
         onCalendarChange={onCalendarChange}
         format="DD-MM-YYYY"/>
     </div>

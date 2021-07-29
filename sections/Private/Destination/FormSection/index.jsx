@@ -16,7 +16,7 @@ const FormSection = () => {
         </Form.Item>
         <Form.Item className={styles.form}>
           <Form.Item className={styles.rangepicker}>
-            <RangePicker size= "large" style={{ width: '100%' }} />
+            <RangePicker style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item className={styles.dropdown}>
             <DropdownMenu />

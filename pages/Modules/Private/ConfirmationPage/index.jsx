@@ -23,13 +23,8 @@ const ConfirmationPage = () => {
         <FormSection/>
         <section className={styles.section}>
           <div>
-<<<<<<< HEAD
-            <Button onClick={handlePrev}>Atrás</Button>
-            <Button onClick={() => router.push('')}>Siguiente</Button>
-=======
-            <Button onClick={() => router.push('/destination')}>Atrás</Button>
-            <Button onClick={() => router.push('')}>Cotizar</Button>
->>>>>>> f0f4228... Feat(localStorage): add uselocalstorage at assets
+          <Button onClick={handlePrev}>Atrás</Button>
+          <Button onClick={() => router.push('')}>Cotizar</Button>
           </div>
         </section>
       </div>
