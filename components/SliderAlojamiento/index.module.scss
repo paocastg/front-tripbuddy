@@ -16,6 +16,12 @@
   border-color: #00B2E3;
 }
 
+.btnOnclick {
+	background-color: rgba(0,178,227,0.3);
+	border-radius: .3rem;
+	cursor: pointer;
+}
+
 .sectionSlider {
 	display:contents;
 	flex-direction: column;
@@ -39,3 +45,6 @@
   margin-right:10% ;
   text-align: center;
 }
+
+
+ 

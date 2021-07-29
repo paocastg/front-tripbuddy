@@ -2,12 +2,16 @@ import React, { useState } from 'react'
 import { Menu, Button, Dropdown, Space } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styles from './index.module.scss'
+import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 const DropdownMenu = () => {
   const [state, setState] = useState('')
   const [count, setCount] = useState(0)
   const [count2, setCount2] = useState(0)
   const [count3, setCount3] = useState(0)
+  const [adulto, setAdulto] = useLocalStorage('adultos', '')
+  const [adolescente, setAdolescente] = useLocalStorage('adolescentes', '')
+  const [nino, setNino] = useLocalStorage('niños', '')
 
   const handleVisibleChange = flag => {
     setState({ visible: flag })
@@ -16,26 +20,32 @@ const DropdownMenu = () => {
   const handleClick1 = () => {
     if (count > 0) {
       setCount(count - 1)
+      setAdulto(count - 1)
     }
   }
   const handleClick2 = () => {
     setCount(count + 1)
+    setAdulto(count + 1)
   }
   const handleClick3 = () => {
     if (count2 > 0) {
       setCount2(count2 - 1)
+      setAdolescente(count2 - 1)
     }
   }
   const handleClick4 = () => {
     setCount2(count2 + 1)
+    setAdolescente(count2 + 1)
   }
   const handleClick5 = () => {
     if (count3 > 0) {
       setCount3(count3 - 1)
+      setNino(count3 - 1)
     }
   }
   const handleClick6 = () => {
     setCount3(count3 + 1)
+    setNino(count3 + 1)
   }
 
   const suma = count + count3 + count2

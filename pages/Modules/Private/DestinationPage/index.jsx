@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
 import FormSection from 'sections/Private/Destination/FormSection'
 import Wrapper from 'layout/Wrapper'
@@ -10,6 +10,7 @@ import SliderAlojamiento from 'components/SliderAlojamiento'
 
 const Destination = () => {
   const router = useRouter()
+
   return (
     <Wrapper>
       <div className={styles.main}>

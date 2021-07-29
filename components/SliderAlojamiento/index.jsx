@@ -1,28 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Slider, Form, Button } from 'antd'
 import styles from './index.module.scss'
+import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
-const marks = {
-  0: 'Bajo costo',
-  50: '3 estrellas',
-  100: 'Lujoso'
+const state = {
+  1: 'Bajo costo',
+  2: '3 estrellas',
+  3: 'Lujoso'
 }
 
 const SliderAlojamiento = () => {
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
+  const [prefState, setPrefState] = useLocalStorage('costo', '')
+  const [hotel, setHotel] = useLocalStorage('tipoAlojamiento', '')
+  const [airbnb, setAirbnb] = useLocalStorage('tipoAlojamiento', '')
+  const [nohotel, setNohotel] = useLocalStorage('tipoAlojamiento', '')
+
+  const SliderChange = (state) => {
+    setPrefState(state)
+    console.log('slider', state)
+  }
 
   const handleShowSlider = () => {
+    setHotel(1)
     setShow((prevState) => !prevState)
+    setPrefState(2)
     setShow2(false)
   }
   const handleShowSlider2 = () => {
+    setAirbnb(2)
     setShow2((prevState) => !prevState)
+    setPrefState(2)
     setShow(false)
   }
   const handleShowSlider3 = () => {
+    setNohotel(3)
     setShow2(false)
     setShow(false)
+    localStorage.removeItem('costo')
   }
 
   return (
@@ -61,9 +77,12 @@ const SliderAlojamiento = () => {
           <Form.Item className={styles.slider} >
             <section className={styles.sectionSlider}>
                 <Slider
-                marks={marks}
+                min={1}
+                max={3}
+                onChange= {SliderChange}
+                marks={state}
                 step={null}
-                defaultValue={50}
+                defaultValue={2}
                 tipFormatter={null}
               />
             </section>
@@ -75,9 +94,12 @@ const SliderAlojamiento = () => {
           <Form.Item className={styles.slider} >
             <section className={styles.sectionSlider}>
                 <Slider
-                marks={marks}
+                min={1}
+                max={3}
+                marks={state}
+                onChange= {SliderChange}
                 step={null}
-                defaultValue={50}
+                defaultValue={2}
                 tipFormatter={null}
               />
             </section>
