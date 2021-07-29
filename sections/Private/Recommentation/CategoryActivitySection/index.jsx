@@ -16,7 +16,7 @@ const CategoryActivities = ({
   const [selectOtherActivities, setSelectOtherActivities] = useState(false)
   const router = useRouter()
 
-  console.log(selectOtherActivities)
+  // console.log(selectOtherActivities)
   return (
     <section className={styles.section}>
       <H2>Seleccione la categoria que mejor describe tu viaje</H2>
@@ -30,6 +30,7 @@ const CategoryActivities = ({
               img={el.image}
               saveCategoryActivity={saveCategoryActivity}
               deleteCategoryActivity={deleteCategoryActivity}
+              setSelectOtherActivities={setSelectOtherActivities}
               field="category"
             />
           ))}

@@ -13,13 +13,16 @@ const CategoryActivityCard = ({
 }) => {
   const [selected, setSelected] = useState(false)
 
+  const data = { id, name }
+
   useEffect(() => {
     const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
       activity: [],
       category: []
     }
-    console.log(myQuotationInit)
+    // console.log(myQuotationInit)
 
+    // cargamos los card seleccionados anteriormente.
     if (myQuotationInit.activity.includes(id) && field === 'activity') {
       setSelected(true)
     } else if (myQuotationInit.category.includes(id) && field === 'category') {
@@ -31,9 +34,11 @@ const CategoryActivityCard = ({
 
   const handleIconClick = (e) => {
     if (!selected) {
-      saveCategoryActivity(id, field)
+      // console.log(data)
+      saveCategoryActivity(data, field)
     } else {
-      deleteCategoryActivity(id, field)
+      // console.log(data)
+      deleteCategoryActivity(data, field)
     }
     setSelected((prev) => !prev)
     // other activities
@@ -42,7 +47,6 @@ const CategoryActivityCard = ({
       // console.log(selected, name)
     } else {
       setSelectOtherActivities(false)
-      // console.log('false')
     }
   }
   return (
