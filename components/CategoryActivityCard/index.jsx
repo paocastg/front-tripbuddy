@@ -20,14 +20,20 @@ const CategoryActivityCard = ({
       activity: [],
       category: []
     }
-    // console.log(myQuotationInit)
+    console.log(myQuotationInit.activity)
+    console.log(myQuotationInit.activity.find((el) => el.id === id))
 
     // cargamos los card seleccionados anteriormente.
-    if (myQuotationInit.activity.includes(id) && field === 'activity') {
+    const inActivity = myQuotationInit.activity.find((el) => el.id === id)
+    const inCategory = myQuotationInit.category.find((el) => el.id === id)
+    if (inActivity && field === 'activity') {
+      console.log('dentro')
       setSelected(true)
-    } else if (myQuotationInit.category.includes(id) && field === 'category') {
+    } else if (inCategory && field === 'category') {
+      console.log('dentro')
       setSelected(true)
     } else {
+      console.log('no dentro')
       setSelected(false)
     }
   }, [])

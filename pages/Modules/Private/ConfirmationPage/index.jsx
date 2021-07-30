@@ -4,6 +4,7 @@ import Wrapper from 'layout/Wrapper'
 import FormSection from 'sections/Private/Confirmation/FormSection'
 import { useRouter } from 'next/router'
 import Button from 'components/Button'
+import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 
 const ConfirmationPage = () => {
   const router = useRouter()
@@ -21,6 +22,7 @@ const ConfirmationPage = () => {
     <Wrapper>
       <div className={styles.main}>
         <FormSection/>
+        <OverviewSection/>
         <section className={styles.section}>
           <div>
           <Button onClick={handlePrev}>Atrás</Button>
