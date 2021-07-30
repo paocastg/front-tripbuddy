@@ -13,13 +13,29 @@
 .btn:hover {
   color: #fff;
   background-color: #00B2E3;
-  border-color: #00B2E3;
+
+}
+.btn:checked {
+	font-size: 1.2em;
+	margin: 10px 2px 0px 2px;
+	border-radius: .3rem;
+  width: 240px;
+  background-color: #00B2E3;
+	cursor: pointer;
+	// border-color: #40a9ff;
+	color:#ffffff;
+	
 }
 
-.btnOnclick {
-	background-color: rgba(0,178,227,0.3);
+.selectedBtn {
+	font-size: 1.2em;
+	margin: 10px 2px 0px 2px;
 	border-radius: .3rem;
+  width: 240px;
+  background-color: #00B2E3;
 	cursor: pointer;
+	// border-color: #40a9ff;
+	color:#ffffff;
 }
 
 .sectionSlider {
