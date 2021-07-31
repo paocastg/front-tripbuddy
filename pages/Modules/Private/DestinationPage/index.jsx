@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import { Row, Col } from 'antd'
 import FormSection from 'sections/Private/Destination/FormSection'
 import Wrapper from 'layout/Wrapper'
@@ -10,6 +9,18 @@ import SliderAlojamiento from 'components/SliderAlojamiento'
 
 const Destination = () => {
   const router = useRouter()
+
+  const handleClick = () => {
+    router.push('/select')
+    localStorage.removeItem('destinos')
+    localStorage.removeItem('FechaInicio')
+    localStorage.removeItem('FechaFin')
+    localStorage.removeItem('adultos')
+    localStorage.removeItem('adolescentes')
+    localStorage.removeItem('ninos')
+    localStorage.removeItem('tipoAlojamiento')
+    localStorage.removeItem('costo')
+  }
 
   return (
     <Wrapper>
@@ -31,7 +42,7 @@ const Destination = () => {
           <br />
           <section className={styles.section}>
             <div>
-              <Button onClick={() => router.push('/select')}>Atrás</Button>
+              <Button onClick={handleClick}>Atrás</Button>
               <Button onClick={() => router.push('/confirmation')}>Siguiente</Button>
             </div>
           </section>

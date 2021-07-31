@@ -13,6 +13,7 @@ const SliderAlojamiento = () => {
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
   const [prefState, setPrefState] = useLocalStorage('costo', '')
+  const [prefState2, setPrefState2] = useLocalStorage('costo', '')
   const [hotel, setHotel] = useLocalStorage('tipoAlojamiento', '')
   const [airbnb, setAirbnb] = useLocalStorage('tipoAlojamiento', '')
   const [nohotel, setNohotel] = useLocalStorage('tipoAlojamiento', '')
@@ -22,7 +23,9 @@ const SliderAlojamiento = () => {
 
   const SliderChange = (state) => {
     setPrefState(state)
-    console.log('slider', state)
+  }
+  const SliderChange2 = (state) => {
+    setPrefState2(state)
   }
   useEffect(() => {
     if (localStorage.getItem('tipoAlojamiento')) {
@@ -33,25 +36,9 @@ const SliderAlojamiento = () => {
         handleShowSlider2()
       } else {
         handleShowSlider3()
-        console.log('hola')
       }
     }
   }, [])
-
-  // useEffect(() => {
-  //   if (localStorage.getItem('costo')) {
-  //     const costo = localStorage.getItem('costo')
-  //     if (costo === '1') {
-  //       SliderChange(1)
-  //       console.log('hola1')
-  //     } else if (costo === '2') {
-  //       SliderChange()
-  //     } else {
-  //       SliderChange()
-  //       console.log('hola')
-  //     }
-  //   }
-  // }, [])
 
   const handleShowSlider = () => {
     setHotel(1)
@@ -59,7 +46,6 @@ const SliderAlojamiento = () => {
     setSelected2(false)
     setSelected3(false)
     setShow((prevState) => !prevState)
-    setPrefState(2)
     setShow2(false)
   }
   const handleShowSlider2 = () => {
@@ -68,7 +54,6 @@ const SliderAlojamiento = () => {
     setSelected1(false)
     setAirbnb(2)
     setShow2((prevState) => !prevState)
-    setPrefState(2)
     setShow(false)
   }
   const handleShowSlider3 = () => {
@@ -117,12 +102,12 @@ const SliderAlojamiento = () => {
           <Form.Item className={styles.slider} >
             <section className={styles.sectionSlider}>
                 <Slider
+                value= {prefState}
                 min={1}
                 max={3}
                 onChange= {SliderChange}
                 marks={state}
                 step={null}
-                defaultValue={2}
                 tipFormatter={null}
               />
             </section>
@@ -134,12 +119,12 @@ const SliderAlojamiento = () => {
           <Form.Item className={styles.slider} >
             <section className={styles.sectionSlider}>
                 <Slider
+                value= {prefState2}
                 min={1}
-                max={4}
+                max={3}
                 marks={state}
-                onChange= {SliderChange}
+                onChange= {SliderChange2}
                 step={null}
-                defaultValue={2}
                 tipFormatter={null}
               />
             </section>

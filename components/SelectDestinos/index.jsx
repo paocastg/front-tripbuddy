@@ -38,6 +38,7 @@ const SelectDestinos = () => {
     <div>
       <Select
         className={styles.select}
+        value= {destino}
         mode="multiple"
         placeholder="Destinos"
         onChange={handleChange}

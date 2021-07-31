@@ -6,49 +6,40 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 const DropdownMenu = () => {
   const [state, setState] = useState('')
-  const [count, setCount] = useState(0)
-  const [count2, setCount2] = useState(0)
-  const [count3, setCount3] = useState(0)
-  const [adulto, setAdulto] = useLocalStorage('adultos', '')
-  const [adolescente, setAdolescente] = useLocalStorage('adolescentes', '')
-  const [nino, setNino] = useLocalStorage('niños', '')
+  const [adulto, setAdulto] = useLocalStorage('adultos', 0)
+  const [adolescente, setAdolescente] = useLocalStorage('adolescentes', 0)
+  const [nino, setNino] = useLocalStorage('ninos', 0)
 
   const handleVisibleChange = flag => {
     setState({ visible: flag })
   }
 
   const handleClick1 = () => {
-    if (count > 0) {
-      setCount(count - 1)
-      setAdulto(count - 1)
+    if (adulto > 0) {
+      setAdulto(adulto - 1)
     }
   }
   const handleClick2 = () => {
-    setCount(count + 1)
-    setAdulto(count + 1)
+    setAdulto(adulto + 1)
   }
   const handleClick3 = () => {
-    if (count2 > 0) {
-      setCount2(count2 - 1)
-      setAdolescente(count2 - 1)
+    if (adolescente > 0) {
+      setAdolescente(adolescente - 1)
     }
   }
   const handleClick4 = () => {
-    setCount2(count2 + 1)
-    setAdolescente(count2 + 1)
+    setAdolescente(adolescente + 1)
   }
   const handleClick5 = () => {
-    if (count3 > 0) {
-      setCount3(count3 - 1)
-      setNino(count3 - 1)
+    if (nino > 0) {
+      setNino(nino - 1)
     }
   }
   const handleClick6 = () => {
-    setCount3(count3 + 1)
-    setNino(count3 + 1)
+    setNino(nino + 1)
   }
 
-  const suma = count + count3 + count2
+  const suma = adulto + adolescente + nino
 
   const menu = () => {
     return (
@@ -58,11 +49,11 @@ const DropdownMenu = () => {
           <div className={styles.dropdownCenter}>
             <span>Adultos</span>
             <Space>
-              <Button type="text" onClick= {handleClick1} value={count}>
+              <Button type="text" onClick= {handleClick1} value={adulto}>
                 -
               </Button>
-                {count}
-              <Button type="text" onClick= {handleClick2} value={count}>
+                {adulto}
+              <Button type="text" onClick= {handleClick2} value={adulto}>
                 +
               </Button>
             </Space>
@@ -73,11 +64,11 @@ const DropdownMenu = () => {
           <div className={styles.dropdownCenter}>
             <span>Adolescentes</span>
             <Space>
-              <Button type="text" onClick= {handleClick3} value={count2}>
+              <Button type="text" onClick= {handleClick3} value={adolescente}>
                 -
               </Button>
-                {count2}
-              <Button type="text" onClick= {handleClick4} value={count2}>
+                {adolescente}
+              <Button type="text" onClick= {handleClick4} value={adolescente}>
                 +
               </Button>
             </Space>
@@ -88,11 +79,11 @@ const DropdownMenu = () => {
           <div className={styles.dropdownCenter}>
             <span>Niños</span>
             <Space>
-              <Button type="text" onClick= {handleClick5} value={count3}>
+              <Button type="text" onClick= {handleClick5} value={nino}>
                 -
               </Button>
-                {count3}
-              <Button type="text" onClick= {handleClick6} value={count3}>
+                {nino}
+              <Button type="text" onClick= {handleClick6} value={nino}>
                 +
               </Button>
             </Space>
