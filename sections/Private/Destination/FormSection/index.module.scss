@@ -16,15 +16,17 @@
 	flex-wrap: wrap;
 }
 .rangepicker {
-	display:inline-block;
-	 width: calc(50% - 12px);
+	display: inline-block;
+  margin: 0 4px;
 }
 .form {
 	margin-bottom: 0 ;
+	text-align: center;
 }
 .dropdown {
 	display: inline-block;
-	margin: 0 8px;
+  margin: 0 4px;
+	
 }
 .select{
 	width:100% ;

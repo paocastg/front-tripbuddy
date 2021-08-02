@@ -13,13 +13,13 @@ const FormSection = () => {
     <section className={styles.section}>
       <Form>
         <Form.Item>
-          {/* <SelectDestinos /> */}
-          <Select
+          <SelectDestinos />
+          {/* <Select
             style={{ width: '95%' }}
             mode="multiple"
             placeholder="Destinos"
             disabled
-          ></Select>
+          ></Select> */}
         </Form.Item>
         <Form.Item style={{ marginBottom: 0 }}>
           <Form.Item

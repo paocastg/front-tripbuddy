@@ -13,7 +13,29 @@
 .btn:hover {
   color: #fff;
   background-color: #00B2E3;
-  border-color: #00B2E3;
+
+}
+.btn:checked {
+	font-size: 1.2em;
+	margin: 10px 2px 0px 2px;
+	border-radius: .3rem;
+  width: 240px;
+  background-color: #00B2E3;
+	cursor: pointer;
+	// border-color: #40a9ff;
+	color:#ffffff;
+	
+}
+
+.selectedBtn {
+	font-size: 1.2em;
+	margin: 10px 2px 0px 2px;
+	border-radius: .3rem;
+  width: 240px;
+  background-color: #00B2E3;
+	cursor: pointer;
+	// border-color: #40a9ff;
+	color:#ffffff;
 }
 
 .sectionSlider {
@@ -39,3 +61,6 @@
   margin-right:10% ;
   text-align: center;
 }
+
+
+ 

@@ -23,8 +23,8 @@ const ConfirmationPage = () => {
         <FormSection/>
         <section className={styles.section}>
           <div>
-            <Button onClick={handlePrev}>Atrás</Button>
-            <Button onClick={() => router.push('')}>Siguiente</Button>
+          <Button onClick={handlePrev}>Atrás</Button>
+          <Button onClick={() => router.push('')}>Cotizar</Button>
           </div>
         </section>
       </div>
