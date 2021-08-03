@@ -5,6 +5,7 @@ import H2 from 'components/H2'
 import SliderAlojamiento from 'components/SliderAlojamiento'
 import FormSection from 'sections/Private/Recommentation/FormSection'
 import Wrapper from 'layout/Wrapper'
+import { API } from 'assets/Utils/Constants'
 import { Row, Col } from 'antd'
 import CategoryActivities from 'sections/Private/Recommentation/CategoryActivitySection'
 import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivitiesSection'
@@ -20,8 +21,8 @@ const RecommendationPage = () => {
 
   const router = useRouter()
 
-  const urlCategory = 'http://127.0.0.1:8000/category/'
-  const urlActivity = 'http://127.0.0.1:8000/activity/'
+  const urlCategory = `${API}/category/`
+  const urlActivity = `${API}/activity/`
 
   // console.log('toggleOne', toggleOne)
   // console.log('toggleTwo', toggleTwo)

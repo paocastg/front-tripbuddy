@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { CDN_PATH } from 'assets/Utils/Constants'
 
 const HomePage = ({ name }) => {
   useEffect(() => {
@@ -6,6 +7,7 @@ const HomePage = ({ name }) => {
   }, [])
   return (
     <div>
+      <img src={`${CDN_PATH}/bg-empieza-viaje.svg`} />
       <h1>HomePage {name}</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quis

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const next = require('next')
 const express = require('express')
 // eslint-disable-next-line node/no-deprecated-api
@@ -7,9 +8,9 @@ global.fetch = require('node-fetch')
 
 // Next App
 const nextApp = next({
-  dev: true
+  dev: process.env.NODE_ENV === 'dev'
 })
-
+console.log('env', process.env.NODE_ENV)
 // Next Handle
 const nextHandle = nextApp.getRequestHandler()
 
@@ -26,7 +27,6 @@ nextApp
       { slug: '/destination', file: '/Modules/Private/DestinationPage' },
       { slug: '/recommendation', file: '/Modules/Private/RecommendationPage' },
       { slug: '/confirmation', file: '/Modules/Private/ConfirmationPage' }
-
     ]
 
     for (const route of routes) {

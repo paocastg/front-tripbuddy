@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { CDN_PATH } from 'assets/Utils/Constants'
 import styles from './index.module.scss'
 
 const Header = () => {
@@ -8,8 +8,7 @@ const Header = () => {
       <div className="e-container">
         <div className={styles.header}>
           <div>
-            {/* <img src={Chart} alt="chart" /> */}
-            Logo
+            <img src={`${CDN_PATH}/logo-tripbuddy.svg`} alt="chart" />
           </div>
           <div className={styles.header_user}>
             <button className={styles.header_button}>
