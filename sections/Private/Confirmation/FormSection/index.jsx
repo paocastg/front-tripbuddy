@@ -1,21 +1,47 @@
 import React from 'react'
+import { Button } from 'antd'
 import styles from './index.module.scss'
 import H2 from 'components/H2'
 import DateConfirmation from 'components/DateConfirmation'
 import TimelineConfirmation from 'components/Timeline'
 import MapConfirmation from 'components/MapConfirmation'
 import credentials from './credentials'
+import moment from 'moment'
+import { useLocalStorage } from 'assets/Utils/LocalStorage'
+import { useRouter } from 'next/router'
 
 const ConfirmationSection = () => {
+  const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
+  const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
+  const router = useRouter()
+  const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
+  const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
+
+  let fecha1 = new Date(fechaInicio)
+  let fecha2 = new Date(fechaFin)
+
+  let resta = fecha2.getTime() - fecha1.getTime()
+  let resultado= Math.round(resta / (1000 * 60 * 60 * 24))
+  console.log(resultado)
+
+  const handleEdit = () => {
+    router.push('/destination')
+  }
+
   return (
       <main className={styles.main}>
         <H2 className={styles.title}>
-          días en Perú
+          {resultado} días en Perú
         </H2>
 
         <p className={styles.description}>
-          intervalo fechas
+          <div>
+            <label>{formatofechaInicio} - {formatofechaFin}</label>
+            <Button className={styles.button}
+            onClick={handleEdit}
+            type="text">Editar</Button>
+          </div>
         </p>
 
         <div className={styles.grid}>

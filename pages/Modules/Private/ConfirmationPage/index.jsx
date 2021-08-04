@@ -24,13 +24,13 @@ const ConfirmationPage = () => {
       <div className={styles.main}>
         <FormSection/>
         {storeValue || <OverviewSection/>}
-        <section className={styles.section}>
+        
+      </div><section className={styles.section}>
           <div>
           <Button onClick={handlePrev}>Atrás</Button>
           <Button onClick={() => router.push('')}>Cotizar</Button>
           </div>
         </section>
-      </div>
     </Wrapper>
   )
 }

@@ -12,12 +12,13 @@ const TimelineConfirmation = () => {
   useEffect(() => {
     if (localStorage.getItem('destinos')) {
       const destino = localStorage.getItem('destinos')
+      console.log('objetoObtenido: ', JSON.parse(destino))
     }
   }, [])
 
   const options = destino && destino.map(d =>
     <Timeline.Item key={d.nombre}>
-      <label onChange= { handleChange}> {destino}</label>
+      <label onChange= {handleChange}> hola </label>
     </Timeline.Item>)
   return (
     <div>
