@@ -8,8 +8,8 @@ const { RangePicker } = DatePicker
 const RangePickers = () => {
   // const [dateStart, setDateStart] = useState('')
   // const [dateEnd, setDateEnd] = useState('')
-  const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment('00:00:00', 'HH:mm:ss'))
-  const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment('00:00:00', 'HH:mm:ss'))
+  const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
+  const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
 
   const onCalendarChange = e => {
     console.log(e)
@@ -27,16 +27,15 @@ const RangePickers = () => {
   return (
     <div>
       <RangePicker
-        allowEmpty
-        className={styles.rangepicker}
-        // value= {['', '']}
-        size= "large"
-        showTime={{
-          hideDisabledOptions: true,
-          defaultValue: [fechaInicio, fechaFin]
-        }}
-        onCalendarChange={onCalendarChange}
-        format="MM-DD-YYYY"/>
+          className={styles.rangepicker}
+          value= {[moment(fechaInicio), moment(fechaFin)]}
+          size= "large"
+          showTime={{
+            hideDisabledOptions: true
+            // defaultValue: [dateStart, dateEnd]
+          }}
+          onCalendarChange={onCalendarChange}
+          format="MM-DD-YYYY"/>
     </div>
   )
 }

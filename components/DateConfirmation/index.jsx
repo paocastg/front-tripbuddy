@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { DatePicker, Calendar } from 'antd'
+import { DatePicker, Calendar, Button } from 'antd'
+import styles from './index.module.scss'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 const { RangePicker } = DatePicker
 
@@ -10,27 +11,25 @@ const DateConfirmation = () => {
   const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
 
-  const onCalendarChange = e => {
-    if (e[0] != null) {
-      setDateStart(e[0])
-      setFechaInicio(e[0].format('MM/DD/YYYY'))
-    }
+  const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
+  const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
 
-    if (e[1] != null) {
-      setDateEnd(e[1])
-      setFechaFin(e[1].format('MM/DD/YYYY'))
-    }
-  }
-
-  function onPanelChange (value, mode) {
-    console.log(value, mode)
-  }
   return (
-    <div>
+    <div className={styles.site}>
       <Calendar
-      fullscreen={false}
-      onPanelChange={onPanelChange}
-      // value={[fechaInicio, fechaFin]}
+        fullscreen={false}
+        // onChange ={onCalendarChange}
+        value={moment(fechaInicio)}
+        defaultValue={moment(fechaFin)}
+        mode="month"
+        headerRender={({ value, type, onChange, onTypeChange }) => {
+          return (
+            <div style={{ padding: 10 }}>
+              <label> {formatofechaInicio} - {formatofechaFin} </label>
+              <Button type="text">Editar</Button>
+            </div>
+          )
+        }}
        />
       {/* <RangePicker
         dateRender={current => {

@@ -27,7 +27,7 @@ const ConfirmationSection = () => {
             <h2>Mapa</h2>
             <MapConfirmation
               googleMapURL= {mapURL}
-              containerElement = {<div style={{ height: '400px' }} />}
+              containerElement = {<div style={{ height: '250px' }} />}
               mapElement= {<div style={{ height: '100%' }} />}
               loadingElement={<p>Cargando</p>}
             />
