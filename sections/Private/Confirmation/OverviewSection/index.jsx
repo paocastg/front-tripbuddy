@@ -9,13 +9,14 @@ const { confirm } = Modal
 
 const OverviewSection = () => {
   const [myQuotation, setMyQuotation] = useState(null)
+
   useEffect(() => {
     // read myQuotation of localStorage
     const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
       activity: [],
       category: []
     }
-    console.log(myQuotationInit)
+    // console.log(myQuotationInit)
     setMyQuotation(myQuotationInit)
   }, [])
 
@@ -46,7 +47,7 @@ const OverviewSection = () => {
       }
     })
 
-    console.log(data, field)
+    // console.log(data, field)
   }
   return (
     <section className={styles.overview} >

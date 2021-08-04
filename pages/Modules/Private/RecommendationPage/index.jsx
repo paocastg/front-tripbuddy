@@ -36,7 +36,7 @@ const RecommendationPage = () => {
         setDbCategory(json)
       } catch (err) {
         const message = err.statusText
-        // console.log(message)
+        console.log(message)
       }
     }
 
@@ -48,7 +48,7 @@ const RecommendationPage = () => {
         setDbActivity(json)
       } catch (err) {
         const message = err.statusText
-        // console.log(message)
+        console.log(message)
       }
     }
     getCategory()

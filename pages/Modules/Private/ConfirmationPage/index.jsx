@@ -1,18 +1,19 @@
-import React from 'react'
 import styles from './index.module.scss'
 import Wrapper from 'layout/Wrapper'
 import FormSection from 'sections/Private/Confirmation/FormSection'
 import { useRouter } from 'next/router'
 import Button from 'components/Button'
 import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
+import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 const ConfirmationPage = () => {
   const router = useRouter()
+  const [storeValue] = useLocalStorage('selectDestination', null)
+
+  // console.log('custom hook local storage', storeValue)
 
   const handlePrev = () => {
-    const selectDestination = JSON.parse(localStorage.getItem('selectDestination'))
-    // console.log(selectDestination)
-    if (selectDestination) {
+    if (storeValue) {
       router.push('/destination')
     } else {
       router.push('/recommendation')
@@ -22,7 +23,7 @@ const ConfirmationPage = () => {
     <Wrapper>
       <div className={styles.main}>
         <FormSection/>
-        <OverviewSection/>
+        {storeValue || <OverviewSection/>}
         <section className={styles.section}>
           <div>
           <Button onClick={handlePrev}>Atrás</Button>
