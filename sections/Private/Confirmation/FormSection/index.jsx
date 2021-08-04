@@ -4,8 +4,10 @@ import H2 from 'components/H2'
 import DateConfirmation from 'components/DateConfirmation'
 import TimelineConfirmation from 'components/Timeline'
 import MapConfirmation from 'components/MapConfirmation'
+import credentials from './credentials'
 
 const ConfirmationSection = () => {
+  const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
   return (
       <main className={styles.main}>
         <H2 className={styles.title}>
@@ -23,7 +25,12 @@ const ConfirmationSection = () => {
 
           <span className={styles.card}>
             <h2>Mapa</h2>
-            <MapConfirmation/>
+            <MapConfirmation
+              googleMapURL= {mapURL}
+              containerElement = {<div style={{ height: '400px' }} />}
+              mapElement= {<div style={{ height: '100%' }} />}
+              loadingElement={<p>Cargando</p>}
+            />
           </span>
 
           <span className={styles.card}>
