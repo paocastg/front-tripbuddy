@@ -32,7 +32,7 @@ const RecommendationPage = () => {
       try {
         const res = await axios.get(urlCategory)
         const json = await res.data
-        console.log(json)
+        // console.log(json)
         setDbCategory(json)
       } catch (err) {
         const message = err.statusText
@@ -44,7 +44,7 @@ const RecommendationPage = () => {
       try {
         const res = await axios.get(urlActivity)
         const json = await res.data
-        console.log(json)
+        // console.log(json)
         setDbActivity(json)
       } catch (err) {
         const message = err.statusText
@@ -103,11 +103,11 @@ const RecommendationPage = () => {
     }
   }
 
-  const saveCategoryActivity = (id, field) => {
+  const saveCategoryActivity = (data, field) => {
     // save id in localStorage
     const quotation = {
       ...myQuotation,
-      [field]: [...myQuotation[field], id]
+      [field]: [...myQuotation[field], data]
     }
 
     // update localStorage
@@ -115,9 +115,9 @@ const RecommendationPage = () => {
     localStorage.setItem('myQuotation', JSON.stringify(quotation))
   }
 
-  const deleteCategoryActivity = (id, field) => {
+  const deleteCategoryActivity = (data, field) => {
     // delete id in localStorage
-    const fieldFiltered = myQuotation[field].filter((el) => el !== id)
+    const fieldFiltered = myQuotation[field].filter((el) => el.id !== data.id)
     const quotation = {
       ...myQuotation,
       [field]: fieldFiltered

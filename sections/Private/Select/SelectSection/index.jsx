@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import styles from './index.module.scss'
 import Box from 'components/Box'
+import { CDN_PATH } from 'assets/Utils/Constants'
 
 const SelectSection = () => {
   const router = useRouter()
@@ -17,8 +18,8 @@ const SelectSection = () => {
   }
   return (
     <div className={styles.container} >
-      <Box text='Conozco mi destino' img='conozco-mi-destino.png' onClick={handleClickDest} />
-      <Box text='Quiero Recomendaciones' img='quiero-recomendaciones.png' onClick={handleClickRec} />
+      <Box text='Conozco mi destino' img={`${CDN_PATH}/conozco-mi-destino.svg`} onClick={handleClickDest} />
+      <Box text='Quiero Recomendaciones' img={`${CDN_PATH}/quiero-recomendaciones.svg`} onClick={handleClickRec} />
     </div>
   )
 }

@@ -13,27 +13,38 @@ const CategoryActivityCard = ({
 }) => {
   const [selected, setSelected] = useState(false)
 
+  const data = { id, name }
+
   useEffect(() => {
     const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
       activity: [],
       category: []
     }
-    console.log(myQuotationInit)
+    console.log(myQuotationInit.activity)
+    console.log(myQuotationInit.activity.find((el) => el.id === id))
 
-    if (myQuotationInit.activity.includes(id) && field === 'activity') {
+    // cargamos los card seleccionados anteriormente.
+    const inActivity = myQuotationInit.activity.find((el) => el.id === id)
+    const inCategory = myQuotationInit.category.find((el) => el.id === id)
+    if (inActivity && field === 'activity') {
+      console.log('dentro')
       setSelected(true)
-    } else if (myQuotationInit.category.includes(id) && field === 'category') {
+    } else if (inCategory && field === 'category') {
+      console.log('dentro')
       setSelected(true)
     } else {
+      console.log('no dentro')
       setSelected(false)
     }
   }, [])
 
   const handleIconClick = (e) => {
     if (!selected) {
-      saveCategoryActivity(id, field)
+      // console.log(data)
+      saveCategoryActivity(data, field)
     } else {
-      deleteCategoryActivity(id, field)
+      // console.log(data)
+      deleteCategoryActivity(data, field)
     }
     setSelected((prev) => !prev)
     // other activities
@@ -42,7 +53,6 @@ const CategoryActivityCard = ({
       // console.log(selected, name)
     } else {
       setSelectOtherActivities(false)
-      // console.log('false')
     }
   }
   return (
