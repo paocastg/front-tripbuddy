@@ -15,6 +15,14 @@ const SelectSection = () => {
   const handleClickDest = () => {
     localStorage.setItem('selectDestination', JSON.stringify(true))
     router.push('/destination')
+    localStorage.removeItem('destinos')
+    localStorage.removeItem('FechaInicio')
+    localStorage.removeItem('FechaFin')
+    localStorage.removeItem('adultos')
+    localStorage.removeItem('adolescentes')
+    localStorage.removeItem('ninos')
+    localStorage.removeItem('tipoAlojamiento')
+    localStorage.removeItem('costo')
   }
   return (
     <div className={styles.container} >
