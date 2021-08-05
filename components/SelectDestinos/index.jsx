@@ -17,7 +17,7 @@ const SelectDestinos = () => {
 
   const getDestinos = async () => {
     try {
-      const destinos = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/Destino/')
+      const destinos = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/destino/')
       setDatos(destinos.data)
     } catch (error) {
     }

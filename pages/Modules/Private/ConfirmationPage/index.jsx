@@ -23,7 +23,7 @@ const ConfirmationPage = () => {
     <Wrapper>
       <div className={styles.main}>
         <FormSection/>
-        {/* {storeValue || <OverviewSection/>} */}
+        {storeValue || <OverviewSection/>}
         <section className={styles.section}>
           <div>
           <Button onClick={handlePrev}>Atrás</Button>
