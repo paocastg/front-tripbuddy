@@ -36,12 +36,10 @@ const ConfirmationSection = () => {
         </H2>
 
         <p className={styles.description}>
-          <div>
             <label>{formatofechaInicio} - {formatofechaFin}</label>
             <Button className={styles.button}
             onClick={handleEdit}
             type="text">Editar</Button>
-          </div>
         </p>
 
         <div className={styles.grid}>
@@ -50,7 +48,6 @@ const ConfirmationSection = () => {
           </span>
 
           <span className={styles.card}>
-            <h2>Mapa</h2>
             <MapConfirmation
               googleMapURL= {mapURL}
               containerElement = {<div style={{ height: '250px' }} />}
@@ -64,14 +61,11 @@ const ConfirmationSection = () => {
             <TimelineConfirmation/>
           </span>
 
-          <span className={styles.card}
-          >
-            <h2>Calendario </h2>
+          <span className={styles.card}>
             <DateConfirmation/>
           </span>
         </div>
       </main>
-
   )
 }
 

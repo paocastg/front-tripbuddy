@@ -17,7 +17,7 @@ const SelectDestinos = () => {
 
   const getDestinos = async () => {
     try {
-      const destinos = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/Destino/')
+      const destinos = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/destino/')
       setDatos(destinos.data)
     } catch (error) {
     }
@@ -26,7 +26,7 @@ const SelectDestinos = () => {
   const handleChange = (nombre) => {
     setDestino(nombre)
     console.log('nombre', nombre)
-    // setSeleccionados([...seleccionados, ...nombre])
+    setSeleccionados([...seleccionados, ...nombre])
   }
 
   const options = datos && datos.map(d =>
