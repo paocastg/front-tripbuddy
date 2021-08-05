@@ -18,11 +18,11 @@ const ConfirmationSection = () => {
   const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
   const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
 
-  let fecha1 = new Date(fechaInicio)
-  let fecha2 = new Date(fechaFin)
+  const fecha1 = new Date(fechaInicio)
+  const fecha2 = new Date(fechaFin)
 
-  let resta = fecha2.getTime() - fecha1.getTime()
-  let resultado= Math.round(resta / (1000 * 60 * 60 * 24))
+  const resta = fecha2.getTime() - fecha1.getTime()
+  const resultado = Math.round(resta / (1000 * 60 * 60 * 24))
   console.log(resultado)
 
   const handleEdit = () => {
