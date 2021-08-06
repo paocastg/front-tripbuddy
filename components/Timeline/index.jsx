@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { Timeline, Input } from 'antd'
+import React from 'react'
+import { Timeline } from 'antd'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import TimelineItem from 'antd/lib/timeline/TimelineItem'
 
 const TimelineConfirmation = () => {
-  const [destino, setDestino] = useLocalStorage('destinos', '')
-
+  const [destino, setDestino] = useLocalStorage('destinoSeleccionado', [])
+  console.log(destino)
   const options = destino && destino.map(d =>
-    <Timeline.Item key={d.nombre}>
-      <label> {d}</label>
+    // console.log(d)
+    <Timeline.Item key={d.id}>
+      <label> {d.nombre}</label>
     </Timeline.Item>)
 
   return (
