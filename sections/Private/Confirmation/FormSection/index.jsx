@@ -5,17 +5,21 @@ import H2 from 'components/H2'
 import DateConfirmation from 'components/DateConfirmation'
 import TimelineConfirmation from 'components/Timeline'
 import MapConfirmation from 'components/MapConfirmation'
+import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 import credentials from './credentials'
 import moment from 'moment'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { useRouter } from 'next/router'
-import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
-const ConfirmationSection = () => {
-  const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
+
+const ConfirmationSection = ({ destinos, storeValue }) => {
+  const [fechaInicio, setFechaInicio] = useLocalStorage(
+    'FechaInicio',
+    moment()
+  )
   const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
   const router = useRouter()
-  
+
   const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
   const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
 
@@ -27,47 +31,52 @@ const ConfirmationSection = () => {
   console.log(resultado)
 
   const handleEdit = () => {
-    router.push('/destination')
+    if (storeValue) {
+      router.push('/destination')
+    } else {
+      router.push('/recommendation')
+    }
   }
 
   return (
-      <main className={styles.main}>
-        <H2 className={styles.title}>
-          {resultado} días en Perú
-        </H2>
-
+    <main className={styles.main}>
+      <div>
+        <H2 className={styles.title}>{resultado} días en Perú</H2>
         <p className={styles.description}>
-            <label>{formatofechaInicio} - {formatofechaFin}</label>
-            <Button className={styles.button}
-            onClick={handleEdit}
-            type="text">Editar</Button>
+          <label>
+            {formatofechaInicio} - {formatofechaFin}
+          </label>
+          <Button className={styles.button} onClick={handleEdit} type="text">
+            Editar
+          </Button>
         </p>
+      </div>
 
-        <div className={styles.grid}>
-          <span className={styles.card}>
-            {/* <h2>Resumen </h2> */}
-            <OverviewSection/>
-          </span>
-
-          <span className={styles.card}>
-            <MapConfirmation
-              googleMapURL= {mapURL}
-              containerElement = {<div style={{ height: '250px' }} />}
-              mapElement= {<div style={{ height: '100%' }} />}
-              loadingElement={<p>Cargando</p>}
-            />
-          </span>
-
-          <span className={styles.card}>
-            <h2>Destinos </h2>
-            <TimelineConfirmation/>
-          </span>
-
-          <span className={styles.card}>
-            <DateConfirmation/>
-          </span>
+      <div className={styles.grid}>
+        <div className={styles.card}>
+          {/* <h2>Resumen </h2> */}
+          {storeValue || <OverviewSection />}
         </div>
-      </main>
+
+        <div className={styles.card}>
+          {storeValue && <MapConfirmation
+            destinos={destinos}
+            googleMapURL={mapURL}
+            containerElement={<div style={{ height: '250px' }} />}
+            mapElement={<div style={{ height: '100%' }} />}
+            loadingElement={<p>Cargando</p>}
+          />}
+        </div>
+
+        <div className={styles.card}>
+          {storeValue && <TimelineConfirmation />}
+        </div>
+
+        <div className={styles.card}>
+          <DateConfirmation />
+        </div>
+      </div>
+    </main>
   )
 }
 

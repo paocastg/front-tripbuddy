@@ -9,7 +9,7 @@ const { Option } = Select
 const SelectDestinos = () => {
   const [seleccionados, setSeleccionados] = useState([])
   const [datos, setDatos] = useState('')
-  const [destino, setDestino] = useLocalStorage('destinos', '')
+  const [destino, setDestino] = useLocalStorage('destinos', [])
 
   useEffect(() => {
     getDestinos()
