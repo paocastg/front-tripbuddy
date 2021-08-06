@@ -1,31 +1,28 @@
 import React from 'react'
 import DropdownMenu from 'components/DropdownMenu'
-import SelectDestinos from 'components/SelectDestinos'
 import { Form, DatePicker, Tooltip, Select } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import RangePicker from 'components/DataPicker'
 
 import styles from './index.module.scss'
-
-const { RangePicker } = DatePicker
 
 const FormSection = () => {
   return (
     <section className={styles.section}>
       <Form>
         <Form.Item>
-          <SelectDestinos />
-          {/* <Select
+          <Select
             style={{ width: '95%' }}
             mode="multiple"
             placeholder="Destinos"
             disabled
-          ></Select> */}
+          ></Select>
         </Form.Item>
         <Form.Item style={{ marginBottom: 0 }}>
           <Form.Item
             style={{ display: 'inline-block', width: 'calc(50% - 12px)' }}
           >
-            <RangePicker size="large" style={{ width: '100%' }} />
+            <RangePicker style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item style={{ display: 'inline-block', margin: '0 8px' }}>
             <DropdownMenu />

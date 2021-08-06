@@ -23,14 +23,14 @@ const SelectDestinos = () => {
     }
   }
 
-  const handleChange = (nombre) => {
-    setDestino(nombre)
-    console.log('nombre', nombre)
-    setSeleccionados([...seleccionados, ...nombre])
+  const handleChange = (id) => {
+    setDestino(id)
+    console.log('nombre', id)
+    setSeleccionados([...seleccionados, ...id])
   }
 
   const options = datos && datos.map(d =>
-  <Option key={d.nombre}>
+  <Option key={d.id}>
     {d.nombre}
   </Option>)
 

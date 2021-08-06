@@ -9,12 +9,13 @@ import credentials from './credentials'
 import moment from 'moment'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { useRouter } from 'next/router'
-
+import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 const ConfirmationSection = () => {
   const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
   const router = useRouter()
+  
   const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
   const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
 
@@ -44,7 +45,8 @@ const ConfirmationSection = () => {
 
         <div className={styles.grid}>
           <span className={styles.card}>
-            <h2>Resumen </h2>
+            {/* <h2>Resumen </h2> */}
+            <OverviewSection/>
           </span>
 
           <span className={styles.card}>
