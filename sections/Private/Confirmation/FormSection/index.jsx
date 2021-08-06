@@ -30,6 +30,14 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
   const resultado = Math.round(resta / (1000 * 60 * 60 * 24))
   console.log(resultado)
 
+  // Creamos array con los meses del año
+  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+  // Creamos array con los días de la semana
+  const diasSemana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+
+  // Construimos el formato de salida
+  const inicio = (diasSemana[fecha1.getDay()] + ', ' + fecha1.getDate() + ' de ' + meses[fecha1.getMonth()])
+  const fin = (diasSemana[fecha2.getDay()] + ', ' + fecha2.getDate() + ' de ' + meses[fecha2.getMonth()])
   const handleEdit = () => {
     if (storeValue) {
       router.push('/destination')
@@ -44,8 +52,8 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
         <H2 className={styles.title}>{resultado} días en Perú</H2>
         <p className={styles.description}>
           <label>
-            {formatofechaInicio} - {formatofechaFin}
-          </label>
+            {inicio} - {fin}
+          </label> &nbsp;
           <Button className={styles.button} onClick={handleEdit} type="text">
             Editar
           </Button>

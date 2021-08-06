@@ -32,11 +32,22 @@ const DateConfirmation = () => {
       setFechaFin(e[1].format('MM/DD/YYYY'))
     }
   }
+  const fecha1 = new Date(fechaInicio)
+  const fecha2 = new Date(fechaFin)
+
+  // Creamos array con los meses del año
+  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
+  // Creamos array con los días de la semana
+  const diasSemana = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
+
+  // Construimos el formato de salida
+  const inicio = (diasSemana[fecha1.getDay()] + ', ' + fecha1.getDate() + ' de ' + meses[fecha1.getMonth()])
+  const fin = (diasSemana[fecha2.getDay()] + ', ' + fecha2.getDate() + ' de ' + meses[fecha2.getMonth()])
 
   return (
     <div className={styles.site}>
       <div className={styles.divCenter} >
-        <label translate="yes"><strong>{formatofechaInicio} - {formatofechaFin} </strong> </label>
+        <label translate="yes"><strong>{inicio} - {fin} </strong> </label>
         <Button className={styles.button}
         onClick={handleShowDatePicker}
         type="text">{show ? 'Guardar' : 'Editar'}</Button>
