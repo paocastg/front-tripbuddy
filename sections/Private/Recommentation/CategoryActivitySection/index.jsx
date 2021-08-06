@@ -26,8 +26,8 @@ const CategoryActivities = ({
             <CategoryActivityCard
               key={el.id}
               id={el.id}
-              name={el.name}
-              img={el.image}
+              name={el.nombre}
+              img={el.FIELDNAME}
               saveCategoryActivity={saveCategoryActivity}
               deleteCategoryActivity={deleteCategoryActivity}
               setSelectOtherActivities={setSelectOtherActivities}
@@ -41,9 +41,9 @@ const CategoryActivities = ({
           dbActivity.map((el) => (
             <CategoryActivityCard
               key={el.id}
-              name={el.name}
+              name={el.nombre}
               id={el.id}
-              img={el.image}
+              img={el.FIELDNAME}
               saveCategoryActivity={saveCategoryActivity}
               deleteCategoryActivity={deleteCategoryActivity}
               setSelectOtherActivities={setSelectOtherActivities}

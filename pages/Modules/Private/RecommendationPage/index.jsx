@@ -5,7 +5,7 @@ import H2 from 'components/H2'
 import SliderAlojamiento from 'components/SliderAlojamiento'
 import FormSection from 'sections/Private/Recommentation/FormSection'
 import Wrapper from 'layout/Wrapper'
-import { API } from 'assets/Utils/Constants'
+import { API, BASE_API } from 'assets/Utils/Constants'
 import { Row, Col } from 'antd'
 import CategoryActivities from 'sections/Private/Recommentation/CategoryActivitySection'
 import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivitiesSection'
@@ -21,8 +21,10 @@ const RecommendationPage = () => {
 
   const router = useRouter()
 
-  const urlCategory = `${API}/category/`
-  const urlActivity = `${API}/activity/`
+  // const urlCategory = `${BASE_API}/category/`
+  const urlCategory = 'http://api.devopsacademy.pe/tripbuddy/api/categoria/'
+  // const urlActivity = `${BASE_API}/activity/`
+  const urlActivity = 'http://api.devopsacademy.pe/tripbuddy/api/actividad/'
 
   // console.log('toggleOne', toggleOne)
   // console.log('toggleTwo', toggleTwo)
@@ -32,7 +34,7 @@ const RecommendationPage = () => {
       try {
         const res = await axios.get(urlCategory)
         const json = await res.data
-        // console.log(json)
+        console.log(json)
         setDbCategory(json)
       } catch (err) {
         const message = err.statusText
@@ -44,7 +46,7 @@ const RecommendationPage = () => {
       try {
         const res = await axios.get(urlActivity)
         const json = await res.data
-        // console.log(json)
+        console.log(json)
         setDbActivity(json)
       } catch (err) {
         const message = err.statusText

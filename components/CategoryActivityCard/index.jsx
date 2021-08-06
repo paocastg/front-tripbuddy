@@ -60,7 +60,7 @@ const CategoryActivityCard = ({
       className={!selected ? styles.card : styles.selectedCard}
       onClick={handleIconClick}
     >
-      <img className={styles.image} src={img} alt="conciertos" />
+      <img className={styles.image} src={img} alt={name} />
       <span className={styles.text}>{name}</span>
     </div>
   )
