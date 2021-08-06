@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { DatePicker, Calendar, Button } from 'antd'
+import { DatePicker, Button } from 'antd'
 import styles from './index.module.scss'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css'
+
 const { RangePicker } = DatePicker
 
 const DateConfirmation = () => {
@@ -33,28 +36,22 @@ const DateConfirmation = () => {
   return (
     <div className={styles.site}>
       <div className={styles.divCenter} >
-        <label><strong>{formatofechaInicio} - {formatofechaFin} </strong> </label>
+        <label translate="yes"><strong>{formatofechaInicio} - {formatofechaFin} </strong> </label>
         <Button className={styles.button}
         onClick={handleShowDatePicker}
         type="text">{show ? 'Guardar' : 'Editar'}</Button>
       </div>
       {show2 && (
         <Calendar
-          fullscreen={false}
-          // onChange ={onCalendarChange}
-          value={moment(fechaInicio)}
-          defaultValue={moment(fechaFin)}
-          mode="month"
-          headerRender={({ value, type, onChange, onTypeChange }) => {
-            return (
-              <div>
-              </div>
-            )
-          }}
-        />
+        locale="es-ES"
+        value={[moment(fechaInicio), moment(fechaFin)]}
+        selectRange="true"
+        // onChange={onCalendarChange}
+      />
       )}
       {show && (
-        <RangePicker
+          <RangePicker
+          locale="es-ES"
           value= {[moment(fechaInicio), moment(fechaFin)]}
           showTime={{
             hideDisabledOptions: true
@@ -64,6 +61,7 @@ const DateConfirmation = () => {
           open= "true"
           bordered={false}
         />
+        
       )}
     </div>
   )
