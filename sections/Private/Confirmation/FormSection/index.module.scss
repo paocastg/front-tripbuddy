@@ -27,15 +27,21 @@
 
 .grid {
   display:flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
   flex-wrap: wrap;
-  max-width: 800px;
+  /* max-width: 800px; */
   margin-top: 3rem;
+	width: 100%;
 
 }
 
-.card {
+.grid > div {
+	width: 50%;
+	padding: 10px
+}
+
+.card1 {
   display: inline-block;
   margin: 1rem;
   padding: 1.5rem;

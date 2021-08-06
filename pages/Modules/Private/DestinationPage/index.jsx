@@ -43,7 +43,7 @@ const Destination = () => {
     const seleccionados = []
     // console.log('setdestino', destinos)
     // console.log('idlist', idList)
-    destinos.forEach(element => {
+    destinos && destinos.forEach(element => {
       idList.forEach(id => {
         if (element.id === id * 1) {
           seleccionados.push(element)

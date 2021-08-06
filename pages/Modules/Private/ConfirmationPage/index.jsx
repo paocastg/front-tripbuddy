@@ -86,15 +86,16 @@ const ConfirmationPage = () => {
     <Wrapper>
       <div className={styles.main}>
         <FormSection destinos={destinos} storeValue={storeValue} />
-        {storeValue || <OverviewSection />}
+        <section className={styles.section}>
+          {response && (
+            <Alert message="Solicitud Enviada" type="success" showIcon />
+          )}
+          <div>
+            <Button onClick={handlePrev}>Atrás</Button>
+            <Button onClick={handleClickQuotation}>Cotizar</Button>
+          </div>
+        </section>
       </div>
-      <section className={styles.section}>
-        {response && <Alert message="Solicitud Enviada correctamente ... " type="success" showIcon/>}
-        <div>
-          <Button onClick={handlePrev}>Atrás</Button>
-          <Button onClick={handleClickQuotation}>Cotizar</Button>
-        </div>
-      </section>
     </Wrapper>
   )
 }

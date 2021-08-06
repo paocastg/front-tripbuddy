@@ -15,6 +15,8 @@ const CategoryActivityCard = ({
 
   const data = { id, name }
 
+  console.log(img)
+
   useEffect(() => {
     const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
       activity: [],
@@ -27,13 +29,13 @@ const CategoryActivityCard = ({
     const inActivity = myQuotationInit.activity.find((el) => el.id === id)
     const inCategory = myQuotationInit.category.find((el) => el.id === id)
     if (inActivity && field === 'activity') {
-      console.log('dentro')
+      // console.log('dentro')
       setSelected(true)
     } else if (inCategory && field === 'category') {
-      console.log('dentro')
+      // console.log('dentro')
       setSelected(true)
     } else {
-      console.log('no dentro')
+      // console.log('no dentro')
       setSelected(false)
     }
   }, [])
