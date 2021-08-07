@@ -15,15 +15,20 @@ const CategoryActivityCard = ({
 
   const data = { id, name }
 
-  console.log(img)
+  // console.log(img)
+
+  // Fix: Añadir 'tripbuddy' a la url de image que viene del api.
+  const imgSplitted = img && img.split('/')
+  img && imgSplitted.splice(3, 0, 'tripbuddy').join('/')
+  const newImg = img && imgSplitted.join('/')
 
   useEffect(() => {
     const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
       activity: [],
       category: []
     }
-    console.log(myQuotationInit.activity)
-    console.log(myQuotationInit.activity.find((el) => el.id === id))
+    // console.log(myQuotationInit.activity)
+    // console.log(myQuotationInit.activity.find((el) => el.id === id))
 
     // cargamos los card seleccionados anteriormente.
     const inActivity = myQuotationInit.activity.find((el) => el.id === id)
@@ -62,7 +67,7 @@ const CategoryActivityCard = ({
       className={!selected ? styles.card : styles.selectedCard}
       onClick={handleIconClick}
     >
-      <img className={styles.image} src={img} alt={name} />
+      <img className={styles.image} src={newImg} alt={name} />
       <span className={styles.text}>{name}</span>
     </div>
   )
