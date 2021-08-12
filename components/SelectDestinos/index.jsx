@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Select } from 'antd'
-import axios from 'axios'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import styles from './index.module.scss'
 
 const { Option } = Select
 
-const SelectDestinos = () => {
+const SelectDestinos = ({ disabled, dbDestiny }) => {
   const [seleccionados, setSeleccionados] = useState([])
-  const [datos, setDatos] = useState('')
   const [destino, setDestino] = useLocalStorage('destinos', [])
-
-  useEffect(() => {
-    getDestinos()
-  }, [])
-
-  const getDestinos = async () => {
-    try {
-      const destinos = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/destino/')
-      setDatos(destinos.data)
-    } catch (error) {
-    }
-  }
 
   const handleChange = (id) => {
     setDestino(id)
@@ -29,7 +15,7 @@ const SelectDestinos = () => {
     setSeleccionados([...seleccionados, ...id])
   }
 
-  const options = datos && datos.map(d =>
+  const options = dbDestiny && dbDestiny.map(d =>
   <Option key={d.id}>
     {d.nombre}
   </Option>)
@@ -42,6 +28,7 @@ const SelectDestinos = () => {
         mode="multiple"
         placeholder="Destinos"
         onChange={handleChange}
+        disabled={disabled}
       >
         {options}
       </Select>
