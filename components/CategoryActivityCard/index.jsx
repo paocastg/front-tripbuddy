@@ -6,7 +6,6 @@ const CategoryActivityCard = ({
   name,
   saveCategoryActivity,
   deleteCategoryActivity,
-  setSelectOtherActivities,
   img,
   field,
   id
@@ -54,13 +53,6 @@ const CategoryActivityCard = ({
       deleteCategoryActivity(data, field)
     }
     setSelected((prev) => !prev)
-    // other activities
-    if (!selected && name === 'Otras Actividades') {
-      setSelectOtherActivities(true)
-      // console.log(selected, name)
-    } else {
-      setSelectOtherActivities(false)
-    }
   }
   return (
     <div

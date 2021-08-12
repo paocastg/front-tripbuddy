@@ -91,7 +91,7 @@ const ConfirmationPage = () => {
             <Alert message="Solicitud Enviada" type="success" showIcon />
           )}
           <div>
-            <Button onClick={handlePrev}>Atrás</Button>
+            <Button onClick={() => router.push('/recommendation')}>Atrás</Button>
             <Button onClick={handleClickQuotation}>Cotizar</Button>
           </div>
         </section>

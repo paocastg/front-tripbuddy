@@ -1,8 +1,10 @@
 import React from 'react'
 import { CDN_PATH } from 'assets/Utils/Constants'
 import styles from './index.module.scss'
+import { useRouter } from 'next/router'
 
 const Header = () => {
+  const router = useRouter()
   return (
     <div className={styles.wrapper}>
       <div className="e-container">
@@ -12,7 +14,7 @@ const Header = () => {
             {/* <img src="https://file-loenviamostest.s3.amazonaws.com/images/logo-tripbuddy.svg" alt="chart" /> */}
           </div>
           <div className={styles.header_user}>
-            <button className={styles.header_button}>
+            <button className={styles.header_button} onClick={() => router.push('/select')}>
               Comienza tu viaje
             </button>
             <div className={styles.user}>

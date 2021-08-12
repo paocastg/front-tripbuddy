@@ -14,7 +14,7 @@ const SelectSection = () => {
 
   const handleClickDest = () => {
     localStorage.setItem('selectDestination', JSON.stringify(true))
-    router.push('/destination')
+    router.push('/recommendation')
     localStorage.removeItem('destinos')
     localStorage.removeItem('FechaInicio')
     localStorage.removeItem('FechaFin')

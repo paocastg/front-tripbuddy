@@ -13,7 +13,6 @@ const CategoryActivities = ({
   saveCategoryActivity,
   deleteCategoryActivity
 }) => {
-  const [selectOtherActivities, setSelectOtherActivities] = useState(false)
   const router = useRouter()
 
   // console.log(selectOtherActivities)
@@ -30,7 +29,6 @@ const CategoryActivities = ({
               img={el.FIELDNAME}
               saveCategoryActivity={saveCategoryActivity}
               deleteCategoryActivity={deleteCategoryActivity}
-              setSelectOtherActivities={setSelectOtherActivities}
               field="category"
             />
           ))}
@@ -46,14 +44,13 @@ const CategoryActivities = ({
               img={el.FIELDNAME}
               saveCategoryActivity={saveCategoryActivity}
               deleteCategoryActivity={deleteCategoryActivity}
-              setSelectOtherActivities={setSelectOtherActivities}
               field="activity"
             />
           ))}
       </div>
       <div>
         <Button onClick={handleClickBefore}>Atrás</Button>
-        <Button onClick={selectOtherActivities ? handleClickNext : () => router.push('/confirmation')}>Siguiente</Button>
+        <Button onClick={handleClickNext}>Siguiente</Button>
       </div>
     </section>
   )

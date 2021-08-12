@@ -8,12 +8,20 @@ import Button from 'components/Button'
 import { useRouter } from 'next/router'
 import SliderAlojamiento from 'components/SliderAlojamiento'
 import axios from 'axios'
+
 const Destination = () => {
   const router = useRouter()
   const [destinos, setDestinos] = useState('')
+  const [isActiveDestiny, setIsActiveDestiny] = useState(null)
 
   useEffect(() => {
     getDestinos()
+
+    // read selectDestination of LocalStorage
+    const selectDestination = JSON.parse(
+      localStorage.getItem('selectDestination')
+    ) || false
+    setIsActiveDestiny(selectDestination)
   }, [])
 
   const getDestinos = async () => {
@@ -25,7 +33,7 @@ const Destination = () => {
     }
   }
 
-  const handleClick = () => {
+  const handleClickAtras = () => {
     router.push('/select')
     localStorage.removeItem('destinos')
     localStorage.removeItem('FechaInicio')
@@ -65,7 +73,7 @@ const Destination = () => {
               <H2>
                 Elige tu destino y las fechas <br /> en que piensas viajar
               </H2>
-              <FormSection />
+              <FormSection isActiveDestiny={isActiveDestiny} />
             </Col>
           </Row>
           <Row>
@@ -76,7 +84,7 @@ const Destination = () => {
           <br />
           <section className={styles.section}>
             <div>
-              <Button onClick={handleClick}>Atrás</Button>
+              <Button onClick={handleClickAtras}>Atrás</Button>
               <Button onClick={handleClickSiguiente}>Siguiente</Button>
             </div>
           </section>

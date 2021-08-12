@@ -1,30 +1,30 @@
 import React from 'react'
 import DropdownMenu from 'components/DropdownMenu'
-import { Form, DatePicker, Tooltip, Select } from 'antd'
+import SelectDestinos from 'components/SelectDestinos'
+import { Form, DatePicker, Tooltip } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import RangePicker from 'components/DataPicker'
 
 import styles from './index.module.scss'
 
-const FormSection = () => {
+const FormSection = ({ isActiveDestiny, dbDestiny }) => {
   return (
     <section className={styles.section}>
       <Form>
         <Form.Item>
-          <Select
-            style={{ width: '95%' }}
-            mode="multiple"
-            placeholder="Destinos"
-            disabled
-          ></Select>
+          {isActiveDestiny
+            ? (
+            <SelectDestinos disabled={false} dbDestiny={dbDestiny} />
+              )
+            : (
+            <SelectDestinos disabled={true} />
+              )}
         </Form.Item>
-        <Form.Item style={{ marginBottom: 0 }}>
-          <Form.Item
-            style={{ display: 'inline-block', width: 'calc(50% - 12px)' }}
-          >
+        <Form.Item className={styles.form}>
+          <Form.Item className={styles.rangepicker}>
             <RangePicker style={{ width: '100%' }} />
           </Form.Item>
-          <Form.Item style={{ display: 'inline-block', margin: '0 8px' }}>
+          <Form.Item className={styles.dropdown}>
             <DropdownMenu />
           </Form.Item>
         </Form.Item>
@@ -39,6 +39,7 @@ const FormSection = () => {
         </Form.Item>
       </Form>
     </section>
+
   )
 }
 export default FormSection
