@@ -3,18 +3,22 @@ import styles from './index.module.scss'
 import Box from 'components/Box'
 import { CDN_PATH } from 'assets/Utils/Constants'
 
-const SelectSection = () => {
+const SelectSection = ({ setToggleSectionOne, setIsActiveDestiny }) => {
   const router = useRouter()
 
   const handleClickRec = () => {
+    setToggleSectionOne((prev) => !prev)
+    setIsActiveDestiny(false)
     localStorage.setItem('selectDestination', JSON.stringify(false))
     localStorage.setItem('myToggle', JSON.stringify({ toggleOne: false, toggleTwo: false }))
-    router.push('/recommendation')
+    // router.push('/recommendation')
   }
 
   const handleClickDest = () => {
+    setToggleSectionOne((prev) => !prev)
+    setIsActiveDestiny(true)
     localStorage.setItem('selectDestination', JSON.stringify(true))
-    router.push('/recommendation')
+    // router.push('/recommendation')
     localStorage.removeItem('destinos')
     localStorage.removeItem('FechaInicio')
     localStorage.removeItem('FechaFin')

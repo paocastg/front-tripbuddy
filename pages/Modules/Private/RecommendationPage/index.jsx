@@ -9,6 +9,7 @@ import { API, BASE_API } from 'assets/Utils/Constants'
 import { Row, Col, Spin } from 'antd'
 import CategoryActivities from 'sections/Private/Recommentation/CategoryActivitySection'
 import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivitiesSection'
+import SelectSection from 'sections/Private/Select/SelectSection'
 import { useRouter } from 'next/router'
 const axios = require('axios')
 
@@ -21,6 +22,7 @@ const RecommendationPage = () => {
   const [isActiveDestiny, setIsActiveDestiny] = useState(null)
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
+  const [toggleSectionOne, setToggleSectionOne] = useState(false)
 
   const router = useRouter()
 
@@ -32,7 +34,7 @@ const RecommendationPage = () => {
   const getCategory = async () => {
     try {
       const urlCategory =
-          'http://api.devopsacademy.pe/tripbuddy/api/categoria/'
+        'http://api.devopsacademy.pe/tripbuddy/api/categoria/'
       setLoading(true)
 
       const res = await axios.get(urlCategory)
@@ -48,7 +50,7 @@ const RecommendationPage = () => {
   const getActivity = async () => {
     try {
       const urlActivity =
-          'http://api.devopsacademy.pe/tripbuddy/api/actividad/'
+        'http://api.devopsacademy.pe/tripbuddy/api/actividad/'
       setLoading(true)
       const res = await axios.get(urlActivity)
       const json = await res.data
@@ -61,7 +63,9 @@ const RecommendationPage = () => {
 
   const getDestiny = async () => {
     try {
-      const res = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/destino/')
+      const res = await axios.get(
+        'http://api.devopsacademy.pe/tripbuddy/api/destino/'
+      )
       const json = await res.data
       return json
     } catch (err) {
@@ -110,6 +114,10 @@ const RecommendationPage = () => {
     setIsActiveDestiny(selectDestination)
     console.log('is active', selectDestination)
   }, [])
+
+  const handleToggleSectionOne = () => {
+    setToggleSectionOne((prev) => !prev)
+  }
 
   const handleToggleOne = () => {
     setToggleOne((prev) => !prev)
@@ -174,54 +182,69 @@ const RecommendationPage = () => {
 
   return (
     <Wrapper>
-      {loading && <div style={{ margin: '30px' }} ><Spin size='large'/></div> }
-      {!loading && (
-        <div className={styles.main}>
-          <div className={toggleOne ? styles.hiddenLeft : styles.visible}>
-            <Row>
-              <Col span={24}>
-                <H2>
-                  Elige tu destino y las fechas <br /> en que piensas viajar
-                </H2>
-                <FormSection isActiveDestiny={isActiveDestiny} dbDestiny={dbDestiny} />
-              </Col>
-            </Row>
-            <Row>
-              <Col span={24}>
-                <SliderAlojamiento />
-              </Col>
-            </Row>
-            <br />
-            <section className={styles.section}>
-              <div>
-                <Button onClick={() => router.push('/select')}>Atrás</Button>
-                <Button onClick={handleToggleOne}>Siguiente</Button>
-              </div>
-            </section>
-          </div>
-          <div
-            className={
-              toggleTwo
-                ? styles.hiddenLeft
-                : toggleOne
-                  ? styles.visible
-                  : styles.hiddenRight
-            }
-          >
-            <CategoryActivities
-              dbCategory={dbCategory}
-              dbActivity={dbActivity}
-              saveCategoryActivity={saveCategoryActivity}
-              deleteCategoryActivity={deleteCategoryActivity}
-              handleClickNext={handleToggleTwo}
-              handleClickBefore={handleToggleOne}
-            />
-          </div>
-          <div className={toggleTwo ? styles.visible : styles.hiddenRight}>
-            <OtherActivitiesSection handleClickBefore={handleToggleTwo} />
-          </div>
+      {loading && (
+        <div style={{ margin: '30px' }}>
+          <Spin size="large" />
         </div>
       )}
+      {!loading &&
+        (!toggleSectionOne
+          ? (
+          <SelectSection
+            setToggleSectionOne={setToggleSectionOne}
+            setIsActiveDestiny={setIsActiveDestiny}
+          />
+            )
+          : (
+          <div className={styles.main}>
+            <div className={toggleOne ? styles.hiddenLeft : styles.visible}>
+              <Row>
+                <Col span={24}>
+                  <H2>
+                    Elige tu destino y las fechas <br /> en que piensas viajar
+                  </H2>
+                  <FormSection
+                    isActiveDestiny={isActiveDestiny}
+                    dbDestiny={dbDestiny}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col span={24}>
+                  <SliderAlojamiento />
+                </Col>
+              </Row>
+              <br />
+              <section className={styles.section}>
+                <div>
+                  <Button onClick={() => setToggleSectionOne((prev) => !prev)}>Atrás</Button>
+                  <Button onClick={handleToggleOne}>Siguiente</Button>
+                </div>
+              </section>
+            </div>
+            <div
+              className={
+                toggleTwo
+                  ? styles.hiddenLeft
+                  : toggleOne
+                    ? styles.visible
+                    : styles.hiddenRight
+              }
+            >
+              <CategoryActivities
+                dbCategory={dbCategory}
+                dbActivity={dbActivity}
+                saveCategoryActivity={saveCategoryActivity}
+                deleteCategoryActivity={deleteCategoryActivity}
+                handleClickNext={handleToggleTwo}
+                handleClickBefore={handleToggleOne}
+              />
+            </div>
+            <div className={toggleTwo ? styles.visible : styles.hiddenRight}>
+              <OtherActivitiesSection handleClickBefore={handleToggleTwo} />
+            </div>
+          </div>
+            ))}
     </Wrapper>
   )
 }
