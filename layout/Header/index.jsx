@@ -14,7 +14,7 @@ const Header = () => {
             {/* <img src="https://file-loenviamostest.s3.amazonaws.com/images/logo-tripbuddy.svg" alt="chart" /> */}
           </div>
           <div className={styles.header_user}>
-            <button className={styles.header_button} onClick={() => router.push('/select')}>
+            <button className={styles.header_button} onClick={() => router.push('/recommendation')}>
               Comienza tu viaje
             </button>
             <div className={styles.user}>
