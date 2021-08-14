@@ -8,7 +8,7 @@ import { Select } from 'antd'
 
 const { Option } = Select
 
-const OtherActivitiesSection = ({ handleClickBefore }) => {
+const OtherActivitiesSection = ({ handleClickBefore, handleToggleSectionTwo }) => {
   const router = useRouter()
   return (
     <section className={styles.section} >
@@ -31,7 +31,7 @@ const OtherActivitiesSection = ({ handleClickBefore }) => {
       </Select>
       <div style={{ marginTop: '100px' }} >
         <Button onClick={handleClickBefore}>Atrás</Button>
-        <Button onClick={() => router.push('/confirmation')}>Siguiente</Button>
+        <Button onClick={handleToggleSectionTwo}>Siguiente</Button>
       </div>
 
     </section>

@@ -4,6 +4,7 @@ import Button from 'components/Button'
 import H2 from 'components/H2'
 import SliderAlojamiento from 'components/SliderAlojamiento'
 import FormSection from 'sections/Private/Recommentation/FormSection'
+import ConfirmationSection from 'sections/Private/Recommentation/ConfirmationSection'
 import Wrapper from 'layout/Wrapper'
 import { API, BASE_API } from 'assets/Utils/Constants'
 import { Row, Col, Spin } from 'antd'
@@ -12,6 +13,12 @@ import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivit
 import SelectSection from 'sections/Private/Select/SelectSection'
 import { useRouter } from 'next/router'
 const axios = require('axios')
+
+const initialToggleSection = {
+  sectionOne: false,
+  sectionTwo: false,
+  selectDestination: false
+}
 
 const RecommendationPage = () => {
   const [toggleOne, setToggleOne] = useState(false)
@@ -22,9 +29,11 @@ const RecommendationPage = () => {
   const [isActiveDestiny, setIsActiveDestiny] = useState(null)
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
-  const [toggleSectionOne, setToggleSectionOne] = useState(false)
+  const [toggleSection, setToggleSection] = useState(initialToggleSection)
 
   const router = useRouter()
+
+  console.log('toggle seccion SelectSection', toggleSection)
 
   // const urlCategory = `${BASE_API}/category/`
   // const urlActivity = `${BASE_API}/activity/`
@@ -108,6 +117,11 @@ const RecommendationPage = () => {
     setToggleOne(myToggle.toggleOne)
     setToggleTwo(myToggle.toggleTwo)
 
+    // read myToggleSection of localStorage
+    const myToggleSection =
+      JSON.parse(localStorage.getItem('myToggleSection')) || toggleSection
+    setToggleSection(myToggleSection)
+
     // read selectDestination of LocalStorage
     const selectDestination =
       JSON.parse(localStorage.getItem('selectDestination')) || false
@@ -116,7 +130,26 @@ const RecommendationPage = () => {
   }, [])
 
   const handleToggleSectionOne = () => {
-    setToggleSectionOne((prev) => !prev)
+    localStorage.setItem(
+      'myToggleSection',
+      JSON.stringify({
+        ...toggleSection,
+        sectionOne: !toggleSection.sectionOne
+      })
+    )
+    setToggleSection({ ...toggleSection, sectionOne: false })
+    // resetear todo lo almacenado
+  }
+
+  const handleToggleSectionTwo = () => {
+    localStorage.setItem(
+      'myToggleSection',
+      JSON.stringify({
+        ...toggleSection,
+        sectionTwo: !toggleSection.sectionTwo
+      })
+    )
+    setToggleSection({ ...toggleSection, sectionTwo: !toggleSection.sectionTwo })
   }
 
   const handleToggleOne = () => {
@@ -188,14 +221,16 @@ const RecommendationPage = () => {
         </div>
       )}
       {!loading &&
-        (!toggleSectionOne
+        (!toggleSection.sectionOne
           ? (
           <SelectSection
-            setToggleSectionOne={setToggleSectionOne}
+            setToggleSection={setToggleSection}
             setIsActiveDestiny={setIsActiveDestiny}
+            toggleSection={toggleSection}
           />
             )
-          : (
+          : !toggleSection.sectionTwo
+              ? (
           <div className={styles.main}>
             <div className={toggleOne ? styles.hiddenLeft : styles.visible}>
               <Row>
@@ -204,7 +239,7 @@ const RecommendationPage = () => {
                     Elige tu destino y las fechas <br /> en que piensas viajar
                   </H2>
                   <FormSection
-                    isActiveDestiny={isActiveDestiny}
+                    isActiveDestiny={toggleSection.selectDestination}
                     dbDestiny={dbDestiny}
                   />
                 </Col>
@@ -217,7 +252,7 @@ const RecommendationPage = () => {
               <br />
               <section className={styles.section}>
                 <div>
-                  <Button onClick={() => setToggleSectionOne((prev) => !prev)}>Atrás</Button>
+                  <Button onClick={handleToggleSectionOne}>Atrás</Button>
                   <Button onClick={handleToggleOne}>Siguiente</Button>
                 </div>
               </section>
@@ -241,10 +276,16 @@ const RecommendationPage = () => {
               />
             </div>
             <div className={toggleTwo ? styles.visible : styles.hiddenRight}>
-              <OtherActivitiesSection handleClickBefore={handleToggleTwo} />
+              <OtherActivitiesSection
+                handleClickBefore={handleToggleTwo}
+                handleToggleSectionTwo={handleToggleSectionTwo}
+              />
             </div>
           </div>
-            ))}
+                )
+              : (
+          <ConfirmationSection handleToggleSectionTwo={handleToggleSectionTwo} />
+                ))}
     </Wrapper>
   )
 }
