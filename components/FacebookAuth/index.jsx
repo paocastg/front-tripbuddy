@@ -11,9 +11,9 @@ const FacebookAuth = () => {
   }
   return (
     <FacebookLogin
-      appId="361012292297440"
+      appId="529964141563042"
       autoLoad={true}
-      fields="name,email,picture"
+      fields="name,email"
       onClick={handleClickFacebook}
       callback={responseFacebook}
       render={(renderProps) => (
