@@ -26,7 +26,8 @@ nextApp
       { slug: '/select', file: '/Modules/Private/SelectPage' },
       { slug: '/destination', file: '/Modules/Private/DestinationPage' },
       { slug: '/recommendation', file: '/Modules/Private/RecommendationPage' },
-      { slug: '/confirmation', file: '/Modules/Private/ConfirmationPage' }
+      { slug: '/confirmation', file: '/Modules/Private/ConfirmationPage' },
+      { slug: '/cotizaciones', file: '/Modules/Private/QuotationPage' }
     ]
 
     for (const route of routes) {
