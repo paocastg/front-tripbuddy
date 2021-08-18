@@ -1,20 +1,39 @@
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import styles from './index.module.scss'
+const axios = require('axios')
 
 const FacebookAuth = () => {
-  const responseFacebook = (response) => {
-    console.log(response)
+  const responseFacebook = async (response) => {
+    if (response.status !== 'unknown') {
+      try {
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+          },
+          data: JSON.stringify({
+            nombres: response.name,
+            email: response.email,
+            redsocialid: response.id || response.userID
+          })
+        }
+        const res = await axios('http://localhost:3000/santos', options)
+        const json = await res.data
+        console.log(json)
+        // almacenar el token y usuario
+      } catch (err) {
+        console.log(err)
+      }
+      // Enviar a la api de login.
+      console.log(response)
+    }
   }
 
-  const handleClickFacebook = () => {
-    console.log('click facebook')
-  }
   return (
     <FacebookLogin
       appId="529964141563042"
-      autoLoad={true}
+      autoLoad={false}
       fields="name,email"
-      onClick={handleClickFacebook}
       callback={responseFacebook}
       render={(renderProps) => (
         <button className={styles.btn_facebook} onClick={renderProps.onClick}>
