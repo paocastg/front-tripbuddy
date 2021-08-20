@@ -30,6 +30,7 @@ const RecommendationPage = () => {
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
+  const [destinos, setDestinos] = useState(false)
   // const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
 
   const router = useRouter()
@@ -170,7 +171,7 @@ const RecommendationPage = () => {
     const idList = JSON.parse(localStorage.getItem('destinos'))
     const seleccionados = []
     destinos && destinos.forEach(element => {
-      idList.forEach(id => {
+      idList && idList.forEach(id => {
         if (element.id === id * 1) {
           seleccionados.push(element)
         }
