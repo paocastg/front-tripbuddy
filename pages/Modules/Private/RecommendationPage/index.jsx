@@ -30,6 +30,7 @@ const RecommendationPage = () => {
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
+  const [destinos, setDestinos] = useState(false)
   // const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
 
   const router = useRouter()
@@ -148,6 +149,10 @@ const RecommendationPage = () => {
     )
     setToggleSection({ ...toggleSection, sectionOne: false })
     // resetear todo lo almacenado
+    localStorage.setItem('myQuotation', JSON.stringify({
+      activity: [],
+      category: []
+    }))
   }
 
   const handleToggleSectionTwo = () => {
@@ -166,7 +171,7 @@ const RecommendationPage = () => {
     const idList = JSON.parse(localStorage.getItem('destinos'))
     const seleccionados = []
     destinos && destinos.forEach(element => {
-      idList.forEach(id => {
+      idList && idList.forEach(id => {
         if (element.id === id * 1) {
           seleccionados.push(element)
         }
@@ -236,7 +241,7 @@ const RecommendationPage = () => {
   return (
     <Wrapper>
       {loading && (
-        <div style={{ margin: '30px' }}>
+        <div style={{ margin: '30px', marginBottom: '30%', textAlign: 'center' }}>
           <Spin size="large" />
         </div>
       )}
