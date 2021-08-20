@@ -12,6 +12,7 @@ import CategoryActivities from 'sections/Private/Recommentation/CategoryActivity
 import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivitiesSection'
 import SelectSection from 'sections/Private/Select/SelectSection'
 import { useRouter } from 'next/router'
+import { useLocalStorage } from 'assets/Utils/LocalStorage'
 const axios = require('axios')
 
 const initialToggleSection = {
@@ -30,7 +31,7 @@ const RecommendationPage = () => {
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
-  // const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
+  const [destinos, setDestinos] = useState('')
 
   const router = useRouter()
 
