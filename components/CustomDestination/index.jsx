@@ -22,9 +22,7 @@ const CustomDestination = () => {
       onOk () {
         console.log('OK')
         // delete from myQuotation
-        destino.filter(
-          (el) => el.id !== data.id
-        )
+        destino.filter((el) => el.id !== data.id)
         setSeleccionados([...seleccionados, ...id])
       },
       onCancel () {
@@ -33,15 +31,17 @@ const CustomDestination = () => {
     })
   }
   return (
-    <section className={styles.overview} >
-    <H2>Destinos</H2>
-    <div>
-     {destino && destino.map(d =>
-    <Tag closable onclose={(e) => log(d.id)} key={d.id}>
-      {d.nombre}
-    </Tag>)}
-    </div>
-  </section>
+    <section className={styles.overview}>
+      <H2>Destinos</H2>
+      <div>
+        {destino &&
+          destino.map((d) => (
+            <Tag closable onclose={(e) => log(d.id)} key={d.id}>
+              {d.nombre}
+            </Tag>
+          ))}
+      </div>
+    </section>
   )
 }
 export default CustomDestination
