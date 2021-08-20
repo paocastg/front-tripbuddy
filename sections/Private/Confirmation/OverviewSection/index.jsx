@@ -1,7 +1,7 @@
 import H2 from 'components/H2'
 import CustomTag from 'components/CustomTag'
 import { useEffect, useState } from 'react'
-import { Modal } from 'antd'
+import { Modal, Tag } from 'antd'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import styles from './index.module.scss'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
@@ -69,19 +69,36 @@ const OverviewSection = () => {
   // eslint-disable-next-line eqeqeq
   } else if (costo == '2') {
     costoAlojamiento = '3 estrellas'
+    // eslint-disable-next-line eqeqeq
+  } else if (costo == '3') {
+    costoAlojamiento = 'Lujoso'
   } else {
-    costoAlojamiento = 'lujoso '
+    costoAlojamiento = ''
   }
 
   return (
     <section className={styles.overview} >
       <H2>Resumen</H2>
       <h3><strong>Número de personas</strong></h3>
-      Adultos: {adulto} <br/>
-      Adolescentes: {adolescente}<br/>
-      Niños: {nino} <br/>
+      <div className={styles.tag_container} >
+         <Tag color="#5bc0de">
+        {adulto} Adultos
+      </Tag>
+      <Tag color="#5bc0de">
+        {adolescente} Adolescentes
+      </Tag>
+      <Tag color="#5bc0de">
+      {nino} Niños
+      </Tag>
+      </div>
+      <br/>
       <h3><strong>Alojamiento</strong></h3>
-      <label>{tipo} &nbsp;{costoAlojamiento}</label>
+      <div className={styles.tag_container} >
+         <Tag color="#5bc0de">
+         {tipo} &nbsp;{costoAlojamiento}
+      </Tag>
+      </div>
+      <br/>
       <h3><strong>Categoria de Viaje</strong></h3>
       <div className={styles.tag_container} >
         {myQuotation &&
