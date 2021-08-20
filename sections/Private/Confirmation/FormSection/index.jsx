@@ -42,6 +42,7 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
 
   return (
     <main className={styles.main}>
+      <H2>Visualiza tu elección</H2>
       <div>
         <H2 className={styles.title}>{resultado} días en Perú</H2>
         <p className={styles.description}>
@@ -65,7 +66,7 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
             destinos={destinos}
             destinosCompleto={destinosCompleto}
             googleMapURL={mapURL}
-            containerElement={<div style={{ height: '250px' }} />}
+            containerElement={<div style={{ height: '350px' }} />}
             mapElement={<div style={{ height: '100%' }} />}
             loadingElement={<p>Cargando</p>}
           />}

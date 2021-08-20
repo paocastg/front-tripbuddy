@@ -8,35 +8,35 @@ const { confirm } = Modal
 
 const CustomDestination = () => {
   const [destino, setDestino] = useLocalStorage('destinoSeleccionado', [])
-  const [seleccionados, setSeleccionados] = useState([])
+  // const [seleccionados, setSeleccionados] = useState([])
 
-  const log = (e, id, data) => {
-    // console.log(e)
-    // setDestino(id)
-    // setSeleccionados([...seleccionados, ...id])
-    e.preventDefault()
-    confirm({
-      title: `Quieres eliminar "${data.name}" de tu cotizacion ?`,
-      icon: <ExclamationCircleOutlined />,
-      content: '',
-      onOk () {
-        console.log('OK')
-        // delete from myQuotation
-        destino.filter((el) => el.id !== data.id)
-        setSeleccionados([...seleccionados, ...id])
-      },
-      onCancel () {
-        console.log('Cancel')
-      }
-    })
-  }
+  // const log = (e, id, data) => {
+  //   console.log(e)
+  //   setDestino(id)
+  //   setSeleccionados([...seleccionados, ...id])
+  //   // e.preventDefault()
+  //   // confirm({
+  //   //   title: `Quieres eliminar "${data.name}" de tu cotizacion ?`,
+  //   //   icon: <ExclamationCircleOutlined />,
+  //   //   content: '',
+  //   //   onOk () {
+  //   //     console.log('OK')
+  //   //     // delete from myQuotation
+  //   //     destino.filter((el) => el.id !== data.id)
+  //   //     setSeleccionados([...seleccionados, ...id])
+  //   //   },
+  //   //   onCancel () {
+  //   //     console.log('Cancel')
+  //   //   }
+  //   // })
+  // }
   return (
     <section className={styles.overview}>
       <H2>Destinos</H2>
       <div>
         {destino &&
           destino.map((d) => (
-            <Tag closable onclose={(e) => log(d.id)} key={d.id}>
+            <Tag color="#5bc0de" key={d.id}>
               {d.nombre}
             </Tag>
           ))}
