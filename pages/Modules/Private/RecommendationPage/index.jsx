@@ -30,6 +30,7 @@ const RecommendationPage = () => {
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
+  // const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
 
   const router = useRouter()
 
@@ -82,7 +83,14 @@ const RecommendationPage = () => {
       return message
     }
   }
-
+  const getDestinos = async () => {
+    try {
+      const destinoslist = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/destino/')
+      setDestinos(destinoslist.data)
+      // console.log('hola', destinos)
+    } catch (error) {
+    }
+  }
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
@@ -90,7 +98,8 @@ const RecommendationPage = () => {
       const [category, activity, destiny] = await Promise.all([
         getCategory(),
         getActivity(),
-        getDestiny()
+        getDestiny(),
+        getDestinos()
       ])
 
       setDbCategory(category)
@@ -154,6 +163,17 @@ const RecommendationPage = () => {
 
   const handleToggleOne = () => {
     setToggleOne((prev) => !prev)
+    const idList = JSON.parse(localStorage.getItem('destinos'))
+    const seleccionados = []
+    destinos && destinos.forEach(element => {
+      idList.forEach(id => {
+        if (element.id === id * 1) {
+          seleccionados.push(element)
+        }
+      })
+    })
+
+    window.localStorage.setItem('destinoSeleccionado', JSON.stringify(seleccionados))
     // set item myToggle
     if (!toggleOne) {
       const toggle = {

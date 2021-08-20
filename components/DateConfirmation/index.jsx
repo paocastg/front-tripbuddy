@@ -23,7 +23,7 @@ const DateConfirmation = () => {
   }
 
   const onCalendarChange = e => {
-    console.log(e)
+    // console.log(e)
     if (e && e[0] != null) {
       setFechaInicio(e[0].format('MM/DD/YYYY'))
     }
@@ -35,12 +35,8 @@ const DateConfirmation = () => {
   const fecha1 = new Date(fechaInicio)
   const fecha2 = new Date(fechaFin)
 
-  // Creamos array con los meses del año
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
-  // Creamos array con los días de la semana
+  const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'set', 'oct', 'nov', 'dic']
   const diasSemana = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
-
-  // Construimos el formato de salida
   const inicio = (diasSemana[fecha1.getDay()] + ', ' + fecha1.getDate() + ' de ' + meses[fecha1.getMonth()])
   const fin = (diasSemana[fecha2.getDay()] + ', ' + fecha2.getDate() + ' de ' + meses[fecha2.getMonth()])
 

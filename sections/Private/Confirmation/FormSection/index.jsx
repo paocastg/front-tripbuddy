@@ -3,8 +3,8 @@ import { Button } from 'antd'
 import styles from './index.module.scss'
 import H2 from 'components/H2'
 import DateConfirmation from 'components/DateConfirmation'
-import TimelineConfirmation from 'components/Timeline'
-import MapConfirmation from 'components/MapConfirmation'
+import CustomDestination from 'components/CustomDestination'
+import CustomMap from 'components/CustomMap'
 import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 import credentials from './credentials'
 import moment from 'moment'
@@ -12,30 +12,24 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { useRouter } from 'next/router'
 
 const ConfirmationSection = ({ destinos, storeValue }) => {
-  const [fechaInicio, setFechaInicio] = useLocalStorage(
+  const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
+  const [fechaInicio] = useLocalStorage(
     'FechaInicio',
     moment()
   )
-  const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
+  const [fechaFin] = useLocalStorage('FechaFin', moment())
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
   const router = useRouter()
-
-  const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
-  const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
 
   const fecha1 = new Date(fechaInicio)
   const fecha2 = new Date(fechaFin)
 
   const resta = fecha2.getTime() - fecha1.getTime()
   const resultado = Math.round(resta / (1000 * 60 * 60 * 24))
-  console.log(resultado)
+  // console.log(resultado)
 
-  // Creamos array con los meses del año
   const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
-  // Creamos array con los días de la semana
   const diasSemana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
-
-  // Construimos el formato de salida
   const inicio = (diasSemana[fecha1.getDay()] + ', ' + fecha1.getDate() + ' de ' + meses[fecha1.getMonth()])
   const fin = (diasSemana[fecha2.getDay()] + ', ' + fecha2.getDate() + ' de ' + meses[fecha2.getMonth()])
   const handleEdit = () => {
@@ -63,12 +57,13 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
       <div className={styles.grid}>
         <div className={styles.card}>
           {/* <h2>Resumen </h2> */}
-          {storeValue || <OverviewSection />}
+          {storeValue && <OverviewSection />}
         </div>
 
         <div className={styles.card}>
-          {storeValue && <MapConfirmation
+          {storeValue && <CustomMap
             destinos={destinos}
+            destinosCompleto={destinosCompleto}
             googleMapURL={mapURL}
             containerElement={<div style={{ height: '250px' }} />}
             mapElement={<div style={{ height: '100%' }} />}
@@ -77,7 +72,7 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
         </div>
 
         <div className={styles.card}>
-          {storeValue && <TimelineConfirmation />}
+          {storeValue && <CustomDestination />}
         </div>
 
         <div className={styles.card}>

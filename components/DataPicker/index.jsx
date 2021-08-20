@@ -12,7 +12,7 @@ const RangePickers = () => {
   const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
 
   const onCalendarChange = e => {
-    console.log(e)
+    // console.log(e)
     if (e && e[0] != null) {
       // setDateStart(e[0])
       setFechaInicio(e[0].format('MM/DD/YYYY'))
