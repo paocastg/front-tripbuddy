@@ -6,22 +6,22 @@ import H2 from 'components/H2'
 
 const TimelineConfirmation = () => {
   const [destino, setDestino] = useLocalStorage('destinoSeleccionado', [])
-  console.log(destino)
-  const options = destino && destino.map(d =>
-    // console.log(d)
-    <Timeline.Item key={d.id}>
-      <label> {d.nombre}</label>
-    </Timeline.Item>)
+  const [seleccionados, setSeleccionados] = useState([])
 
+  const log = (id) => {
+    setDestino(id)
+    setSeleccionados([...seleccionados, ...id])
+  }
   return (
+    <section className={styles.overview} >
+    <H2>Destinos</H2>
     <div>
-      <H2>Destinos</H2>
-      <Timeline>
-        {/* <Timeline.Item/> */}
-        {options}
-        {/* <Timeline.Item/> */}
-      </Timeline>
+     {destino && destino.map(d =>
+    <Tag closable onclose={log} key={d.id}>
+      {d.nombre}
+    </Tag>)}
     </div>
+  </section>
   )
 }
 export default TimelineConfirmation
