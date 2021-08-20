@@ -148,6 +148,10 @@ const RecommendationPage = () => {
     )
     setToggleSection({ ...toggleSection, sectionOne: false })
     // resetear todo lo almacenado
+    localStorage.setItem('myQuotation', JSON.stringify({
+      activity: [],
+      category: []
+    }))
   }
 
   const handleToggleSectionTwo = () => {
@@ -236,7 +240,7 @@ const RecommendationPage = () => {
   return (
     <Wrapper>
       {loading && (
-        <div style={{ margin: '30px' }}>
+        <div style={{ margin: '30px', marginBottom: '30%', textAlign: 'center' }}>
           <Spin size="large" />
         </div>
       )}
