@@ -11,7 +11,7 @@ const SelectDestinos = ({ disabled, dbDestiny }) => {
 
   const handleChange = (id) => {
     setDestino(id)
-    console.log('nombre', id)
+    // console.log('nombre', id)
     setSeleccionados([...seleccionados, ...id])
   }
 

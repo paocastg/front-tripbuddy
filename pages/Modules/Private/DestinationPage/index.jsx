@@ -28,7 +28,7 @@ const Destination = () => {
     try {
       const destinoslist = await axios.get('http://api.devopsacademy.pe/tripbuddy/api/destino/')
       setDestinos(destinoslist.data)
-      console.log('hola', destinos)
+      // console.log('hola', destinos)
     } catch (error) {
     }
   }
