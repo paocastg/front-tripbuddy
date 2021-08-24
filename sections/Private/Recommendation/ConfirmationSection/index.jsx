@@ -1,4 +1,6 @@
 import styles from './index.module.scss'
+
+/* Components */
 import FormSection from 'sections/Private/Confirmation/FormSection'
 import Button from 'components/Button'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'

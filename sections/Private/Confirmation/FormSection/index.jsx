@@ -1,15 +1,19 @@
 import React from 'react'
 import { Button } from 'antd'
 import styles from './index.module.scss'
-import H2 from 'components/H2'
-import DateConfirmation from 'components/DateConfirmation'
-import CustomDestination from 'components/CustomDestination'
-import CustomMap from 'components/CustomMap'
-import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
+
+/* Utils */
 import credentials from './credentials'
 import moment from 'moment'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { useRouter } from 'next/router'
+
+/* Components */
+import CustomDestination from 'components/CustomDestination'
+import CustomMap from 'components/CustomMap'
+import DateConfirmation from 'components/DateConfirmation'
+import H2 from 'components/H2'
+import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 
 const ConfirmationSection = ({ destinos, storeValue }) => {
   const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])

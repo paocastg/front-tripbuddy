@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import styles from './index.module.scss'
+
+/* Utils */
+import { API, BASE_API } from 'assets/Utils/Constants'
+import { useLocalStorage } from 'assets/Utils/LocalStorage'
+import axios from 'axios'
+
+/* layout */
+import Wrapper from 'layout/Wrapper'
+
+/* Sections of the pages */
+import SelectSection from 'sections/Private/Recommendation/SelectSection'
+import FormSection from 'sections/Private/Recommendation/FormSection'
+import CategoryActivitiesSection from 'sections/Private/Recommendation/CategoryActivitySection'
+import OtherActivitiesSection from 'sections/Private/Recommendation/OtherActivitiesSection'
+import ConfirmationSection from 'sections/Private/Recommendation/ConfirmationSection'
+
+/* Components */
 import Button from 'components/Button'
 import H2 from 'components/H2'
 import SliderAlojamiento from 'components/SliderAlojamiento'
-import FormSection from 'sections/Private/Recommentation/FormSection'
-import ConfirmationSection from 'sections/Private/Recommentation/ConfirmationSection'
-import Wrapper from 'layout/Wrapper'
-import { API, BASE_API } from 'assets/Utils/Constants'
 import { Row, Col, Spin } from 'antd'
-import CategoryActivities from 'sections/Private/Recommentation/CategoryActivitySection'
-import OtherActivitiesSection from 'sections/Private/Recommentation/OtherActivitiesSection'
-import SelectSection from 'sections/Private/Select/SelectSection'
 import { useRouter } from 'next/router'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
-const axios = require('axios')
 
 const initialToggleSection = {
   sectionOne: false,
@@ -292,7 +300,7 @@ const RecommendationPage = () => {
                     : styles.hiddenRight
               }
             >
-              <CategoryActivities
+              <CategoryActivitiesSection
                 dbCategory={dbCategory}
                 dbActivity={dbActivity}
                 saveCategoryActivity={saveCategoryActivity}

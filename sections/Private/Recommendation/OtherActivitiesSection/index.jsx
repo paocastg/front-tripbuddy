@@ -1,18 +1,15 @@
 import React from 'react'
-import H2 from 'components/H2'
-import CustomTooltip from 'components/CustomTooltip'
-import Button from 'components/Button'
 import styles from './index.module.scss'
-import { useRouter } from 'next/router'
-import { Select } from 'antd'
 
-const { Option } = Select
+/* Components */
+import Button from 'components/Button'
+import CustomTooltip from 'components/CustomTooltip'
+import H2 from 'components/H2'
 
 const OtherActivitiesSection = ({
   handleClickBefore,
   handleToggleSectionTwo
 }) => {
-  const router = useRouter()
   return (
     <section className={styles.section}>
       <H2>Otras Actividades</H2>
@@ -22,6 +19,7 @@ const OtherActivitiesSection = ({
       />
       <textarea
         name="other_categories"
+        placeholder="Maximo 255 caracteres"
         id="other_categories"
         cols="73"
         rows="10"
