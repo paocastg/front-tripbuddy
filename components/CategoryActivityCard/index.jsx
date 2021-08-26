@@ -14,8 +14,6 @@ const CategoryActivityCard = ({
 
   const data = { id, name }
 
-  // console.log(img)
-
   // Fix: Añadir 'tripbuddy' a la url de image que viene del api.
   const imgSplitted = img && img.split('/')
   img && imgSplitted.splice(3, 0, 'tripbuddy').join('/')
@@ -26,20 +24,15 @@ const CategoryActivityCard = ({
       activity: [],
       category: []
     }
-    // console.log(myQuotationInit.activity)
-    // console.log(myQuotationInit.activity.find((el) => el.id === id))
 
     // cargamos los card seleccionados anteriormente.
     const inActivity = myQuotationInit.activity.find((el) => el.id === id)
     const inCategory = myQuotationInit.category.find((el) => el.id === id)
     if (inActivity && field === 'activity') {
-      // console.log('dentro')
       setSelected(true)
     } else if (inCategory && field === 'category') {
-      // console.log('dentro')
       setSelected(true)
     } else {
-      // console.log('no dentro')
       setSelected(false)
     }
   }, [])

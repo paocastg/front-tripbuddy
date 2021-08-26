@@ -1,9 +1,12 @@
 import styles from './index.module.scss'
+
+/* Components */
 import FormSection from 'sections/Private/Confirmation/FormSection'
 import Button from 'components/Button'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { Auth } from 'assets/Utils/Auth'
 import axios from 'axios'
+import ConfirmationHeroImage from 'components/ConfirmationHeroImage'
 
 const ConfirmationSection = ({ handleToggleSectionTwo }) => {
   const [storeValue] = useLocalStorage('selectDestination', null)
@@ -62,6 +65,7 @@ const ConfirmationSection = ({ handleToggleSectionTwo }) => {
 
   return (
     <div className={styles.main}>
+      <ConfirmationHeroImage urlImg={'https://placeimg.com/640/480/tech'}/>
       <FormSection destinos={destinos} storeValue={storeValue} />
       <section className={styles.section}>
         <div>

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import CategoryActivityCard from 'components/CategoryActivityCard'
-import Button from 'components/Button'
-import H2 from 'components/H2'
+import React from 'react'
 import styles from './index.module.scss'
-import { useRouter } from 'next/router'
 
-const CategoryActivities = ({
+/* Components */
+import Button from 'components/Button'
+import CategoryActivityCard from 'components/CategoryActivityCard'
+import H2 from 'components/H2'
+
+const CategoryActivitiesSection = ({
   dbCategory,
   dbActivity,
   handleClickNext,
@@ -13,8 +14,6 @@ const CategoryActivities = ({
   saveCategoryActivity,
   deleteCategoryActivity
 }) => {
-  const router = useRouter()
-
   // console.log(selectOtherActivities)
   return (
     <section className={styles.section}>
@@ -56,4 +55,4 @@ const CategoryActivities = ({
   )
 }
 
-export default CategoryActivities
+export default CategoryActivitiesSection

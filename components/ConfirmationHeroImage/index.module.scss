@@ -1,0 +1,42 @@
+.heroImage {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	&__opacity {
+    width: 100%;
+		min-height: 50vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+
+	&__title {
+    padding: 10px 0px;
+    font-family: 'Geomanist-Bold';
+    font-weight: bold;
+    font-size: 2rem;
+		color: #FFFFFF;
+	}
+
+	&__subtitle {
+    font-family: 'Geomanist-Bold';
+    font-size: 1.5rem;
+		color: #FFFFFF;
+	}
+
+	&__action {
+    font-family: 'Geomanist-Bold';
+		margin-left: 10px;
+    background-color: #050505;
+    color: #ffffff;
+		border: 0;
+		font-size: 1.25rem;
+    border-radius: 12px;
+    opacity: 0.4;
+    padding: 4px 10px 4px 10px;
+		cursor: pointer;
+	}
+}
