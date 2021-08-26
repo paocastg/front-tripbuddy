@@ -17,10 +17,7 @@ import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 
 const ConfirmationSection = ({ destinos, storeValue }) => {
   const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
-  const [fechaInicio] = useLocalStorage(
-    'FechaInicio',
-    moment()
-  )
+  const [fechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin] = useLocalStorage('FechaFin', moment())
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
   const router = useRouter()
@@ -32,10 +29,41 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
   const resultado = Math.round(resta / (1000 * 60 * 60 * 24))
   // console.log(resultado)
 
-  const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']
-  const diasSemana = ['Domingo', 'Lunes', 'martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
-  const inicio = (diasSemana[fecha1.getDay()] + ', ' + fecha1.getDate() + ' de ' + meses[fecha1.getMonth()])
-  const fin = (diasSemana[fecha2.getDay()] + ', ' + fecha2.getDate() + ' de ' + meses[fecha2.getMonth()])
+  const meses = [
+    'enero',
+    'febrero',
+    'marzo',
+    'abril',
+    'mayo',
+    'junio',
+    'julio',
+    'agosto',
+    'septiembre',
+    'octubre',
+    'noviembre',
+    'diciembre'
+  ]
+  const diasSemana = [
+    'Domingo',
+    'Lunes',
+    'martes',
+    'Miércoles',
+    'Jueves',
+    'Viernes',
+    'Sábado'
+  ]
+  const inicio =
+    diasSemana[fecha1.getDay()] +
+    ', ' +
+    fecha1.getDate() +
+    ' de ' +
+    meses[fecha1.getMonth()]
+  const fin =
+    diasSemana[fecha2.getDay()] +
+    ', ' +
+    fecha2.getDate() +
+    ' de ' +
+    meses[fecha2.getMonth()]
   const handleEdit = () => {
     if (storeValue) {
       router.push('/destination')
@@ -52,13 +80,13 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
         <p className={styles.description}>
           <label>
             {inicio} - {fin}
-          </label> &nbsp;
+          </label>{' '}
+          &nbsp;
           <Button className={styles.button} onClick={handleEdit} type="text">
             Editar
           </Button>
         </p>
       </div>
-
       <div className={styles.grid}>
         <div className={styles.card}>
           {/* <h2>Resumen </h2> */}
@@ -66,19 +94,19 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
         </div>
 
         <div className={styles.card}>
-          {storeValue && <CustomMap
-            destinos={destinos}
-            destinosCompleto={destinosCompleto}
-            googleMapURL={mapURL}
-            containerElement={<div style={{ height: '350px' }} />}
-            mapElement={<div style={{ height: '100%' }} />}
-            loadingElement={<p>Cargando</p>}
-          />}
+          {storeValue && (
+            <CustomMap
+              destinos={destinos}
+              destinosCompleto={destinosCompleto}
+              googleMapURL={mapURL}
+              containerElement={<div style={{ height: '350px' }} />}
+              mapElement={<div style={{ height: '100%' }} />}
+              loadingElement={<p>Cargando</p>}
+            />
+          )}
         </div>
 
-        <div className={styles.card}>
-          {storeValue && <CustomDestination />}
-        </div>
+        <div className={styles.card}>{storeValue && <CustomDestination />}</div>
 
         <div className={styles.card}>
           <DateConfirmation />
