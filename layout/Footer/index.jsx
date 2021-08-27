@@ -9,7 +9,7 @@ const Footer = () => {
         <div className={`e-container ${styles.footer_options}`}>
           <div>
             <h2>Trip Buddy</h2>
-            <a href="#">Acerca de nosotros</a>
+            <a href="/acerca">Acerca de nosotros</a>
           </div>
           <div>
             <h2>Buscador</h2>
