@@ -23,7 +23,7 @@ nextApp
     const routes = [
       { slug: '/', file: '/Modules/Public/HomePage' },
       { slug: '/login', file: '/Modules/Public/LoginPage' },
-      { slug: '/select', file: '/Modules/Private/SelectPage' },
+      { slug: '/select-trip', file: '/Modules/Private/SelectTripPage' },
       { slug: '/destination', file: '/Modules/Private/DestinationPage' },
       { slug: '/recommendation', file: '/Modules/Private/RecommendationPage' },
       { slug: '/confirmation', file: '/Modules/Private/ConfirmationPage' },
