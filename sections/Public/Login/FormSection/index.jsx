@@ -1,8 +1,10 @@
 import React from 'react'
+import styles from './index.module.scss'
+
+/* Components */
 import FacebookAuth from 'components/FacebookAuth'
 import GoogleAuth from 'components/GoogleAuth'
 import H2 from 'components/H2'
-import styles from './index.module.scss'
 
 const FormSection = () => {
   return (

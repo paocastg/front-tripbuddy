@@ -88,28 +88,19 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
         </p>
       </div>
       <div className={styles.grid}>
-        <div className={styles.card}>
-          {storeValue && <OverviewSection />}
-        </div>
+        <div className={styles.card}>{storeValue && <OverviewSection />}</div>
 
         <div className={styles.card}>
-          {storeValue && (
-            <CustomMap
-              destinos={destinos}
-              destinosCompleto={destinosCompleto}
-              googleMapURL={mapURL}
-              containerElement={<div style={{ height: '350px' }} />}
-              mapElement={<div style={{ height: '100%' }} />}
-              loadingElement={<p>Cargando</p>}
-            />
-          )}
+          <CustomMap
+            destinos={destinos}
+            destinosCompleto={destinosCompleto}
+            googleMapURL={mapURL}
+            containerElement={<div style={{ height: '350px' }} />}
+            mapElement={<div style={{ height: '100%' }} />}
+            loadingElement={<p>Cargando</p>}
+          />
         </div>
 
-        <div className={styles.card}>{storeValue && <ConfirmationDestiny />}</div>
-
-        <div className={styles.card}>
-          <DateConfirmation />
-        </div>
       </div>
     </main>
   )

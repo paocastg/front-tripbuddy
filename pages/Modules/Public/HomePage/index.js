@@ -1,34 +1,17 @@
-import React, { useEffect } from 'react'
+/* layout */
 import Wrapper from 'layout/Wrapper'
-import { CDN_PATH } from 'assets/Utils/Constants'
+
+/* sections */
+import HeroImageSection from 'sections/Public/Home/HeroImageSection'
+import TripStepSection from 'sections/Public/Home/TripStepSection'
 
 const HomePage = ({ name }) => {
-  // console.log(CDN_PATH)
-  useEffect(() => {
-    console.log('window', window)
-  }, [])
   return (
     <Wrapper>
-        <img style={{ width: '100%' }} src={`${CDN_PATH}/bg-empieza-viaje.svg`} />
-        <h1>HomePage {name}</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quis
-          labore deleniti modi hic facere veniam eius fuga fugiat porro? Modi
-          corrupti ea facilis maxime reprehenderit sequi excepturi minus
-          assumenda!
-        </p>
+      <HeroImageSection />
+      <TripStepSection />
     </Wrapper>
   )
-}
-
-export async function getStaticProps () {
-  const name = 'Ana'
-
-  return {
-    props: {
-      name
-    }
-  }
 }
 
 export default HomePage
