@@ -14,23 +14,28 @@ const DateConfirmation = () => {
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(true)
 
-  const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
-  const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
-
   const handleShowDatePicker = () => {
     setShow((prevState) => !prevState)
     setShow2((prevState) => !prevState)
   }
 
-  const onCalendarChange = e => {
-    // console.log(e)
-    if (e && e[0] != null) {
-      setFechaInicio(e[0].format('MM/DD/YYYY'))
-    }
+  // const onCalendarChange = e => {
+  //   // console.log(e)
+  //   if (e && e[0] != null) {
+  //     setFechaInicio(e[0].format('MM/DD/YYYY'))
+  //   }
 
-    if (e && e[1] != null) {
-      setFechaFin(e[1].format('MM/DD/YYYY'))
-    }
+  //   if (e && e[1] != null) {
+  //     setFechaFin(e[1].format('MM/DD/YYYY'))
+  //   }
+  // }
+  const onCalendarChange2 = e => {
+    const fecha1 = new Date(e[0])
+    const date1 = JSON.stringify(fecha1)
+    setFechaInicio(date1.slice(1, 11))
+    const fecha2 = new Date(e[1])
+    const date2 = JSON.stringify(fecha2)
+    setFechaFin(date2.slice(1, 11))
   }
   const fecha1 = new Date(fechaInicio)
   const fecha2 = new Date(fechaFin)
@@ -52,11 +57,12 @@ const DateConfirmation = () => {
         <Calendar
         locale="es-ES"
         value={[moment(fechaInicio), moment(fechaFin)]}
+        onChange={onCalendarChange2}
         selectRange="true"
         // onChange={onCalendarChange}
       />
       )}
-      {show && (
+      {/* {show && (
           <RangePicker
           locale="es-ES"
           value= {[moment(fechaInicio), moment(fechaFin)]}
@@ -68,8 +74,7 @@ const DateConfirmation = () => {
           open= "true"
           bordered={false}
         />
-        
-      )}
+      )} */}
     </div>
   )
 }

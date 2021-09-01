@@ -9,7 +9,7 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { useRouter } from 'next/router'
 
 /* Components */
-import CustomDestination from 'components/CustomDestination'
+import ConfirmationDestiny from 'components/ConfirmationDestiny'
 import CustomMap from 'components/CustomMap'
 import DateConfirmation from 'components/DateConfirmation'
 import H2 from 'components/H2'
@@ -89,7 +89,6 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
       </div>
       <div className={styles.grid}>
         <div className={styles.card}>
-          {/* <h2>Resumen </h2> */}
           {storeValue && <OverviewSection />}
         </div>
 
@@ -106,7 +105,7 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
           )}
         </div>
 
-        <div className={styles.card}>{storeValue && <CustomDestination />}</div>
+        <div className={styles.card}>{storeValue && <ConfirmationDestiny />}</div>
 
         <div className={styles.card}>
           <DateConfirmation />
