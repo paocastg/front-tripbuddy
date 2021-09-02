@@ -1,5 +1,5 @@
 import Wrapper from 'layout/Wrapper'
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import { SelectTripProvider } from 'context/SelectTripContext'
 
 /* Sections */
@@ -8,6 +8,8 @@ import FormSection from 'sections/Private/SelectTrip/FormSection'
 import CategoryActivitiesSection from 'sections/Private/SelectTrip/CategoryActivitiesSection'
 import OtherActivitiesSection from 'sections/Private/SelectTrip/OtherActivitiesSection'
 import ConfirmationSection from 'sections/Private/SelectTrip/ConfirmationSection'
+import { quotationInitialState, quotationReducer } from 'reducers/quotationReducer'
+import { TYPES } from 'actions/quotationActions'
 
 const initialQuotation = {
   activity: [],
@@ -17,8 +19,12 @@ const initialQuotation = {
 const SelectTripPage = () => {
   const [showSection, setShowSection] = useState(0)
   const [myQuotation, setMyQuotation] = useState(initialQuotation)
+  const [state, dispatch] = useReducer(quotationReducer, quotationInitialState)
+
+  console.log('state', state)
 
   const saveCategoryActivity = (data, field) => {
+    dispatch({ type: TYPES.UPDATE_ONE_QUOTATION, payload: { field, data, manyOptions: true } })
     // save id in localStorage
     const quotation = {
       ...myQuotation,
@@ -31,6 +37,7 @@ const SelectTripPage = () => {
   }
 
   const deleteCategoryActivity = (data, field) => {
+    dispatch({ type: TYPES.REMOVE_ONE_QUOTATION, payload: { field, data, manyOptions: true } })
     // delete id in localStorage
     const fieldFiltered = myQuotation[field].filter((el) => el.id !== data.id)
     const quotation = {
