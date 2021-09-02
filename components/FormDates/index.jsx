@@ -5,7 +5,7 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import styles from './index.module.scss'
 const { RangePicker } = DatePicker
 
-const RangePickers = () => {
+const FormDates = () => {
   // const [dateStart, setDateStart] = useState('')
   // const [dateEnd, setDateEnd] = useState('')
   const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
@@ -15,29 +15,29 @@ const RangePickers = () => {
     // console.log(e)
     if (e && e[0] != null) {
       // setDateStart(e[0])
-      setFechaInicio(e[0].format('MM/DD/YYYY'))
+      setFechaInicio(e[0].format('YYYY/MM/DD'))
     }
 
     if (e && e[1] != null) {
       // setDateEnd(e[1])
-      setFechaFin(e[1].format('MM/DD/YYYY'))
+      setFechaFin(e[1].format('YYYY/MM/DD'))
     }
   }
-
+  const dateFormat = 'YYYY/MM/DD'
+  const disabledDate = (current) => {
+    return current && current < moment().endOf('day')
+  }
   return (
     <div>
       <RangePicker
           className={styles.rangepicker}
           value= {[moment(fechaInicio), moment(fechaFin)]}
           size= "large"
-          showTime={{
-            hideDisabledOptions: true
-            // defaultValue: [dateStart, dateEnd]
-          }}
+          disabledDate={disabledDate}
           onCalendarChange={onCalendarChange}
-          format="MM-DD-YYYY"/>
+          format={dateFormat}/>
     </div>
   )
 }
 
-export default RangePickers
+export default FormDates

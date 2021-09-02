@@ -4,7 +4,7 @@ import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styles from './index.module.scss'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
-const DropdownMenu = () => {
+const FormPassengers = () => {
   const [state, setState] = useState('')
   const [adulto, setAdulto] = useLocalStorage('adultos', 0)
   const [adolescente, setAdolescente] = useLocalStorage('adolescentes', 0)
@@ -106,11 +106,10 @@ const DropdownMenu = () => {
       >
           {<UserOutlined />} {suma} Personas
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </Dropdown.Button>
 
     </div>
   )
 }
 
-export default DropdownMenu
+export default FormPassengers

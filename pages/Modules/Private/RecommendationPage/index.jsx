@@ -3,7 +3,6 @@ import styles from './index.module.scss'
 
 /* Utils */
 import { API, BASE_API } from 'assets/Utils/Constants'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import axios from 'axios'
 import api from 'assets/Utils/api'
 
@@ -18,10 +17,8 @@ import OtherActivitiesSection from 'sections/Private/Recommendation/OtherActivit
 import ConfirmationSection from 'sections/Private/Recommendation/ConfirmationSection'
 
 /* Components */
-import Button from 'components/Button'
-import H2 from 'components/H2'
-import SliderAlojamiento from 'components/SliderAlojamiento'
-import { Row, Col, Spin } from 'antd'
+
+import { Spin } from 'antd'
 import { useRouter } from 'next/router'
 
 const initialToggleSection = {
@@ -237,30 +234,15 @@ const RecommendationPage = () => {
           : !toggleSection.sectionTwo
               ? (
           <div className={styles.main}>
-            <div className={toggleOne ? styles.hiddenLeft : styles.visible}>
-              <Row>
-                <Col span={24}>
-                  <H2>
-                    Elige tu destino y las fechas <br /> en que piensas viajar
-                  </H2>
-                  <FormSection
-                    isActiveDestiny={toggleSection.selectDestination}
-                    dbDestiny={dbDestiny}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col span={24}>
-                  <SliderAlojamiento />
-                </Col>
-              </Row>
-              <br />
-              <section className={styles.section}>
-                <div>
-                  <Button onClick={handleToggleSectionOne}>Atrás</Button>
-                  <Button onClick={handleToggleOne}>Siguiente</Button>
-                </div>
-              </section>
+            <div className={
+              toggleOne
+                ? styles.hiddenLeft
+                : styles.visible}>
+            <FormSection
+              isActiveDestiny={toggleSection.selectDestination}
+              dbDestiny={dbDestiny}
+              handleClickNext={handleToggleOne}
+              handleClickBefore={handleToggleSectionOne}/>
             </div>
             <div
               className={

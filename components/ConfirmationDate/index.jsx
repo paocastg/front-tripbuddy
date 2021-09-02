@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { DatePicker, Button } from 'antd'
+import { Button } from 'antd'
 import styles from './index.module.scss'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 
-const { RangePicker } = DatePicker
-
-const DateConfirmation = () => {
+const ConfirmationDate = () => {
   const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
   const [show, setShow] = useState(false)
@@ -19,16 +17,6 @@ const DateConfirmation = () => {
     setShow2((prevState) => !prevState)
   }
 
-  // const onCalendarChange = e => {
-  //   // console.log(e)
-  //   if (e && e[0] != null) {
-  //     setFechaInicio(e[0].format('MM/DD/YYYY'))
-  //   }
-
-  //   if (e && e[1] != null) {
-  //     setFechaFin(e[1].format('MM/DD/YYYY'))
-  //   }
-  // }
   const onCalendarChange2 = e => {
     const fecha1 = new Date(e[0])
     const date1 = JSON.stringify(fecha1)
@@ -62,21 +50,8 @@ const DateConfirmation = () => {
         // onChange={onCalendarChange}
       />
       )}
-      {/* {show && (
-          <RangePicker
-          locale="es-ES"
-          value= {[moment(fechaInicio), moment(fechaFin)]}
-          showTime={{
-            hideDisabledOptions: true
-          }}
-          onCalendarChange={onCalendarChange}
-          format="MM-DD-YYYY"
-          open= "true"
-          bordered={false}
-        />
-      )} */}
     </div>
   )
 }
 
-export default DateConfirmation
+export default ConfirmationDate

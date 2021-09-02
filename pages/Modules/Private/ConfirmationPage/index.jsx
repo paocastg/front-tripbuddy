@@ -12,7 +12,7 @@ const axios = require('axios')
 const ConfirmationPage = () => {
   const router = useRouter()
   const [storeValue] = useLocalStorage('selectDestination', null)
-  const [destinos, setDestinos] = useLocalStorage('destinos', null)
+  const [destinos] = useLocalStorage('destinos', null)
   const [quotation] = useLocalStorage('myQuotation', null)
   const [response, setResponse] = useState(null)
 
@@ -41,14 +41,6 @@ const ConfirmationPage = () => {
   }
 
   console.log(data)
-
-  const handlePrev = () => {
-    if (storeValue) {
-      router.push('/destination')
-    } else {
-      router.push('/recommendation')
-    }
-  }
 
   // Cotizar eleccion
   const handleClickQuotation = () => {

@@ -5,7 +5,7 @@ import styles from './index.module.scss'
 
 const { Option } = Select
 
-const SelectDestinos = ({ disabled, dbDestiny }) => {
+const FormDestiny = ({ disabled, dbDestiny }) => {
   const [seleccionados, setSeleccionados] = useState([])
   const [destino, setDestino] = useLocalStorage('destinos', [])
 
@@ -21,7 +21,7 @@ const SelectDestinos = ({ disabled, dbDestiny }) => {
   </Option>)
 
   return (
-    <div>
+    <div className={styles.div}>
       <Select
         className={styles.select}
         value= {destino}
@@ -29,6 +29,7 @@ const SelectDestinos = ({ disabled, dbDestiny }) => {
         placeholder="Destinos"
         onChange={handleChange}
         disabled={disabled}
+
       >
         {options}
       </Select>
@@ -36,4 +37,4 @@ const SelectDestinos = ({ disabled, dbDestiny }) => {
   )
 }
 
-export default SelectDestinos
+export default FormDestiny
