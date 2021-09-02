@@ -7,7 +7,7 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { Auth } from 'assets/Utils/Auth'
 import axios from 'axios'
 import ConfirmationHeroImage from 'components/ConfirmationHeroImage'
-import H2 from 'components/H2'
+
 const ConfirmationSection = ({ handleToggleSectionTwo }) => {
   const [storeValue] = useLocalStorage('selectDestination', null)
   const [destinos] = useLocalStorage('destinos', null)
@@ -65,7 +65,6 @@ const ConfirmationSection = ({ handleToggleSectionTwo }) => {
 
   return (
     <div className={styles.main}>
-      <H2>Visualiza tu elección</H2>
       <ConfirmationHeroImage urlImg={'https://placeimg.com/640/480/tech'}/>
       <FormSection destinos={destinos} storeValue={storeValue} />
       <section className={styles.section}>
