@@ -1,0 +1,47 @@
+$first-color-tripbuddy: #00B2E3;
+$second-color-tripbuddy: #009CD7;
+$white-color: #fff;
+
+
+.heroImage {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center top;
+
+	&__opacity {
+    width: 100%;
+		min-height: 500px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	&__text {
+		margin-bottom: 10px;
+    font-family: 'Geomanist-Regular';
+    font-weight: bold;
+    font-size: 2em;
+		color: $white-color;
+	}
+
+	&__action {
+		margin-top: 10px;
+    font-family: 'Geomanist-Regular';
+		font-size: 1.5em;
+		font-weight: 700;
+		padding: 6px 50px;
+		text-align: center;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		cursor: pointer;
+		background-color: $first-color-tripbuddy;
+		border-color: $first-color-tripbuddy;
+		color: $white-color;
+		&:hover {
+			color: $white-color;
+			background-color: $second-color-tripbuddy;
+			border-color: $second-color-tripbuddy;
+		}
+	}
+}

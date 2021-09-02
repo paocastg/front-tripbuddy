@@ -35,6 +35,7 @@ const ConfirmationSection = ({ destinos, storeValue }) => {
           )}
           <br/>
           <ConfirmationDate />
+
         </div>
 
       </div>

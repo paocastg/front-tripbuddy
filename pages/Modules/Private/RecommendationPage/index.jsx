@@ -4,6 +4,7 @@ import styles from './index.module.scss'
 /* Utils */
 import { API, BASE_API } from 'assets/Utils/Constants'
 import axios from 'axios'
+import api from 'assets/Utils/api'
 
 /* layout */
 import Wrapper from 'layout/Wrapper'
@@ -48,36 +49,6 @@ const RecommendationPage = () => {
 
   // console.log('toggleOne', toggleOne)
   // console.log('toggleTwo', toggleTwo)
-  const getCategory = async () => {
-    try {
-      const urlCategory =
-        'http://api.devopsacademy.pe/tripbuddy/api/categoria/'
-      setLoading(true)
-
-      const res = await axios.get(urlCategory)
-      const json = await res.data
-      console.log(json)
-      return json
-    } catch (err) {
-      const message = err.statusText
-      return message
-    }
-  }
-
-  const getActivity = async () => {
-    try {
-      const urlActivity =
-        'http://api.devopsacademy.pe/tripbuddy/api/actividad/'
-      setLoading(true)
-      const res = await axios.get(urlActivity)
-      const json = await res.data
-      return json
-    } catch (err) {
-      const message = err.statusText
-      return message
-    }
-  }
-
   const getDestiny = async () => {
     try {
       const res = await axios.get(
@@ -103,8 +74,8 @@ const RecommendationPage = () => {
       setLoading(true)
 
       const [category, activity, destiny] = await Promise.all([
-        getCategory(),
-        getActivity(),
+        api.getCategory(),
+        api.getActivity(),
         getDestiny(),
         getDestinos()
       ])
