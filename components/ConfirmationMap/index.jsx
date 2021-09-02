@@ -6,7 +6,7 @@ import {
   Marker
 } from 'react-google-maps'
 
-const CustomMap = (props) => {
+const ConfirmationMap = (props) => {
   // console.log(props)
   return (
     <div>
@@ -29,4 +29,4 @@ const CustomMap = (props) => {
   )
 }
 
-export default withScriptjs(withGoogleMap(CustomMap))
+export default withScriptjs(withGoogleMap(ConfirmationMap))

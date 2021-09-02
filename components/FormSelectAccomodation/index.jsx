@@ -5,18 +5,20 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 const state = {
   1: 'Bajo costo',
-  2: '3 estrellas',
-  3: 'Lujoso'
+  2: '2 estrellas',
+  3: '3 estrellas',
+  4: '4 estrellas',
+  5: 'Lujoso'
 }
 
-const SliderAlojamiento = () => {
+const FormSelectAccomodation = () => {
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
   const [prefState, setPrefState] = useLocalStorage('costo', '')
   const [prefState2, setPrefState2] = useLocalStorage('costo', '')
   const [hotel, setHotel] = useLocalStorage('tipoAlojamiento', '')
-  const [airbnb, setAirbnb] = useLocalStorage('tipoAlojamiento', '')
-  const [nohotel, setNohotel] = useLocalStorage('tipoAlojamiento', '')
+  const [airBnb,setAirbnb] = useLocalStorage('tipoAlojamiento', '')
+  const [noHotel, setNohotel] = useLocalStorage('tipoAlojamiento', '')
   const [selected1, setSelected1] = useState(false)
   const [selected2, setSelected2] = useState(false)
   const [selected3, setSelected3] = useState(false)
@@ -104,7 +106,7 @@ const SliderAlojamiento = () => {
                 <Slider
                 value= {prefState}
                 min={1}
-                max={3}
+                max={5}
                 onChange= {SliderChange}
                 marks={state}
                 step={null}
@@ -121,7 +123,7 @@ const SliderAlojamiento = () => {
                 <Slider
                 value= {prefState2}
                 min={1}
-                max={3}
+                max={5}
                 marks={state}
                 onChange= {SliderChange2}
                 step={null}
@@ -135,4 +137,4 @@ const SliderAlojamiento = () => {
   )
 }
 
-export default SliderAlojamiento
+export default FormSelectAccomodation

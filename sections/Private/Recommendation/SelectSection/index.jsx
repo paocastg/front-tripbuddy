@@ -49,6 +49,8 @@ const SelectSection = ({
     localStorage.removeItem('ninos')
     localStorage.removeItem('tipoAlojamiento')
     localStorage.removeItem('costo')
+    localStorage.removeItem('presupuesto')
+    localStorage.removeItem('destinoSeleccionado')
   }
   return (
     <div className={styles.container}>

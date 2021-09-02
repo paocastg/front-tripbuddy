@@ -5,7 +5,7 @@ import moment from 'moment'
 import { useRouter } from 'next/router'
 /* Components */
 
-const ConfirmationHeroImage = ({ urlImg, storeValue }) => {
+const ConfirmationHeroImage = ({ urlImg, storeValue, handleToggleSectionOne }) => {
   const [fechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin] = useLocalStorage('FechaFin', moment())
   const fecha1 = new Date(fechaInicio)
@@ -48,13 +48,13 @@ const ConfirmationHeroImage = ({ urlImg, storeValue }) => {
     fecha2.getDate() +
     ' de ' +
     meses[fecha2.getMonth()]
-  const handleEdit = () => {
-    if (storeValue) {
-      router.push('/destination')
-    } else {
-      router.push('/recommendation')
-    }
-  }
+  // const handleEdit = () => {
+  //   if (storeValue) {
+  //     router.push('/destination')
+  //   } else {
+  //     router.push('/recommendation')
+  //   }
+  // }
 
   return (
     <article
@@ -66,7 +66,7 @@ const ConfirmationHeroImage = ({ urlImg, storeValue }) => {
           {/* content */}
           <h2 className={styles.heroImage__title}>{resultado} días en Peru</h2>
           <h3 className={styles.heroImage__subtitle}>
-          {inicio} - {fin}<span><button className={styles.heroImage__action}>Editar</button></span>
+          {inicio} - {fin}<span><button className={styles.heroImage__action} onClick={handleToggleSectionOne} >Editar</button></span>
           </h3>
 
         </div>
