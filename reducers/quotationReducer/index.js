@@ -13,7 +13,8 @@ export const quotationInitialState = {
   usuario: null,
   destinos: [],
   category: [],
-  activity: []
+  activity: [],
+  finally: null
 }
 
 export function quotationReducer (state, action) {
@@ -44,6 +45,9 @@ export function quotationReducer (state, action) {
             ...state,
             [action.payload.field]: null
           }
+    }
+    case TYPES.CLEAR_ALL_QUOTATION: {
+      return quotationInitialState
     }
     default:
       return state

@@ -17,7 +17,7 @@ const FormSelectAccomodation = () => {
   const [prefState, setPrefState] = useLocalStorage('costo', '')
   const [prefState2, setPrefState2] = useLocalStorage('costo', '')
   const [hotel, setHotel] = useLocalStorage('tipoAlojamiento', '')
-  const [airBnb,setAirbnb] = useLocalStorage('tipoAlojamiento', '')
+  const [airBnb, setAirbnb] = useLocalStorage('tipoAlojamiento', '')
   const [noHotel, setNohotel] = useLocalStorage('tipoAlojamiento', '')
   const [selected1, setSelected1] = useState(false)
   const [selected2, setSelected2] = useState(false)

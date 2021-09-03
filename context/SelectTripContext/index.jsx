@@ -1,5 +1,6 @@
 import api from 'assets/Utils/api'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useReducer, useState } from 'react'
+import { quotationInitialState, quotationReducer } from 'reducers/quotationReducer'
 
 const SelectTripContext = createContext()
 
@@ -9,6 +10,7 @@ const SelectTripProvider = ({ children }) => {
   const [dbCategory, setDbCategory] = useState(null)
   const [dbActivity, setDbActivity] = useState(null)
   const [dbDestiny, setDbDestiny] = useState('')
+  const [state, dispatch] = useReducer(quotationReducer, quotationInitialState)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,13 +32,22 @@ const SelectTripProvider = ({ children }) => {
     fetchData()
   }, [])
 
+  // const addQuotation = (data, field, manyOptions = false) => {
+  //   dispatch({ type: TYPES.UPDATE_ONE_QUOTATION, payload: { field, data, manyOptions } })
+  // }
+  // const removeQuotation = (data, field, manyOptions = false) => {
+  //   dispatch({ type: TYPES.UPDATE_ONE_QUOTATION, payload: { field, data, manyOptions } })
+  // }
+
   const data = {
     isActiveDestiny,
     setIsActiveDestiny,
     loading,
     dbCategory,
     dbActivity,
-    dbDestiny
+    dbDestiny,
+    state,
+    dispatch
   }
   return <SelectTripContext.Provider value={data}>{children}</SelectTripContext.Provider>
 }

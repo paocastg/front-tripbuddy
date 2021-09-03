@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Menu, Button, Dropdown, Space } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styles from './index.module.scss'
@@ -10,7 +10,7 @@ const FormPassengers = () => {
   const [adolescente, setAdolescente] = useLocalStorage('adolescentes', 0)
   const [nino, setNino] = useLocalStorage('ninos', 0)
 
-  const handleVisibleChange = flag => {
+  const handleVisibleChange = (flag) => {
     setState({ visible: flag })
   }
 
@@ -43,60 +43,60 @@ const FormPassengers = () => {
 
   const menu = () => {
     return (
-    <div>
-    <Menu >
-        <Menu.Item key="1">
-          <div className={styles.dropdownCenter}>
-            <span>Adultos</span>
-            <Space>
-              <Button type="text" onClick= {handleClick1} value={adulto}>
-                -
-              </Button>
+      <div>
+        <Menu>
+          <Menu.Item key="1">
+            <div className={styles.dropdownCenter}>
+              <span>Adultos</span>
+              <Space>
+                <Button type="text" onClick={handleClick1} value={adulto}>
+                  -
+                </Button>
                 {adulto}
-              <Button type="text" onClick= {handleClick2} value={adulto}>
-                +
-              </Button>
-            </Space>
-          </div>
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="2">
-          <div className={styles.dropdownCenter}>
-            <span>Adolescentes</span>
-            <Space>
-              <Button type="text" onClick= {handleClick3} value={adolescente}>
-                -
-              </Button>
+                <Button type="text" onClick={handleClick2} value={adulto}>
+                  +
+                </Button>
+              </Space>
+            </div>
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="2">
+            <div className={styles.dropdownCenter}>
+              <span>Adolescentes</span>
+              <Space>
+                <Button type="text" onClick={handleClick3} value={adolescente}>
+                  -
+                </Button>
                 {adolescente}
-              <Button type="text" onClick= {handleClick4} value={adolescente}>
-                +
-              </Button>
-            </Space>
-          </div>
-        </Menu.Item>
-        <Menu.Divider />
-        <Menu.Item key="3">
-          <div className={styles.dropdownCenter}>
-            <span>Niños</span>
-            <Space>
-              <Button type="text" onClick= {handleClick5} value={nino}>
-                -
-              </Button>
+                <Button type="text" onClick={handleClick4} value={adolescente}>
+                  +
+                </Button>
+              </Space>
+            </div>
+          </Menu.Item>
+          <Menu.Divider />
+          <Menu.Item key="3">
+            <div className={styles.dropdownCenter}>
+              <span>Niños</span>
+              <Space>
+                <Button type="text" onClick={handleClick5} value={nino}>
+                  -
+                </Button>
                 {nino}
-              <Button type="text" onClick= {handleClick6} value={nino}>
-                +
-              </Button>
-            </Space>
-          </div>
-        </Menu.Item>
-      </Menu>
-    </div>
+                <Button type="text" onClick={handleClick6} value={nino}>
+                  +
+                </Button>
+              </Space>
+            </div>
+          </Menu.Item>
+        </Menu>
+      </div>
     )
   }
   return (
     <div>
       <Dropdown.Button
-        className= {styles.dropdown}
+        className={styles.dropdown}
         overlay={menu}
         onVisibleChange={handleVisibleChange}
         visible={state.visible}
@@ -107,7 +107,6 @@ const FormPassengers = () => {
           {<UserOutlined />} {suma} Personas
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </Dropdown.Button>
-
     </div>
   )
 }

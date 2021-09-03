@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import { TYPES } from 'actions/quotationActions'
+import SelectTripContext from 'context/SelectTripContext'
+import React, { useState, useEffect, useContext } from 'react'
 // import concierto from 'assets/images/icon-conciertos.png'
 import styles from './index.module.scss'
 
 const CategoryActivityCard = ({
   name,
-  saveCategoryActivity,
-  deleteCategoryActivity,
   img,
   field,
   id
 }) => {
   const [selected, setSelected] = useState(false)
+  const { state, dispatch } = useContext(SelectTripContext)
+
+  // Guardar en localStorage
+  localStorage.setItem('myQuotation', JSON.stringify(state))
 
   const data = { id, name }
 
@@ -20,10 +24,7 @@ const CategoryActivityCard = ({
   const newImg = img && imgSplitted.join('/')
 
   useEffect(() => {
-    const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
-      activity: [],
-      category: []
-    }
+    const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || state
 
     // cargamos los card seleccionados anteriormente.
     const inActivity = myQuotationInit.activity.find((el) => el.id === id)
@@ -37,13 +38,17 @@ const CategoryActivityCard = ({
     }
   }, [])
 
-  const handleIconClick = (e) => {
+  const handleIconClick = () => {
     if (!selected) {
-      // console.log(data)
-      saveCategoryActivity(data, field)
+      dispatch({
+        type: TYPES.UPDATE_ONE_QUOTATION,
+        payload: { field, data, manyOptions: true }
+      })
     } else {
-      // console.log(data)
-      deleteCategoryActivity(data, field)
+      dispatch({
+        type: TYPES.REMOVE_ONE_QUOTATION,
+        payload: { field, data, manyOptions: true }
+      })
     }
     setSelected((prev) => !prev)
   }

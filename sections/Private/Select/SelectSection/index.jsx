@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import styles from './index.module.scss'
 import Box from 'components/Box'
 import { CDN_PATH } from 'assets/Utils/Constants'
@@ -8,8 +7,6 @@ const SelectSection = ({
   toggleSection,
   setIsActiveDestiny
 }) => {
-  const router = useRouter()
-
   const handleClickRec = () => {
     setToggleSection({ ...toggleSection, sectionOne: true, selectDestination: false })
     localStorage.setItem(
