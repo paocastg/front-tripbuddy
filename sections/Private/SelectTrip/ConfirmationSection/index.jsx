@@ -1,12 +1,12 @@
 import Button from 'components/Button'
 import ConfirmationHeroImage from 'components/ConfirmationHeroImage'
-// import SelectTripContext from 'context/SelectTripContext'
-// import { useContext } from 'react'
+import SelectTripContext from 'context/SelectTripContext'
+import { useContext } from 'react'
 import styles from './index.module.scss'
 
 const ConfirmationSection = ({ setShowSection }) => {
-  // const { state } = useContext(SelectTripContext)
-  // console.log('state desde confirmationSection', state)
+  const { state } = useContext(SelectTripContext)
+  console.log('state desde confirmationSection', state)
   const handleBack = () => {
     setShowSection(3)
   }
