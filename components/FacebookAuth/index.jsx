@@ -1,13 +1,10 @@
-import { useState } from 'react'
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import styles from './index.module.scss'
 import { Auth } from 'assets/Utils/Auth'
-import { API } from 'assets/Utils/Constants'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 const axios = require('axios')
 
 const FacebookAuth = () => {
-  const [user, setUser] = useState('')
   const [quotation] = useLocalStorage('myQuotation', null)
 
   const categoria = quotation && quotation.category.map((el) => el.id)
@@ -39,10 +36,10 @@ const FacebookAuth = () => {
       }
       const res = await axios('http://localhost:8000/api/solicitud/', options)
       const json = await res.data
-      console.log('Cotizacion enviada', json)
+      console.log(json)
     } catch (err) {
-      const message = err.statusText || 'Ocurrio un error'
-      console.log('Ocurrio un error', message)
+      // const message = err.statusText || 'Ocurrio un error'
+      // console.log('Ocurrio un error', message)
     }
   }
 
@@ -76,7 +73,7 @@ const FacebookAuth = () => {
         console.log(err)
       }
       // Enviar a la api de login.
-      console.log(response)
+      // console.log(response)
     }
   }
 

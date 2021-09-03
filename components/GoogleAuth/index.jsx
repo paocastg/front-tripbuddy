@@ -7,7 +7,7 @@ const GoogleAuth = () => {
   }
   return (
     <GoogleLogin
-      clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+      clientId="1010239337258-g75rnfgn4ffhdt5uhi58medop1r83b6k.apps.googleusercontent.com"
       render={(renderProps) => (
         <button className={styles.btn_google} onClick={renderProps.onClick} >
           <img

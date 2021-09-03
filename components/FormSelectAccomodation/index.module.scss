@@ -1,0 +1,60 @@
+.btn {
+	font-size: 1.2em;
+	color: #000000;
+	border-color: #00B2E3;
+	margin: 10px 2px 0px 2px;
+	border: 1px solid;
+	border-radius: 4px;
+	background-color: #fff;
+  width: 240px;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #00B2E3;
+
+}
+.btn:checked {
+	font-size: 1.2em;
+	margin: 10px 2px 0px 2px;
+	border-radius: .3rem;
+  width: 240px;
+  background-color: #00B2E3;
+	cursor: pointer;
+	color:#ffffff;
+	
+}
+
+.selectedBtn {
+	font-size: 1.2em;
+	margin: 10px 2px 0px 2px;
+	border-radius: .3rem;
+  width: 240px;
+  background-color: #00B2E3;
+	cursor: pointer;
+	color:#ffffff;
+}
+
+.sectionSlider {
+	display:contents;
+	flex-direction: column;
+	align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+	
+}
+.slider{
+	margin-left:20%;
+	margin-right: 20%;
+}
+.divbtn {
+  display: inline-block;
+  margin: 0 4px;
+}
+.formbtn {
+  margin-bottom: 20px ;
+  text-align: center;
+}
+
+
+ 

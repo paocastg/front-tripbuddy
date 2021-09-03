@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import styles from './index.module.scss'
 
 /* Utils */
-import { API, BASE_API } from 'assets/Utils/Constants'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
+// import { API, BASE_API } from 'assets/Utils/Constants'
+// import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import axios from 'axios'
+import api from 'assets/Utils/api'
 
 /* layout */
 import Wrapper from 'layout/Wrapper'
@@ -17,10 +18,8 @@ import OtherActivitiesSection from 'sections/Private/Recommendation/OtherActivit
 import ConfirmationSection from 'sections/Private/Recommendation/ConfirmationSection'
 
 /* Components */
-import Button from 'components/Button'
-import H2 from 'components/H2'
-import SliderAlojamiento from 'components/SliderAlojamiento'
-import { Row, Col, Spin } from 'antd'
+
+import { Spin } from 'antd'
 import { useRouter } from 'next/router'
 
 const initialToggleSection = {
@@ -35,14 +34,14 @@ const RecommendationPage = () => {
   const [dbCategory, setDbCategory] = useState(null)
   const [dbActivity, setDbActivity] = useState(null)
   const [myQuotation, setMyQuotation] = useState(null)
-  const [isActiveDestiny, setIsActiveDestiny] = useState(null)
+  const [setIsActiveDestiny] = useState(null)
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
   const [destinos, setDestinos] = useState(false)
   // const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
 
-  const router = useRouter()
+  // const router = useRouter()
 
   console.log('toggle seccion SelectSection', toggleSection)
 
@@ -51,36 +50,6 @@ const RecommendationPage = () => {
 
   // console.log('toggleOne', toggleOne)
   // console.log('toggleTwo', toggleTwo)
-  const getCategory = async () => {
-    try {
-      const urlCategory =
-        'http://api.devopsacademy.pe/tripbuddy/api/categoria/'
-      setLoading(true)
-
-      const res = await axios.get(urlCategory)
-      const json = await res.data
-      console.log(json)
-      return json
-    } catch (err) {
-      const message = err.statusText
-      return message
-    }
-  }
-
-  const getActivity = async () => {
-    try {
-      const urlActivity =
-        'http://api.devopsacademy.pe/tripbuddy/api/actividad/'
-      setLoading(true)
-      const res = await axios.get(urlActivity)
-      const json = await res.data
-      return json
-    } catch (err) {
-      const message = err.statusText
-      return message
-    }
-  }
-
   const getDestiny = async () => {
     try {
       const res = await axios.get(
@@ -106,8 +75,8 @@ const RecommendationPage = () => {
       setLoading(true)
 
       const [category, activity, destiny] = await Promise.all([
-        getCategory(),
-        getActivity(),
+        api.getCategory(),
+        api.getActivity(),
         getDestiny(),
         getDestinos()
       ])
@@ -145,7 +114,7 @@ const RecommendationPage = () => {
     const selectDestination =
       JSON.parse(localStorage.getItem('selectDestination')) || false
     setIsActiveDestiny(selectDestination)
-    console.log('is active', selectDestination)
+    // console.log('is active', selectDestination)
   }, [])
 
   const handleToggleSectionOne = () => {
@@ -266,30 +235,15 @@ const RecommendationPage = () => {
           : !toggleSection.sectionTwo
               ? (
           <div className={styles.main}>
-            <div className={toggleOne ? styles.hiddenLeft : styles.visible}>
-              <Row>
-                <Col span={24}>
-                  <H2>
-                    Elige tu destino y las fechas <br /> en que piensas viajar
-                  </H2>
-                  <FormSection
-                    isActiveDestiny={toggleSection.selectDestination}
-                    dbDestiny={dbDestiny}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col span={24}>
-                  <SliderAlojamiento />
-                </Col>
-              </Row>
-              <br />
-              <section className={styles.section}>
-                <div>
-                  <Button onClick={handleToggleSectionOne}>Atrás</Button>
-                  <Button onClick={handleToggleOne}>Siguiente</Button>
-                </div>
-              </section>
+            <div className={
+              toggleOne
+                ? styles.hiddenLeft
+                : styles.visible}>
+            <FormSection
+              isActiveDestiny={toggleSection.selectDestination}
+              dbDestiny={dbDestiny}
+              handleClickNext={handleToggleOne}
+              handleClickBefore={handleToggleSectionOne}/>
             </div>
             <div
               className={

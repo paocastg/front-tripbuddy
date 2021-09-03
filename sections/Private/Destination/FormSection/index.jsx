@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import DropdownMenu from 'components/DropdownMenu'
+import React from 'react'
+// import DropdownMenu from 'components/DropdownMenu'
 import SelectDestinos from 'components/SelectDestinos'
 import RangePicker from 'components/DataPicker'
-import { Form, Tooltip, Select } from 'antd'
+import { Form, Tooltip } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 import styles from './index.module.scss'
-
-const { Option } = Select
 
 const FormSection = ({ isActiveDestiny }) => {
   return (
@@ -28,7 +25,7 @@ const FormSection = ({ isActiveDestiny }) => {
             <RangePicker style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item className={styles.dropdown}>
-            <DropdownMenu />
+            {/* <DropdownMenu /> */}
           </Form.Item>
         </Form.Item>
         <br />

@@ -8,7 +8,7 @@ import {
 } from 'react-google-maps'
 
 const MapConfirmation = (props) => {
-  console.log(props.destinos)
+  // console.log(props.destinos)
   return (
     <div>
       <GoogleMap

@@ -8,11 +8,9 @@ import styles from './index.module.scss'
 const Wrapper = ({ children }) => {
   return (
     <div className={styles.wrapper}>
-      <Header />
-      <div className={`${styles.wrapper_view} e-container`}>
-        {children}
-      </div>
-      <Footer />
+        <Header />
+        <div className={`${styles.wrapper_view} e-container`}>{children}</div>
+        <Footer />
     </div>
   )
 }

@@ -42,10 +42,11 @@ const ConfirmationSection = ({ handleToggleSectionTwo }) => {
       }
       const res = await axios('http://localhost:8000/api/solicitud/', options)
       const json = await res.data
-      console.log('Cotizacion enviada', json)
+      console.log(json)
+      // console.log('Cotizacion enviada', json)
     } catch (err) {
-      const message = err.statusText || 'Ocurrio un error'
-      console.log('Ocurrio un error', message)
+      // const message = err.statusText || 'Ocurrio un error'
+      // console.log('Ocurrio un error', message)
     }
   }
 
@@ -55,10 +56,10 @@ const ConfirmationSection = ({ handleToggleSectionTwo }) => {
       // setLogged(true)
       // si ya esta logeado envia cotizacion
       sendCotizar()
-      console.log('esta logueado')
+      // console.log('esta logueado')
       window.location.href = '/cotizaciones'
     } else {
-      console.log('no esta logueado')
+      // console.log('no esta logueado')
       window.location.href = '/login'
     }
   }
