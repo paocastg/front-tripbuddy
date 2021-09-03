@@ -48,7 +48,7 @@ const ConfirmationDate = () => {
         <Calendar
         locale="es-ES"
         value={[moment(fechaInicio), moment(fechaFin)]}
-        selectRange="true"
+        selectRange='true'
         // onChange={onCalendarChange}
       />
       )}

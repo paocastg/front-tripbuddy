@@ -1,12 +1,15 @@
 import styles from './index.module.scss'
 /* Components */
+import { useLocalStorage } from 'assets/Utils/LocalStorage'
+// import { useRouter } from 'next/router'
+import moment from 'moment'
 
 const ConfirmationHeroImage = ({ urlImg, storeValue, handleToggleSectionOne }) => {
   const [fechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin] = useLocalStorage('FechaFin', moment())
   const fecha1 = new Date(fechaInicio)
   const fecha2 = new Date(fechaFin)
-  const router = useRouter()
+  // const router = useRouter()
   const resta = fecha2.getTime() - fecha1.getTime()
   const resultado = Math.round(resta / (1000 * 60 * 60 * 24))
   const meses = [
@@ -60,7 +63,7 @@ const ConfirmationHeroImage = ({ urlImg, storeValue, handleToggleSectionOne }) =
       <aside className={styles.heroImage__opacity}>
         <div>
           {/* content */}
-          <h2 className={styles.heroImage__title}>0 dias en Peru</h2>
+          <h2 className={styles.heroImage__title}>{resultado} dias en Peru</h2>
           <h3 className={styles.heroImage__subtitle}>
           {inicio} - {fin}<span><button className={styles.heroImage__action} onClick={handleToggleSectionOne} >Editar</button></span>
           </h3>

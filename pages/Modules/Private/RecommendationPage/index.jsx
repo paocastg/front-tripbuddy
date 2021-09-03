@@ -20,7 +20,7 @@ import ConfirmationSection from 'sections/Private/Recommendation/ConfirmationSec
 /* Components */
 
 import { Spin } from 'antd'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
 const initialToggleSection = {
   sectionOne: false,
@@ -34,7 +34,7 @@ const RecommendationPage = () => {
   const [dbCategory, setDbCategory] = useState(null)
   const [dbActivity, setDbActivity] = useState(null)
   const [myQuotation, setMyQuotation] = useState(null)
-  const [setIsActiveDestiny] = useState(null)
+  const [isActiveDestiny, setIsActiveDestiny] = useState(null)
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
