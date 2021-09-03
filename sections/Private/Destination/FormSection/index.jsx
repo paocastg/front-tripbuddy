@@ -1,5 +1,5 @@
 import React from 'react'
-import DropdownMenu from 'components/DropdownMenu'
+// import DropdownMenu from 'components/DropdownMenu'
 import SelectDestinos from 'components/SelectDestinos'
 import RangePicker from 'components/DataPicker'
 import { Form, Tooltip } from 'antd'
@@ -25,7 +25,7 @@ const FormSection = ({ isActiveDestiny }) => {
             <RangePicker style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item className={styles.dropdown}>
-            <DropdownMenu />
+            {/* <DropdownMenu /> */}
           </Form.Item>
         </Form.Item>
         <br />
