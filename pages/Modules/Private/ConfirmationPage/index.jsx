@@ -3,7 +3,6 @@ import Wrapper from 'layout/Wrapper'
 import FormSection from 'sections/Private/Confirmation/FormSection'
 import { useRouter } from 'next/router'
 import Button from 'components/Button'
-import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import { Alert } from 'antd'
 import { useState } from 'react'
@@ -40,11 +39,11 @@ const ConfirmationPage = () => {
     actividad: actividad
   }
 
-  console.log(data)
+  // console.log(data)
 
   // Cotizar eleccion
   const handleClickQuotation = () => {
-    console.log('Cotizar')
+    // console.log('Cotizar')
 
     const sendCotizar = async () => {
       try {
@@ -66,7 +65,7 @@ const ConfirmationPage = () => {
         }, 5000)
         console.log(json)
       } catch (err) {
-        const message = err.statusText || 'Ocurrio un error'
+        // const message = err.statusText || 'Ocurrio un error'
         // console.log(message)
       }
     }

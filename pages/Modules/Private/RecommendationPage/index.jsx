@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import styles from './index.module.scss'
 
 /* Utils */
-import { API, BASE_API } from 'assets/Utils/Constants'
+// import { API, BASE_API } from 'assets/Utils/Constants'
+// import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import axios from 'axios'
 import api from 'assets/Utils/api'
 
@@ -33,14 +34,14 @@ const RecommendationPage = () => {
   const [dbCategory, setDbCategory] = useState(null)
   const [dbActivity, setDbActivity] = useState(null)
   const [myQuotation, setMyQuotation] = useState(null)
-  const [isActiveDestiny, setIsActiveDestiny] = useState(null)
+  const [setIsActiveDestiny] = useState(null)
   const [loading, setLoading] = useState(false)
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
   const [destinos, setDestinos] = useState(false)
   // const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
 
-  const router = useRouter()
+  // const router = useRouter()
 
   console.log('toggle seccion SelectSection', toggleSection)
 
@@ -113,7 +114,7 @@ const RecommendationPage = () => {
     const selectDestination =
       JSON.parse(localStorage.getItem('selectDestination')) || false
     setIsActiveDestiny(selectDestination)
-    console.log('is active', selectDestination)
+    // console.log('is active', selectDestination)
   }, [])
 
   const handleToggleSectionOne = () => {

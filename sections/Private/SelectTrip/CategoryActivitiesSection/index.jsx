@@ -7,11 +7,7 @@ import CategoryActivityCard from 'components/CategoryActivityCard'
 import H2 from 'components/H2'
 import SelectTripContext from 'context/SelectTripContext'
 
-const CategoryActivitiesSection = ({
-  saveCategoryActivity,
-  deleteCategoryActivity,
-  setShowSection
-}) => {
+const CategoryActivitiesSection = ({ setShowSection }) => {
   const { dbCategory, dbActivity } = useContext(SelectTripContext)
   // console.log(selectOtherActivities)
   const handleBack = () => {
@@ -31,8 +27,6 @@ const CategoryActivitiesSection = ({
               id={el.id}
               name={el.nombre}
               img={el.FIELDNAME}
-              saveCategoryActivity={saveCategoryActivity}
-              deleteCategoryActivity={deleteCategoryActivity}
               field="category"
             />
           ))}
@@ -46,8 +40,6 @@ const CategoryActivitiesSection = ({
               name={el.nombre}
               id={el.id}
               img={el.FIELDNAME}
-              saveCategoryActivity={saveCategoryActivity}
-              deleteCategoryActivity={deleteCategoryActivity}
               field="activity"
             />
           ))}

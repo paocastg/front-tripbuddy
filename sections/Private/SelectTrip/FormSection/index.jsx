@@ -1,6 +1,6 @@
 import DropdownMenu from 'components/DropdownMenu'
 import SelectDestinos from 'components/SelectDestinos'
-import { Form, DatePicker, Tooltip, Row, Col } from 'antd'
+import { Form, Tooltip, Row, Col } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import RangePicker from 'components/DataPicker'
 
@@ -10,12 +10,14 @@ import SliderAlojamiento from 'components/SliderAlojamiento'
 import Button from 'components/Button'
 import { useContext } from 'react'
 import SelectTripContext from 'context/SelectTripContext'
+import { TYPES } from 'actions/quotationActions'
 
 const FormSection = ({ setShowSection }) => {
-  const { isActiveDestiny, dbDestiny } = useContext(SelectTripContext)
+  const { isActiveDestiny, dbDestiny, dispatch } = useContext(SelectTripContext)
 
   const handleBack = () => {
     setShowSection(0)
+    dispatch({ type: TYPES.CLEAR_ALL_QUOTATION })
   }
 
   const handleNext = () => {
@@ -56,22 +58,21 @@ const FormSection = ({ setShowSection }) => {
               </h3>
             </Form.Item>
           </Form>
-                </Col>
-              </Row>
-              <Row>
-                <Col span={24}>
-                  <SliderAlojamiento />
-                </Col>
-              </Row>
-              <br />
-              <section className={styles.section}>
-                <div>
-                  <Button onClick={handleBack}>Atrás</Button>
-                  <Button onClick={handleNext}>Siguiente</Button>
-                </div>
-              </section>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <SliderAlojamiento />
+        </Col>
+      </Row>
+      <br />
+      <section className={styles.section}>
+        <div>
+          <Button onClick={handleBack}>Atrás</Button>
+          <Button onClick={handleNext}>Siguiente</Button>
+        </div>
+      </section>
     </section>
-
   )
 }
 export default FormSection

@@ -27,7 +27,7 @@ const OverviewSection = () => {
       icon: <ExclamationCircleOutlined />,
       content: '',
       onOk () {
-        console.log('OK')
+        // console.log('OK')
         // delete from myQuotation
         const fieldFiltered = myQuotation[field].filter(
           (el) => el.id !== data.id
@@ -42,7 +42,7 @@ const OverviewSection = () => {
         localStorage.setItem('myQuotation', JSON.stringify(quotation))
       },
       onCancel () {
-        console.log('Cancel')
+        // console.log('Cancel')
       }
     })
   }
@@ -61,7 +61,9 @@ const OverviewSection = () => {
             />
           ))}
       </div>
-      <h3><strong>Actividades</strong></h3>
+      <h3>
+        <strong>Actividades</strong>
+      </h3>
       <div className={styles.tag_container}>
         {myQuotation &&
           myQuotation.activity.map((el) => (
