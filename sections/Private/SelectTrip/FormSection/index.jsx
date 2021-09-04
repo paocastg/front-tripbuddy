@@ -16,11 +16,16 @@ import H2 from 'components/H2'
 import FormSelectAccomodation from 'components/FormSelectAccomodation'
 import FormInputBudget from 'components/FormInputBudget'
 import SelectTripContext from 'context/SelectTripContext'
+import { TYPES } from 'actions/quotationActions'
 
 const FormSection = ({
   setShowSection
 }) => {
-  const { isActiveDestiny, dbDestiny } = useContext(SelectTripContext)
+  const { isActiveDestiny, dbDestiny, dispatch } = useContext(SelectTripContext)
+  const handleBack = () => {
+    setShowSection(0)
+    dispatch({ type: TYPES.CLEAR_ALL_QUOTATION })
+  }
   return (
     <section className={styles.section}>
        <div className={styles.visible}>
@@ -68,7 +73,7 @@ const FormSection = ({
         <br />
         <section className={styles.section}>
           <div>
-            <Button onClick={() => setShowSection(0)}>Atrás</Button>
+            <Button onClick={handleBack}>Atrás</Button>
             <Button onClick={() => setShowSection(2)}>Siguiente</Button>
           </div>
         </section>
