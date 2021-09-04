@@ -3,7 +3,6 @@ import styles from './index.module.scss'
 
 /* Utils */
 // import { API, BASE_API } from 'assets/Utils/Constants'
-// import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import axios from 'axios'
 import api from 'assets/Utils/api'
 
@@ -39,7 +38,6 @@ const RecommendationPage = () => {
   const [dbDestiny, setDbDestiny] = useState('')
   const [toggleSection, setToggleSection] = useState(initialToggleSection)
   const [destinos, setDestinos] = useState(false)
-  // const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
 
   // const router = useRouter()
 

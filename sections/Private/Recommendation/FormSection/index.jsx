@@ -2,8 +2,6 @@ import React from 'react'
 import styles from './index.module.scss'
 
 /* Utils */
-import { API, BASE_API } from 'assets/Utils/Constants'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 /* Components */
 import FormPassengers from 'components/FormPassengers'
