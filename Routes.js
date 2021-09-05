@@ -5,5 +5,6 @@ export const RoutesPrivate = {
 }
 
 export const RoutesPublic = {
-  HomePage: { slug: '/', file: '/Modules/Public/HomePage' }
+  HomePage: { slug: '/', file: '/Modules/Public/HomePage' },
+  Faq: { slug: '/faq', file: '/Modules/Public/Faq' }
 }
