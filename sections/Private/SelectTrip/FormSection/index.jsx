@@ -71,13 +71,11 @@ const FormSection = ({
           </Col>
         </Row>
         <br />
-        <section className={styles.section}>
-          <div>
-            <Button onClick={handleBack}>Atrás</Button>
-            <Button onClick={() => setShowSection(2)}>Siguiente</Button>
-          </div>
-        </section>
       </Form>
+      </div>
+      <div>
+        <Button onClick={handleBack}>Atrás</Button>
+        <Button onClick={() => setShowSection(2)}>Siguiente</Button>
       </div>
     </section>
 

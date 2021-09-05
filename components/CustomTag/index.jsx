@@ -6,7 +6,7 @@ const CustomTag = ({ el, handleDeleteTag, field }) => {
   const { name } = el
   return (
     <div className={styles.box} >
-      <Tag color="#5bc0de"closable onClose={(e) => handleDeleteTag(e, el, field)}>
+      <Tag className={styles.tag} closable onClose={(e) => handleDeleteTag(e, el, field)}>
         {name}
       </Tag>
     </div>

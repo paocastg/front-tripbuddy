@@ -48,7 +48,9 @@ const ConfirmationDestiny = () => {
       <div>
         {destino &&
           destino.map((d) => (
-            <Tag color="#5bc0de" key={d.id}>
+            <Tag
+            className={styles.tag}
+            key={d.id}>
               {d.nombre}
             </Tag>
           ))}
@@ -56,27 +58,27 @@ const ConfirmationDestiny = () => {
       <br/>
       <h3><strong>Viajeros</strong></h3>
       <div className={styles.tag_container} >
-         <Tag color="#5bc0de">
+         <Tag className={styles.tag}>
         {adulto} Adultos
       </Tag>
-      <Tag color="#5bc0de">
+      <Tag className={styles.tag}>
         {adolescente} Adolescentes
       </Tag>
-      <Tag color="#5bc0de">
+      <Tag className={styles.tag}>
       {nino} Niños
       </Tag>
       </div>
       <br/>
       <h3><strong>Presupuesto por persona</strong></h3>
       <div className={styles.tag_container} >
-        <Tag color="#5bc0de">
-         {budget}
+        <Tag className={styles.tag}>
+         $ {budget}
         </Tag>
       </div>
       <br/>
       <h3><strong>Alojamiento</strong></h3>
       <div className={styles.tag_container} >
-         <Tag color="#5bc0de">
+         <Tag className={styles.tag}>
          {tipo} &nbsp;{costoAlojamiento}
       </Tag>
       </div>
