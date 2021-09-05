@@ -4,7 +4,7 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 // import { useRouter } from 'next/router'
 import moment from 'moment'
 
-const ConfirmationHeroImage = ({ urlImg, storeValue, handleToggleSectionOne }) => {
+const ConfirmationHeroImage = ({ urlImg, setShowSection }) => {
   const [fechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin] = useLocalStorage('FechaFin', moment())
   const fecha1 = new Date(fechaInicio)
@@ -47,13 +47,10 @@ const ConfirmationHeroImage = ({ urlImg, storeValue, handleToggleSectionOne }) =
     fecha2.getDate() +
     ' de ' +
     meses[fecha2.getMonth()]
-  // const handleEdit = () => {
-  //   if (storeValue) {
-  //     router.push('/destination')
-  //   } else {
-  //     router.push('/recommendation')
-  //   }
-  // }
+
+  const handleBack = () => {
+    setShowSection(1)
+  }
 
   return (
     <article
@@ -65,7 +62,7 @@ const ConfirmationHeroImage = ({ urlImg, storeValue, handleToggleSectionOne }) =
           {/* content */}
           <h2 className={styles.heroImage__title}>{resultado} dias en Peru</h2>
           <h3 className={styles.heroImage__subtitle}>
-          {inicio} - {fin}<span><button className={styles.heroImage__action} onClick={handleToggleSectionOne} >Editar</button></span>
+          {inicio} - {fin}<span><button className={styles.heroImage__action} onClick={handleBack} >Editar</button></span>
           </h3>
 
         </div>
