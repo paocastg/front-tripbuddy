@@ -8,41 +8,84 @@ const QuotationPage = () => {
     {
       title: 'Agencia',
       dataIndex: 'agencia',
-      key: 'agencia',
-      render: (text) => <a>{text}</a>
+      key: 'agencia'
     },
     {
       title: 'Descripcion',
       dataIndex: 'descripcion',
-      key: 'descripcion'
+      key: 'descripcion',
+      width: 300
     },
     {
       title: 'Destinos',
       dataIndex: 'destinos',
-      key: 'destinos'
+      key: 'destinos',
+      render: (text) => (
+        <ul>
+          {text.map((el, index) => (
+            <li key={index}>{el}</li>
+          ))}
+        </ul>
+      )
     },
     {
       title: 'Precio',
       dataIndex: 'precio',
-      key: 'precio'
+      key: 'precio',
+      sorter: (a, b) => a.precio - b.precio
     }
-
   ]
+  function onChange (pagination, filters, sorter, extra) {
+    console.log('params', pagination, filters, sorter, extra)
+  }
 
   const data = [
     {
       key: '1',
       agencia: 'Agencia Turismo',
-      descripcion: 'Lorem Ipsum ....',
-      destinos: 'Centro de Lima, Choquequirao, ...',
-      precio: '$ 2000 c/u'
+      descripcion:
+        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
+      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
+      precio: 2000
+    },
+    {
+      key: '2',
+      agencia: 'Agencia Pepito',
+      descripcion:
+        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
+      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
+      precio: 1850
+    },
+    {
+      key: '3',
+      agencia: 'Peru Total',
+      descripcion:
+        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
+      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
+      precio: 1750
+    },
+    {
+      key: '4',
+      agencia: 'Peru Total',
+      descripcion:
+        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
+      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
+      precio: 3000
     }
   ]
   return (
     <Wrapper>
-      <div className={styles.margin}>
+      <div className={styles.quotation}>
         <H2>Cotizaciones Abiertas</H2>
-        <Table columns={columns} dataSource={data} />
+        <Table
+          columns={columns}
+          dataSource={data}
+          pagination={false}
+          scroll={{ y: 500 }}
+          className={styles.quotation__headerTable}
+          rowClassName={() => styles.quotation__bodyTable}
+          onChange={onChange}
+        />
       </div>
     </Wrapper>
   )
