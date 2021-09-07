@@ -13,13 +13,14 @@ class Http {
     })
   }
 
-  static post = async (url, data, options = {}) => {
+  static post = async (url, options) => {
     const session = Auth.getSession()
 
-    return await axios.post(url, data, {
+    return await axios(url, {
+			...options,
       headers: {
+				...options.headers,
         Authorization: `Bearer ${session.token}`,
-        ...options
       }
     })
   }

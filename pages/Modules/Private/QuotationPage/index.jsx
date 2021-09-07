@@ -1,7 +1,12 @@
+import styles from './index.module.scss'
+
+/* Components */
 import { Table, Tag, Space } from 'antd'
 import H2 from 'components/H2'
+
+/* Layout */
+import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
-import styles from './index.module.scss'
 
 const QuotationPage = () => {
   const columns = [
@@ -75,18 +80,20 @@ const QuotationPage = () => {
   ]
   return (
     <Wrapper>
-      <div className={styles.quotation}>
-        <H2>Cotizaciones Abiertas</H2>
-        <Table
-          columns={columns}
-          dataSource={data}
-          pagination={false}
-          scroll={{ y: 500 }}
-          className={styles.quotation__headerTable}
-          rowClassName={() => styles.quotation__bodyTable}
-          onChange={onChange}
-        />
-      </div>
+      <Session>
+        <div className={styles.quotation}>
+          <H2>Cotizaciones Abiertas</H2>
+          <Table
+            columns={columns}
+            dataSource={data}
+            pagination={false}
+            scroll={{ y: 500 }}
+            className={styles.quotation__headerTable}
+            rowClassName={() => styles.quotation__bodyTable}
+            onChange={onChange}
+          />
+        </div>
+      </Session>
     </Wrapper>
   )
 }

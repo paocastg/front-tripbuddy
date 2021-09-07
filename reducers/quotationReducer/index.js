@@ -1,19 +1,19 @@
 import { TYPES } from 'actions/quotationActions'
 
 export const quotationInitialState = {
-  fecha_inicio: null,
-  fecha_fin: null,
-  numero_ninos: null,
+  fecha_inicio: '2021-08-06',
+  fecha_fin: '2021-08-06',
+  numero_ninos: 0,
   presupuesto: null,
-  numero_adolescentes: null,
-  numero_adultos: null,
-  hotel: null,
-  airbnb: null,
-  lugar: null,
+  numero_adolescentes: 0,
+  numero_adultos: 0,
+  hotel: 'hotel',
+  airbnb: true,
+  lugar: 'unknow',
   usuario: null,
-  destinos: [],
-  category: [],
-  activity: [],
+  destino: [],
+  categoria: [],
+  actividad: [],
   finally: null
 }
 

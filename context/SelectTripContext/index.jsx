@@ -13,6 +13,9 @@ const SelectTripProvider = ({ children }) => {
   const [state, dispatch] = useReducer(quotationReducer, quotationInitialState)
 
   useEffect(() => {
+    // Borrar cualquier cotizacion anterior
+    localStorage.removeItem('myQuotation')
+
     const fetchData = async () => {
       setLoading(true)
 

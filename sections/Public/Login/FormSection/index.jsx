@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
 
 /* Components */
@@ -7,6 +7,12 @@ import GoogleAuth from 'components/GoogleAuth'
 import H2 from 'components/H2'
 
 const FormSection = () => {
+  const [quotation, setQuotation] = useState(null)
+
+  useEffect(() => {
+    setQuotation(JSON.parse(localStorage.getItem('myQuotation')))
+  }, [])
+
   return (
     <div className={styles.box_register}>
       <H2>Regístrate y...</H2>
@@ -16,8 +22,8 @@ const FormSection = () => {
         <img src="icon-agrega.svg" alt="icono agrega" />
       </div>
       <hr />
-      <FacebookAuth />
-      <GoogleAuth />
+      <FacebookAuth quotation={quotation} />
+      <GoogleAuth quotation={quotation} />
     </div>
   )
 }
