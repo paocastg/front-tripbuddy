@@ -14,7 +14,7 @@ const CategoryActivityCard = ({
   const { state, dispatch } = useContext(SelectTripContext)
 
   // Guardar en localStorage
-  localStorage.setItem('myQuotation', JSON.stringify(state))
+  // localStorage.setItem('myQuotation', JSON.stringify(state))
 
   const data = { id, name }
 
@@ -27,11 +27,11 @@ const CategoryActivityCard = ({
     const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || state
 
     // cargamos los card seleccionados anteriormente.
-    const inActivity = myQuotationInit.activity.find((el) => el.id === id)
-    const inCategory = myQuotationInit.category.find((el) => el.id === id)
-    if (inActivity && field === 'activity') {
+    const inActivity = myQuotationInit.actividad.find((el) => el.id === id)
+    const inCategory = myQuotationInit.categoria.find((el) => el.id === id)
+    if (inActivity && field === 'actividad') {
       setSelected(true)
-    } else if (inCategory && field === 'category') {
+    } else if (inCategory && field === 'categoria') {
       setSelected(true)
     } else {
       setSelected(false)

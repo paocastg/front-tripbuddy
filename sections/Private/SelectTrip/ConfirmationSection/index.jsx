@@ -24,6 +24,8 @@ const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
   }
   const handleNext = () => {
     // console.log('Enviar cotizacion...')
+    localStorage.setItem('myQuotation', JSON.stringify(state))
+    window.location.href = '/cotizaciones'
   }
   return (
     <div className={styles.confirmation}>

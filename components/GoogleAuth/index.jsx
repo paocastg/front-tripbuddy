@@ -1,9 +1,36 @@
+import api from 'assets/Utils/api'
+import { Auth } from 'assets/Utils/Auth'
 import GoogleLogin from 'react-google-login'
 import styles from './index.module.scss'
 
-const GoogleAuth = () => {
-  const responseGoogle = (response) => {
-    console.log(response)
+const GoogleAuth = ({ quotation }) => {
+  const categoria = quotation && quotation.categoria.map((el) => el.id)
+  const actividad = quotation && quotation.actividad.map((el) => el.id)
+
+  const newQuotation = { ...quotation, categoria, actividad }
+  const responseGoogle = async (response) => {
+    if (!response.error) {
+      console.log(response)
+      try {
+        const resUser = await api.createUser(response, 'gmail')
+        console.log(resUser)
+
+        // almacenar el token y usuario
+        Auth.saveSession(resUser)
+
+        // crear la solicitud
+        const userData = Auth.getSession()
+        const newQuotationData = { ...newQuotation, usuario: userData.usuario.id }
+        const resQuotation = await api.sendQuotation(newQuotationData)
+
+        if (resQuotation.error) throw resQuotation
+
+        // redireccionar a cotizacion
+        window.location.href = '/cotizaciones'
+      } catch (err) {
+        console.log(err)
+      }
+    }
   }
   return (
     <GoogleLogin
