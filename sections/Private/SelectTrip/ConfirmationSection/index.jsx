@@ -9,7 +9,6 @@ import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import ConfirmationDestiny from 'components/ConfirmationDestiny'
 import ConfirmationMap from 'components/ConfirmationMap'
 import ConfirmationDate from 'components/ConfirmationDate'
-import OverviewSection from 'sections/Private/Confirmation/OverviewSection'
 import Button from 'components/Button'
 import ConfirmationHeroImage from 'components/ConfirmationHeroImage'
 import SelectTripContext from 'context/SelectTripContext'
@@ -37,7 +36,6 @@ const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
       <div className={styles.grid}>
         <div className={styles.card}>
           <ConfirmationDestiny />
-          <OverviewSection />
         </div>
         <div className={styles.card}>
           <ConfirmationMap

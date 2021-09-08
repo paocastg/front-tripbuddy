@@ -11,10 +11,10 @@ const Faq = () => {
         <section className={styles.faq__text}>
           <h3 className={styles.faq__subtitle}>Cómo funciona</h3>
           <p><b>¿Cómo creo una nueva solicitud de viaje?</b></p>
-          <p>Puede crear una nueva solicitud de viaje yendo a la página principal del sitio web y haciendo clic en el botón "Comienza tu viaje".</p>
+          <p>Puede crear una nueva solicitud de viaje yendo a la página principal del sitio web y haciendo clic en el botón &quot;Comienza tu viaje&quot;.</p>
           <br/>
           <p><b>¿Puedo solicitar solo una parte del viaje o algo específico que quiero en mi viaje?</b></p>
-          <p>Puede crear una nueva solicitud de viaje yendo a la página principal del sitio web y haciendo clic en el botón "Comienza tu viaje".</p>
+          <p>Puede crear una nueva solicitud de viaje yendo a la página principal del sitio web y haciendo clic en el botón &quot;Comienza tu viaje&quot;.</p>
           <br/>
           <p><b>¿Puedo crear un viaje con múltiples destinos?</b></p>
           <p>Por supuesto, cuando creas una nueva solicitud de viaje, puede agregar varios destinos uno tras otro.</p>
@@ -53,7 +53,7 @@ const Faq = () => {
           <p>Este problema no ocurrirá, al iniciar sesión con Google o Facebook estos serán los mismos que usa para registrarse en estas plataformas.</p>
           <br/>
           <p><b>¿Cómo puedo cambiar mi perfil?</b></p>
-          <p>Puede actualizar o cambiar la información de su perfil haciendo clic en la flecha al costado de la imagen de su perfil e ingresando a "Mi perfil".</p>
+          <p>Puede actualizar o cambiar la información de su perfil haciendo clic en la flecha al costado de la imagen de su perfil e ingresando a &quot;Mi perfil&quot;.</p>
         </section>
       </article>
     </Wrapper>
