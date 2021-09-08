@@ -6,8 +6,6 @@ import styles from './index.module.scss'
 const { RangePicker } = DatePicker
 
 const FormDates = () => {
-  // const [dateStart, setDateStart] = useState('')
-  // const [dateEnd, setDateEnd] = useState('')
   const [fechaInicio, setFechaInicio] = useLocalStorage('FechaInicio', moment())
   const [fechaFin, setFechaFin] = useLocalStorage('FechaFin', moment())
 

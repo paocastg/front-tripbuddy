@@ -1,7 +1,7 @@
 import styles from './index.module.scss'
 
 /* Components */
-import { Table, Tag, Space } from 'antd'
+import { Table } from 'antd'
 import H2 from 'components/H2'
 
 /* Layout */
@@ -25,6 +25,8 @@ const QuotationPage = () => {
       title: 'Destinos',
       dataIndex: 'destinos',
       key: 'destinos',
+
+      // eslint-disable-next-line react/display-name
       render: (text) => (
         <ul>
           {text.map((el, index) => (

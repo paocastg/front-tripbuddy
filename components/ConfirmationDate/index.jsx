@@ -12,9 +12,6 @@ const ConfirmationDate = () => {
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(true)
 
-  const formatofechaInicio = moment(fechaInicio).format('ddd, DD MMMM ')
-  const formatofechaFin = moment(fechaFin).format('ddd, DD MMMM ')
-
   const handleShowDatePicker = () => {
     setShow((prevState) => !prevState)
     setShow2((prevState) => !prevState)
@@ -49,7 +46,7 @@ const ConfirmationDate = () => {
         locale="es-ES"
         value={[moment(fechaInicio), moment(fechaFin)]}
         selectRange='true'
-        // onChange={onCalendarChange}
+        onChange={onCalendarChange2}
       />
       )}
     </div>
