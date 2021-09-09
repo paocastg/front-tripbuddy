@@ -1,8 +1,8 @@
 import { TYPES } from 'actions/quotationActions'
 
 export const quotationInitialState = {
-  fecha_inicio: '2021-08-06',
-  fecha_fin: '2021-08-06',
+  fecha_inicio: null,
+  fecha_fin: null,
   numero_ninos: 0,
   presupuesto: null,
   numero_adolescentes: 0,

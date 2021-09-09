@@ -26,7 +26,7 @@ const CategoryActivitiesSection = ({ setShowSection }) => {
               key={el.id}
               id={el.id}
               name={el.nombre}
-              img={el.FIELDNAME}
+              img={el.fieldname}
               field="categoria"
             />
           ))}
@@ -39,7 +39,7 @@ const CategoryActivitiesSection = ({ setShowSection }) => {
               key={el.id}
               name={el.nombre}
               id={el.id}
-              img={el.FIELDNAME}
+              img={el.fieldname}
               field="actividad"
             />
           ))}

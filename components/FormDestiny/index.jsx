@@ -1,46 +1,30 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { Select } from 'antd'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import styles from './index.module.scss'
+import { TYPES } from 'actions/quotationActions'
+import SelectTripContext from 'context/SelectTripContext'
 
 const { Option } = Select
 
-const FormDestiny = ({ disabled, dbDestiny }) => {
-  const [seleccionados, setSeleccionados] = useState([])
-  const [destino, setDestino] = useLocalStorage('destinos', [])
+const FormDestiny = ({ disabled }) => {
+  const { state, dbDestiny, dispatch } = useContext(SelectTripContext)
 
-  const handleChange = (id) => {
-    setDestino(id)
-    setSeleccionados([...seleccionados, ...id])
-    const idList = JSON.parse(localStorage.getItem('destinos'))
-    const selecteds = []
-    dbDestiny && dbDestiny.forEach(element => {
-      idList && idList.forEach(id => {
-        if (element.id === id * 1) {
-          selecteds.push(element)
-        }
-      })
-    })
-    window.localStorage.setItem('destinoSeleccionado', JSON.stringify(selecteds))
+  const handleChange = (places) => {
+    dispatch({ type: TYPES.UPDATE_ONE_QUOTATION, payload: { field: 'destino', data: places, manyOptions: false } })
   }
-
-  const options = dbDestiny && dbDestiny.map(d =>
-  <Option key={d.id}>
-    {d.nombre}
-  </Option>)
 
   return (
     <div className={styles.div}>
       <Select
         className={styles.select}
-        value= {destino}
+        value= {state.destino}
         mode="multiple"
         placeholder="Destinos"
         onChange={handleChange}
         disabled={disabled}
 
       >
-        {options}
+        {dbDestiny && dbDestiny.map((d) => <Option key={d.nombre}>{d.nombre}</Option>)}
       </Select>
     </div>
   )

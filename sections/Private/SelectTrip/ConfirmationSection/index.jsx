@@ -6,12 +6,12 @@ import credentials from './credentials'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 /* Components */
+import Button from 'components/Button'
+import ConfirmationDate from 'components/ConfirmationDate'
+import SelectTripContext from 'context/SelectTripContext'
 import ConfirmationDestiny from 'components/ConfirmationDestiny'
 import ConfirmationMap from 'components/ConfirmationMap'
-import ConfirmationDate from 'components/ConfirmationDate'
-import Button from 'components/Button'
 import ConfirmationHeroImage from 'components/ConfirmationHeroImage'
-import SelectTripContext from 'context/SelectTripContext'
 
 const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
   const { state } = useContext(SelectTripContext)
