@@ -19,8 +19,13 @@ const CategoryActivityCard = ({
   const data = { id, name }
 
   // Fix: Añadir 'tripbuddy' a la url de image que viene del api.
+  // const imgSplitted = img && img.split('/')
+  // img && imgSplitted.splice(3, 0, 'tripbuddy').join('/')
+  // const newImg = img && imgSplitted.join('/')
+
+  // Fix: Quitar 'media' a la url de image que viene del api
   const imgSplitted = img && img.split('/')
-  img && imgSplitted.splice(3, 0, 'tripbuddy').join('/')
+  img && imgSplitted.splice(3, 1).join('/')
   const newImg = img && imgSplitted.join('/')
 
   useEffect(() => {

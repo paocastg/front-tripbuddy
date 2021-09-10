@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Slider, Form, Button } from 'antd'
 import styles from './index.module.scss'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
+import SelectTripContext from 'context/SelectTripContext'
+import { TYPES } from 'actions/quotationActions'
 
 const state = {
   1: 'Bajo costo',
@@ -22,12 +24,21 @@ const FormSelectAccomodation = () => {
   const [selected1, setSelected1] = useState(false)
   const [selected2, setSelected2] = useState(false)
   const [selected3, setSelected3] = useState(false)
+  const { state: stateDispatch, dispatch } = useContext(SelectTripContext)
 
   const SliderChange = (state) => {
     setPrefState(state)
+    dispatch({
+      type: TYPES.UPDATE_ONE_QUOTATION,
+      payload: { field: 'estrellas', data: state, manyOptions: false }
+    })
   }
   const SliderChange2 = (state) => {
     setPrefState2(state)
+    dispatch({
+      type: TYPES.UPDATE_ONE_QUOTATION,
+      payload: { field: 'estrellas', data: state, manyOptions: false }
+    })
   }
   useEffect(() => {
     if (localStorage.getItem('tipoAlojamiento')) {
@@ -73,7 +84,7 @@ const FormSelectAccomodation = () => {
       <Form className={styles.formbtn}>
         <Form.Item className={styles.divbtn}>
           <Button
-          className={!selected1 ? styles.btn : styles.selectedBtn}
+            className={!selected1 ? styles.btn : styles.selectedBtn}
             onClick={handleShowSlider}
             size="large"
           >
@@ -81,7 +92,8 @@ const FormSelectAccomodation = () => {
           </Button>
         </Form.Item>
         <Form.Item className={styles.divbtn}>
-          <Button className={!selected2 ? styles.btn : styles.selectedBtn}
+          <Button
+            className={!selected2 ? styles.btn : styles.selectedBtn}
             onClick={handleShowSlider2}
             size="large"
           >
@@ -98,16 +110,16 @@ const FormSelectAccomodation = () => {
           </Button>
         </Form.Item>
       </Form>
-        <br/>
+      <br />
       <Form>
         {show && (
-          <Form.Item className={styles.slider} >
+          <Form.Item className={styles.slider}>
             <section className={styles.sectionSlider}>
-                <Slider
-                value= {prefState}
+              <Slider
+                value={prefState}
                 min={1}
                 max={5}
-                onChange= {SliderChange}
+                onChange={SliderChange}
                 marks={state}
                 step={null}
                 tipFormatter={null}
@@ -118,14 +130,14 @@ const FormSelectAccomodation = () => {
       </Form>
       <Form>
         {show2 && (
-          <Form.Item className={styles.slider} >
+          <Form.Item className={styles.slider}>
             <section className={styles.sectionSlider}>
-                <Slider
-                value= {prefState2}
+              <Slider
+                value={prefState2}
                 min={1}
                 max={5}
                 marks={state}
-                onChange= {SliderChange2}
+                onChange={SliderChange2}
                 step={null}
                 tipFormatter={null}
               />

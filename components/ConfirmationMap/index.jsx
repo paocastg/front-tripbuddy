@@ -7,7 +7,6 @@ import {
 } from 'react-google-maps'
 
 const ConfirmationMap = (props) => {
-  // console.log(props)
   return (
     <div>
       <GoogleMap
@@ -15,13 +14,13 @@ const ConfirmationMap = (props) => {
         defaultCenter={{ lat: -9.189967, lng: -75.015152 }}
         defaultOptions={{ disableDefaultUI: true }}
       >
-        {props.destinosCompleto.map(marker => {
+        {props.destinosCompleto.map((marker) => {
           return (
-          <Marker
-            key={marker.id}
-            position={{ lat: marker.latitud, lng: marker.longitud }}
-            title={marker.nombre}
-          />
+            <Marker
+              key={marker.id}
+              position={{ lat: parseFloat(marker.latitud), lng: parseFloat(marker.longitud) }}
+              title={marker.nombre}
+            />
           )
         })}
       </GoogleMap>
