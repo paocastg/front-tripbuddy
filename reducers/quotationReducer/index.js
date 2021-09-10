@@ -3,10 +3,10 @@ import { TYPES } from 'actions/quotationActions'
 export const quotationInitialState = {
   fecha_inicio: '2021-09-09',
   fecha_fin: '2021-09-09',
-  numero_ninos: 0,
+  numero_ninos: 3,
   presupuesto: null,
-  numero_adolescentes: 0,
-  numero_adultos: 0,
+  numero_adolescentes: 1,
+  numero_adultos: 2,
   hotel: true,
   airbnb: false,
   estrellas: 0,
