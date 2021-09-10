@@ -1,29 +1,49 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import styles from './index.module.scss'
 
 /* Utils */
 import credentials from './credentials'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
 
 /* Components */
+import Button from 'components/Button'
+import ConfirmationDate from 'components/ConfirmationDate'
+import SelectTripContext from 'context/SelectTripContext'
 import ConfirmationDestiny from 'components/ConfirmationDestiny'
 import ConfirmationMap from 'components/ConfirmationMap'
-import ConfirmationDate from 'components/ConfirmationDate'
-import Button from 'components/Button'
 import ConfirmationHeroImage from 'components/ConfirmationHeroImage'
-import SelectTripContext from 'context/SelectTripContext'
 
 const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
-  const { state } = useContext(SelectTripContext)
-  const [destinosCompleto] = useLocalStorage('destinoSeleccionado', [])
+  const { state, dbDestiny } = useContext(SelectTripContext)
+  const [destinosCompleto, setDestinosCompleto] = useState([])
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
   console.log('state desde confirmationSection', state)
   const handleBack = () => {
     setShowSection(3)
   }
+  useEffect(() => {
+    const destinySelected = []
+    state.destino && state.destino.forEach((destiny) => {
+      const destinyFilter = dbDestiny.filter((el) => el.nombre === destiny)
+      destinySelected.push(destinyFilter[0])
+    })
+    // console.log('destinos seleccionados', destinySelected)
+    setDestinosCompleto(destinySelected)
+  }, [state])
+
   const handleNext = () => {
     // console.log('Enviar cotizacion...')
-    localStorage.setItem('myQuotation', JSON.stringify(state))
+
+    const newState = {
+      ...state,
+      fecha_inicio: state.fecha_inicio && state.fecha_inicio.replace(/\//g, '-'),
+      fecha_fin: state.fecha_fin && state.fecha_fin.replace(/\//g, '-'),
+      actividad: state.actividad && state.actividad.map((el) => el.id),
+      categoria: state.categoria && state.categoria.map((el) => el.id),
+      destino: destinosCompleto && destinosCompleto.map((el) => el.id)
+
+    }
+    localStorage.setItem('myQuotation', JSON.stringify(newState))
+    // console.log('newState', newState)
     window.location.href = '/cotizaciones'
   }
   return (

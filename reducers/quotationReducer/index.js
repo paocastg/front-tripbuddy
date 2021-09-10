@@ -1,20 +1,20 @@
 import { TYPES } from 'actions/quotationActions'
 
 export const quotationInitialState = {
-  fecha_inicio: '2021-08-06',
-  fecha_fin: '2021-08-06',
+  fecha_inicio: '2021-09-09',
+  fecha_fin: '2021-09-09',
   numero_ninos: 0,
   presupuesto: null,
   numero_adolescentes: 0,
   numero_adultos: 0,
-  hotel: 'hotel',
-  airbnb: true,
-  lugar: 'unknow',
+  hotel: true,
+  airbnb: false,
+  estrellas: 0,
   usuario: null,
   destino: [],
   categoria: [],
   actividad: [],
-  finally: null
+  comentarios: null
 }
 
 export function quotationReducer (state, action) {

@@ -4,12 +4,6 @@ import { Auth } from 'assets/Utils/Auth'
 import api from 'assets/Utils/api'
 
 const FacebookAuth = ({ quotation }) => {
-  const categoria = quotation && quotation.categoria.map((el) => el.id)
-  const actividad = quotation && quotation.actividad.map((el) => el.id)
-
-  const newQuotation = { ...quotation, categoria, actividad }
-  // console.log(newQuotation)
-
   const responseFacebook = async (response) => {
     if (response.status !== 'unknown') {
       try {
@@ -20,7 +14,7 @@ const FacebookAuth = ({ quotation }) => {
 
         // crear la solicitud
         const userData = Auth.getSession()
-        const newQuotationData = { ...newQuotation, usuario: userData.usuario.id }
+        const newQuotationData = { ...quotation, usuario: userData.usuario.id }
         const resQuotation = await api.sendQuotation(newQuotationData)
 
         if (resQuotation.error) throw resQuotation

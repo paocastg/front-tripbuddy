@@ -20,7 +20,7 @@ const HeroImageSection = () => {
           <p className={styles.heroImage__text}>
             Únete a nuestra comunidad y planea tu viaje a la medida
           </p>
-          <Link href="/recommendation">
+          <Link href="/select-trip">
             <button className={styles.heroImage__action}>
               Comienza tu viaje
             </button>

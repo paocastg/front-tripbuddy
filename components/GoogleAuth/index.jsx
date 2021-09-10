@@ -4,10 +4,6 @@ import GoogleLogin from 'react-google-login'
 import styles from './index.module.scss'
 
 const GoogleAuth = ({ quotation }) => {
-  const categoria = quotation && quotation.categoria.map((el) => el.id)
-  const actividad = quotation && quotation.actividad.map((el) => el.id)
-
-  const newQuotation = { ...quotation, categoria, actividad }
   const responseGoogle = async (response) => {
     if (!response.error) {
       console.log(response)
@@ -20,7 +16,7 @@ const GoogleAuth = ({ quotation }) => {
 
         // crear la solicitud
         const userData = Auth.getSession()
-        const newQuotationData = { ...newQuotation, usuario: userData.usuario.id }
+        const newQuotationData = { ...quotation, usuario: userData.usuario.id }
         const resQuotation = await api.sendQuotation(newQuotationData)
 
         if (resQuotation.error) throw resQuotation

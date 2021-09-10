@@ -1,5 +1,5 @@
 import { Http } from './Http'
-import { API, API_TEST } from './Constants'
+import { API, HOST } from './Constants'
 import axios from 'axios'
 
 const getCategory = async () => {
@@ -53,7 +53,7 @@ const createUser = async (response, type = 'gmail') => {
           nick_name: response.name
         })
       }
-      const res = await axios('http://localhost:8000/usuario/user/create/', options)
+      const res = await axios(`${HOST}/usuario/user/create/`, options)
       const json = await res.data
       return json
     }
@@ -71,7 +71,7 @@ const createUser = async (response, type = 'gmail') => {
           nick_name: `${profileObj.givenName} ${profileObj.familyName}`
         })
       }
-      const res = await axios('http://localhost:8000/usuario/user/create/', options)
+      const res = await axios(`${HOST}/usuario/user/create/`, options)
       const json = await res.data
       return json
     }
@@ -94,7 +94,7 @@ const sendQuotation = async (data) => {
       },
       data: JSON.stringify(data)
     }
-    const res = await Http.post(`${API_TEST}/solicitud/`, options)
+    const res = await Http.post(`${API}/solicitud/`, options)
     const json = await res.data
     return json
     // console.log(json)
