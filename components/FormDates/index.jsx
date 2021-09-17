@@ -16,9 +16,7 @@ const FormDates = () => {
   const { state, dispatch } = useContext(SelectTripContext)
 
   const onCalendarChange = (e) => {
-    // console.log(e)
     if (e && e[0] != null) {
-      // setDateStart(e[0])
       setFechaInicio(e[0].format('YYYY/MM/DD'))
       dispatch({
         type: TYPES.UPDATE_ONE_QUOTATION,
@@ -31,7 +29,6 @@ const FormDates = () => {
     }
 
     if (e && e[1] != null) {
-      // setDateEnd(e[1])
       setFechaFin(e[1].format('YYYY/MM/DD'))
       dispatch({
         type: TYPES.UPDATE_ONE_QUOTATION,

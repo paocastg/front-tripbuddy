@@ -21,12 +21,12 @@ const FormInputBudget = () => {
   return (
     <div className={styles.input}>
       <Input
+        type='number'
         prefix={<WalletOutlined />}
         size="large"
         placeholder="Presupuesto por persona"
         onChange={budgetOnChange}
         value={state.presupuesto}
-        minLength={3}
       />
     </div>
   )
