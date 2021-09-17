@@ -19,10 +19,10 @@ const Footer = () => {
             <h2>Ayuda</h2>
             <a href="/faq" >FAQ</a>
             <a href="#">Contacto</a>
-            <a href="#">Políticas de privacidad</a>
-            <a href="#">Políticas de derechos de autor</a>
-            <a href="#">Políticas de Cookies</a>
-            <a href="#">Terminos de uso</a>
+            <a href="/politicas-de-privacidad">Políticas de privacidad</a>
+            <a href="/politicas-de-derechos-de-autor">Políticas de derechos de autor</a>
+            <a href="/politicas-de-cookies">Políticas de Cookies</a>
+            <a href="/terminos-de-uso">Terminos de uso</a>
           </div>
           <div>
             <h2>Configuración</h2>

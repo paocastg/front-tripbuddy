@@ -29,7 +29,11 @@ nextApp
       { slug: '/confirmation', file: '/Modules/Private/ConfirmationPage' },
       { slug: '/cotizaciones', file: '/Modules/Private/QuotationPage' },
       { slug: '/acerca', file: '/Modules/Public/AboutPage' },
-      { slug: '/faq', file: '/Modules/Public/Faq' }
+      { slug: '/faq', file: '/Modules/Public/Faq' },
+      { slug: '/politicas-de-derechos-de-autor', file: '/Modules/Public/CopyrightPolicies' },
+      { slug: '/politicas-de-privacidad', file: '/Modules/Public/PrivacyPolicies' },
+      { slug: '/politicas-de-cookies', file: '/Modules/Public/CookiePolicies' },
+      { slug: '/terminos-de-uso', file: '/Modules/Public/TermsOfUse' }
     ]
 
     for (const route of routes) {
