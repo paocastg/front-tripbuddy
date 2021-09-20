@@ -3,6 +3,8 @@ import styles from './index.module.scss'
 
 /* Utils */
 import credentials from './credentials'
+import { Auth } from 'assets/Utils/Auth'
+import api from 'assets/Utils/api'
 
 /* Components */
 import Button from 'components/Button'
@@ -17,22 +19,29 @@ const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
   const [destinosCompleto, setDestinosCompleto] = useState([])
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${credentials.mapsKey}`
   console.log('state desde confirmationSection', state)
+  /*
+    Event button atras
+  */
   const handleBack = () => {
     setShowSection(3)
   }
   useEffect(() => {
+    /*
+      Transform destinos[] field before send api
+    */
     const destinySelected = []
     state.destino && state.destino.forEach((destiny) => {
       const destinyFilter = dbDestiny.filter((el) => el.nombre === destiny)
       destinySelected.push(destinyFilter[0])
     })
-    // console.log('destinos seleccionados', destinySelected)
     setDestinosCompleto(destinySelected)
   }, [state])
 
-  const handleNext = () => {
-    // console.log('Enviar cotizacion...')
-
+  const handleNext = async () => {
+    /*
+      Modify fields: fecha_inicio, fecha_fin, actividad, categoria y
+      destinos before send api
+    */
     const newState = {
       ...state,
       fecha_inicio: state.fecha_inicio && state.fecha_inicio.replace(/\//g, '-'),
@@ -42,8 +51,29 @@ const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
       destino: destinosCompleto && destinosCompleto.map((el) => el.id)
 
     }
+    /*
+      Store newState in LocalStorage
+    */
     localStorage.setItem('myQuotation', JSON.stringify(newState))
-    // console.log('newState', newState)
+
+    /*
+      Si ya esta logueado envio directo la cotizacion a la api.
+    */
+    const session = Auth.getSession()
+    if (session !== null) {
+      const newQuotationData = { ...newState, usuario: session.usuario.id }
+      const resQuotation = await api.sendQuotation(newQuotationData)
+
+      if (resQuotation.error) throw resQuotation
+      /*
+        Redirect to /cotizaciones
+      */
+      window.location.href = '/cotizaciones'
+    }
+
+    /*
+      Redirect to /cotizaciones
+    */
     window.location.href = '/cotizaciones'
   }
   return (
