@@ -7,19 +7,28 @@ const FacebookAuth = ({ quotation }) => {
   const responseFacebook = async (response) => {
     if (response.status !== 'unknown') {
       try {
+        /*
+          Send to api login the data of user
+        */
         const resUser = await api.createUser(response, 'facebook')
 
-        // almacenar el token y usuario
+        /*
+          Store token and user data in LocalStorage
+        */
         Auth.saveSession(resUser)
 
-        // crear la solicitud
+        /*
+          Add user id and send the quotation
+        */
         const userData = Auth.getSession()
         const newQuotationData = { ...quotation, usuario: userData.usuario.id }
         const resQuotation = await api.sendQuotation(newQuotationData)
 
         if (resQuotation.error) throw resQuotation
 
-        // redireccionar a cotizacion
+        /*
+          Redirect to /cotizaciones
+        */
         window.location.href = '/cotizaciones'
       } catch (err) {
         console.log(err)
