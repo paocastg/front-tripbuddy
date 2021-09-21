@@ -18,7 +18,7 @@ const Footer = () => {
           <div>
             <h2>Ayuda</h2>
             <a href="/faq" >FAQ</a>
-            <a href="#">Contacto</a>
+            <a href="/contacto">Contacto</a>
             <a href="/politicas-de-privacidad">Políticas de privacidad</a>
             <a href="/politicas-de-derechos-de-autor">Políticas de derechos de autor</a>
             <a href="/politicas-de-cookies">Políticas de Cookies</a>
@@ -29,15 +29,15 @@ const Footer = () => {
             <a href="#">Tipo de cambio: U.S. Dollar</a>
             <a href="#">Idioma: Español</a>
           </div>
-          <div className={styles.icon_whatsapp}>
-            <a
-              href="https://api.whatsapp.com/send?phone=+51922553728">
-              <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" />
-            </a>
-          </div>
         </div>
       </footer>
       <div className={styles.footer_desc}>© 2021 Trip Buddy - Todos los derechos reservados</div>
+      <div className={styles.icon_whatsapp}>
+        <a
+          href="https://api.whatsapp.com/send?phone=+51922553728">
+          <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" />
+        </a>
+      </div>
     </>
   )
 }

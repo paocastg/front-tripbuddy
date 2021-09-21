@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 /* layout */
 import Wrapper from 'layout/Wrapper'
 
-const Faq = () => {
+const CookiePolicies = () => {
   return (
     <Wrapper>
       <article className={styles.cookiePolicies}>
@@ -32,4 +32,4 @@ const Faq = () => {
   )
 }
 
-export default Faq
+export default CookiePolicies

@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 /* layout */
 import Wrapper from 'layout/Wrapper'
 
-const Faq = () => {
+const TermsOfUse = () => {
   return (
     <Wrapper>
       <article className={styles.termsOfUse}>
@@ -59,4 +59,4 @@ const Faq = () => {
   )
 }
 
-export default Faq
+export default TermsOfUse

@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 /* layout */
 import Wrapper from 'layout/Wrapper'
 
-const Faq = () => {
+const PrivacyPolicies = () => {
   return (
     <Wrapper>
       <article className={styles.privacyPolicies}>
@@ -61,4 +61,4 @@ const Faq = () => {
   )
 }
 
-export default Faq
+export default PrivacyPolicies
