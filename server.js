@@ -33,7 +33,8 @@ nextApp
       { slug: '/politicas-de-derechos-de-autor', file: '/Modules/Public/CopyrightPolicies' },
       { slug: '/politicas-de-privacidad', file: '/Modules/Public/PrivacyPolicies' },
       { slug: '/politicas-de-cookies', file: '/Modules/Public/CookiePolicies' },
-      { slug: '/terminos-de-uso', file: '/Modules/Public/TermsOfUse' }
+      { slug: '/terminos-de-uso', file: '/Modules/Public/TermsOfUse' },
+      { slug: '/contacto', file: '/Modules/Public/Contact' }
     ]
 
     for (const route of routes) {
