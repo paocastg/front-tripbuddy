@@ -10,16 +10,19 @@ const Header = () => {
       <div className="e-container">
         <div className={styles.header}>
           <div>
-            <img src={`${CDN_PATH}/logo-tripbuddy.svg`} alt="chart" />
+            <a href="/">
+              <img src={`${CDN_PATH}/logo-tripbuddy.svg`} alt="chart" />
+            </a>
             {/* <img src="https://file-loenviamostest.s3.amazonaws.com/images/logo-tripbuddy.svg" alt="chart" /> */}
           </div>
           <div className={styles.header_user}>
-            <button className={styles.header_button} onClick={() => router.push('/recommendation')}>
+            <button
+              className={styles.header_button}
+              onClick={() => router.push('/select-trip')}
+            >
               Comienza tu viaje
             </button>
-            <div className={styles.user}>
-              ${ 'user' }
-            </div>
+            <div className={styles.user}>${'user'}</div>
           </div>
         </div>
       </div>
