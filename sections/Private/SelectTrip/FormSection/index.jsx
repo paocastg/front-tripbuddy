@@ -26,18 +26,31 @@ const FormSection = ({
     setShowSection(0)
     dispatch({ type: TYPES.CLEAR_ALL_QUOTATION })
   }
+  const onFinish = (values) => {
+    console.log('Received values of form: ', values)
+  }
+
   return (
     <section className={styles.section}>
        <div className={styles.visible}>
-      <Form>
+      <Form onFinish={onFinish}>
         <Row>
           <Col span={24}>
             <H2>
               Elige tu destino y las fechas <br /> en que piensas viajar
             </H2>
             {isActiveDestiny
-              ? (
-              <SelectDestinos disabled={false} dbDestiny={dbDestiny} />
+              ? (<Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: 'Elegir un destino por favor!',
+                    type: 'array'
+                  }
+                ]}
+              >
+                <SelectDestinos disabled={false} dbDestiny={dbDestiny} />
+                </Form.Item>
                 )
               : (
               <SelectDestinos disabled={true} />
@@ -75,7 +88,7 @@ const FormSection = ({
       </div>
       <div>
         <Button onClick={handleBack}>Atrás</Button>
-        <Button onClick={() => setShowSection(2)}>Siguiente</Button>
+        <Button onClick={() => setShowSection(2)} >Siguiente</Button>
       </div>
     </section>
 

@@ -57,6 +57,8 @@ const FormDates = () => {
         onCalendarChange={onCalendarChange}
         format={dateFormat}
       />
+      <input type="hidden" name="fechaInicio" value={fechaInicio}/>
+      <input type="hidden" name="fechaFin" value={fechaFin}/>
     </div>
   )
 }
