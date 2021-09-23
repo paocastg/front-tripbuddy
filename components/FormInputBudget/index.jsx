@@ -24,6 +24,7 @@ const FormInputBudget = () => {
         type='number'
         prefix={<WalletOutlined />}
         size="large"
+        min="100"
         placeholder="Presupuesto por persona"
         onChange={budgetOnChange}
         value={state.presupuesto}

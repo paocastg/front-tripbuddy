@@ -60,14 +60,22 @@ const FormSelectAccomodation = () => {
     setSelected3(false)
     setShow((prevState) => !prevState)
     setShow2(false)
+    dispatch({
+      type: TYPES.UPDATE_ONE_QUOTATION,
+      payload: { field: 'hotel', data: (prev) => !prev, manyOptions: false }
+    })
   }
   const handleShowSlider2 = () => {
     setSelected2((prev) => !prev)
     setSelected3(false)
     setSelected1(false)
-    setAirbnb(2)
+    setAirbnb(true)
     setShow2((prevState) => !prevState)
     setShow(false)
+    dispatch({
+      type: TYPES.UPDATE_ONE_QUOTATION,
+      payload: { field: 'airbnb', data: true, manyOptions: false }
+    })
   }
   const handleShowSlider3 = () => {
     setSelected3((prev) => !prev)
@@ -88,6 +96,7 @@ const FormSelectAccomodation = () => {
             onClick={handleShowSlider}
             size="large"
           >
+          <input type="hidden" name="hotel" value={hotel}/>
             <strong>Quiero un Hotel</strong>
           </Button>
         </Form.Item>
@@ -97,6 +106,7 @@ const FormSelectAccomodation = () => {
             onClick={handleShowSlider2}
             size="large"
           >
+            <input type="hidden" name="hotel" value={airBnb}/>
             <strong>Consigueme un Airbnb</strong>
           </Button>
         </Form.Item>
@@ -106,6 +116,7 @@ const FormSelectAccomodation = () => {
             onClick={handleShowSlider3}
             size="large"
           >
+            <input type="hidden" name="hotel" value={noHotel}/>
             <strong>No, gracias</strong>
           </Button>
         </Form.Item>
