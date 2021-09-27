@@ -85,7 +85,7 @@ const QuotationPage = () => {
             }
           }
         }
-        return text
+        return { children: <a href={`/cotizaciones/detalles/${text}`}>{ text }</a> }
       }
     }
   ]
