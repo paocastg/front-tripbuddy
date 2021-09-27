@@ -28,6 +28,7 @@ nextApp
       { slug: '/recommendation', file: '/Modules/Private/RecommendationPage' },
       { slug: '/confirmation', file: '/Modules/Private/ConfirmationPage' },
       { slug: '/cotizaciones', file: '/Modules/Private/QuotationPage' },
+      { slug: '/cotizaciones/detalles/:id', file: '/Modules/Private/DetailsPage' },
       { slug: '/acerca', file: '/Modules/Public/AboutPage' },
       { slug: '/faq', file: '/Modules/Public/Faq' },
       { slug: '/politicas-de-derechos-de-autor', file: '/Modules/Public/CopyrightPolicies' },
