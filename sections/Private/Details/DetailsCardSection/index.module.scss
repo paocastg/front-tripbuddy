@@ -1,0 +1,108 @@
+$font: 'Geomanist-Regular';
+$font-bold: 'Geomanist-Bold';
+$black-color: #000;
+$white-color: #fff;
+$first-color-tripbuddy: #00B2E3;
+$second-color-tripbuddy: #009CD7;
+
+.container {
+  margin: 16px 0;
+  padding: 32px;
+  border: 1px solid #ccc;
+  box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);
+-webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);
+-moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.4);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  &__text {
+    font-family: $font;
+    font-size: 1.4em;
+    color: $black-color;
+  }
+  &__action {
+    font-family: $font;
+    font-size: 1.2em;
+    color: $white-color;
+    background-color: $first-color-tripbuddy;
+    border-color: $first-color-tripbuddy;
+    border-radius: 20px;
+    padding: 6px 12px;
+    &:hover {
+      color: $white-color;
+      background-color: $second-color-tripbuddy;
+      border-color: $second-color-tripbuddy;
+    }
+  }
+}
+
+.divider {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+.body {
+  padding: 32px 0;
+  &__figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__subtitle {
+    font-family: $font-bold;
+    font-size: 1.6em;
+    color: $black-color;
+    margin-bottom: 20px;
+  }
+  &__paragraph {
+    font-family: $font;
+    font-size: 1.1em;
+    color: $black-color;
+  }
+}
+
+.places {
+  &__images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__figcaption {
+    margin-top: 10px;
+    font-family: $font;
+    font-size: 1.1em;
+    color: $black-color;
+  }
+
+}
+@media screen and (min-width: 960px) {
+  .body {
+    display: flex;
+    &__figure {
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 0 32px;
+    }
+    &__content {
+      width: 70%;
+    }
+  }
+  .places {
+    &__images {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: 32px;
+      justify-content: space-around;
+    }
+  }
+}
