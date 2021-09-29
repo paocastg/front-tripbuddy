@@ -49,50 +49,56 @@ const DetailsPage = () => {
         <section className={styles.section2}>
           <Tabs>
             <TabPane tab="Ruta" key="1">
-              {/* Section DestinyDetails */}
-              <div className={styles.section3}>
-                <Timeline>
-                  <Timeline.Item>
-                    Lima - 2 dias
-                    <br />
-                    <br />
-                  </Timeline.Item>
-                  <Timeline.Item>
-                    Cusco - 6 dias
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                  </Timeline.Item>
-                  <Timeline.Item>
-                    Arequipa - 3 dias
-                    <br />
-                    <br />
-                    <br />
-                  </Timeline.Item>
-                  <Timeline.Item>
-                    Lima - 1 dias
-                    <br />
-                  </Timeline.Item>
-                </Timeline>
-              </div>
-              {/* Section MapDetails */}
+              <section className={styles.section3}>
+                {/* Section DestinyDetails */}
+                <div className={styles.section3__first}>
+                  <Timeline>
+                    <Timeline.Item>
+                      Lima - 2 dias
+                      <br />
+                      <br />
+                    </Timeline.Item>
+                    <Timeline.Item>
+                      Cusco - 6 dias
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                    </Timeline.Item>
+                    <Timeline.Item>
+                      Arequipa - 3 dias
+                      <br />
+                      <br />
+                      <br />
+                    </Timeline.Item>
+                    <Timeline.Item>
+                      Lima - 1 dias
+                      <br />
+                    </Timeline.Item>
+                  </Timeline>
+                </div>
+                {/* Section MapDetails */}
+                <div className={styles.section3__second}>
+                  {/* Component DetailsMap */}
+                  <DetailsMap
+                    destinos={[]}
+                    googleMapURL={mapURL}
+                    containerElement={<div style={{ height: '350px', width: 'auto' }} />}
+                    mapElement={<div style={{ height: '100%', width: '100%' }} />}
+                    loadingElement={<p>Cargando</p>}
+                  />
+                  {/* Component DetailsCalendar */}
+                </div>
+              </section>
               <div className={styles.section4}>
-                {/* Component DetailsMap */}
-                <DetailsMap
-                  destinos={[]}
-                  destinosCompleto={[]}
-                  googleMapURL={mapURL}
-                  containerElement={<div style={{ height: '350px' }} />}
-                  mapElement={<div style={{ height: '100%' }} />}
-                  loadingElement={<p>Cargando</p>}
-                />
-                {/* Component DetailsCalendar */}
+                <DetailsCardSection />
               </div>
-              <div className={styles.section5}>
-                <DetailsCardSection/>
+              <div className={styles.actions}>
+                <a href="/cotizaciones" className={styles.actions__button}>
+                  VOLVER
+                </a>
               </div>
             </TabPane>
             <TabPane tab="Día a Día" key="2">
