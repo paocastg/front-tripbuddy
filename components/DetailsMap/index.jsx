@@ -6,15 +6,15 @@ import {
   Marker
 } from 'react-google-maps'
 
-const DetailsMap = (props) => {
+const DetailsMap = ({ destinos }) => {
   return (
-    <div>
+    <>
       <GoogleMap
         defaultZoom={5}
         defaultCenter={{ lat: -9.189967, lng: -75.015152 }}
         defaultOptions={{ disableDefaultUI: true }}
       >
-        {props.destinosCompleto.map((marker) => {
+        {destinos && destinos.map((marker) => {
           return (
             <Marker
               key={marker.id}
@@ -24,7 +24,7 @@ const DetailsMap = (props) => {
           )
         })}
       </GoogleMap>
-    </div>
+    </>
   )
 }
 
