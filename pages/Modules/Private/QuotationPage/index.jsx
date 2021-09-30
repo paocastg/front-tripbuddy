@@ -1,171 +1,145 @@
 import styles from './index.module.scss'
-
 /* Components */
-import { Table } from 'antd'
+import {
+  Row,
+  Col,
+  Card,
+  CardBody,
+  Container,
+  Button,
+  Table,
+  InputGroupAddon,
+  InputGroupText,
+  FormGroup,
+  InputGroup,
+  Input,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem, Tooltip
+} from 'reactstrap'
 import H2 from 'components/H2'
+import moment from 'moment'
 
 /* Layout */
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
+import { API, HOST } from 'assets/Utils/Constants'
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
 
 const QuotationPage = () => {
-  const columns = [
-    {
-      title: 'Agencia',
-      dataIndex: 'agencia',
-      key: 'agencia',
-      render: (text, row, index) => {
-        if (row.agencia === 'Agencia Turismo') {
-          return {
-            /* Pasar a componente */
-            children: <p className={styles.quotation__subHeaderTable}>Lima - Cusco - Arequipa / 12 dias - 11 noches / 3 Personas   Categoria: ...  Actividades: ...</p>,
-            props: {
-              colSpan: 4
-            }
-          }
-        }
-        /* Pasar a componente */
-        return text
-      }
-    },
-    {
-      title: 'Descripcion',
-      dataIndex: 'descripcion',
-      key: 'descripcion',
-      width: 300,
-      render: (text, row, index) => {
-        if (row.agencia === 'Agencia Turismo') {
-          return {
-            children: <p>Hello World</p>,
-            props: {
-              colSpan: 0
-            }
-          }
-        }
-        return text
-      }
-    },
-    {
-      title: 'Destinos',
-      dataIndex: 'destinos',
-      key: 'destinos',
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [vacio, setVacio] = useState(false);
 
-      // eslint-disable-next-line react/display-name
-      render: (text, row, index) => {
-        // console.log(row)
-        // console.log('indice', index)
-        if (row.agencia === 'Agencia Turismo') {
-          return {
-            children: <p>Hello World</p>,
-            props: {
-              colSpan: 0
-            }
-          }
-        }
-        return (
-          <ul>
-            {text.map((el, i) => (
-              <li key={i}>{el}</li>
-            ))}
-          </ul>
-        )
-      }
-    },
-    {
-      title: 'Precio',
-      dataIndex: 'precio',
-      key: 'precio',
-      sorter: (a, b) => a.precio - b.precio,
-      render: (text, row, index) => {
-        if (row.agencia === 'Agencia Turismo') {
-          return {
-            children: <p>Hello World</p>,
-            props: {
-              colSpan: 0
-            }
-          }
-        }
-        return { children: <a href={`/cotizaciones/detalles/${text}`}>{ text }</a> }
-      }
-    }
-  ]
+  const fetchUsers = async () => {
+    const response = await axios.get(HOST + "/solicitud/list_cotizaciones/10");
+    setData(response.data.solicitud);
+    console.log(response.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
   function onChange (pagination, filters, sorter, extra) {
     console.log('params', sorter, extra)
   }
 
-  const data = [
-    {
-      key: 1,
-      agencia: 'Agencia Turismo'
-    },
-    {
-      key: 2,
-      agencia: 'Agencia Pepito',
-      descripcion:
-        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
-      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
-      precio: 1850
-    },
-    {
-      key: 3,
-      agencia: 'Peru Total',
-      descripcion:
-        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
-      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
-      precio: 1750
-    },
-    {
-      key: 4,
-      agencia: 'Peru Total',
-      descripcion:
-        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
-      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
-      precio: 3000
-    },
-    {
-      key: 5,
-      agencia: 'Agencia Turismo'
-    },
-    {
-      key: 6,
-      agencia: 'Agencia Pepito',
-      descripcion:
-        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
-      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
-      precio: 1850
-    },
-    {
-      key: 7,
-      agencia: 'Peru Total',
-      descripcion:
-        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
-      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
-      precio: 1750
-    },
-    {
-      key: 8,
-      agencia: 'Peru Total',
-      descripcion:
-        'Lorem Ipsum Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T.',
-      destinos: ['Centro de Lima', 'Tacna', 'Choquequirao'],
-      precio: 3000
-    }
-  ]
   return (
     <Wrapper>
       <Session>
         <div className={styles.quotation}>
           <H2>Cotizaciones Abiertas</H2>
-          <Table
-            columns={columns}
-            dataSource={data}
-            pagination={false}
-            scroll={{ y: 500, x: 920 }}
-            className={`${styles.quotation__headerTable} ${styles.quotation__tdTable}`}
-            rowClassName={() => styles.quotation__bodyTable}
-            onChange={onChange}
-          />
-        </div>
+          <div style = {{overflow: 'scroll', width:'1400px'}}>
+          <Table bordered style = {{width:'1400px'}} >
+                  <thead>
+                    <tr style={{ background: "#00B2E3", color: "#fff", fontFamily:"Geomanist-Regular",  height: '60px' }}>                      
+                    <th>Agencia</th>
+                      <th>Descripcion</th>
+                      <th>Destinos</th>
+                      <th>Precio</th>
+                    </tr>
+                    <tr><th></th><th></th></tr>
+                    <tr style={{ background: "#2C2C2C", color: "#fff", fontFamily:"Geomanist-Regular",}}>                      
+                      <th></th>
+                      <th></th>
+                      <th>Categoria</th>
+                      <th>Actividades</th>
+                      </tr>                 
+                    {loading ? (
+                      <tr className="text-center">
+                        <td colSpan="8">
+                          <div
+                            className="spinner-border text-primary m-1"
+                            role="status"
+                          >
+                            <span className="sr-only">Loading...</span>
+                          </div>
+                        </td>
+                      </tr>
+                    ) : vacio ? (
+                      <tr className="text-center">
+                        <td colSpan="8">No hay ningun registro</td>
+                      </tr>
+                    ) : (
+                      data && data.map((item, index) => {
+                        return (                 
+                          <tr style={{                            
+                            background: "#2C2C2C", fontFamily:"Geomanist-Regular",
+                            color: "#fff",
+                            cursor: "pointer",
+                          }}>
+                           <center><td>{item.destino.map((destinos) => destinos.nombre) + "  " }</td></center>
+                          <th>
+                          <th>{ "   / " + ((moment(item.fecha_fin).diff(moment(item.fecha_inicio),  'dias'))/(1000*60*60*24)) + " dias "  }</th>
+                          <th>{ " / " + (item.numero_adultos+item.numero_adolescentes+item.numero_ninos) + " Personas "  }</th>
+                          </th>                          
+                          <th>{item.categoria.map((categorias) => categorias.nombre) + "  "  }</th>
+                          <th>{item.actividad.map((actividads) => actividads.nombre) + " "}</th>             
+                          </tr>
+                      );
+                      })
+                    )}     
+                    <tr><th></th></tr><br></br>
+                  </thead>
+                  <tbody>
+                    {loading ? (
+                      <tr className="text-center">
+                        <td colSpan="8">
+                          <div
+                            className="spinner-border text-primary m-1"
+                            role="status"
+                          >
+                            <span className="sr-only">Loading...</span>
+                          </div>
+                        </td>
+                      </tr>
+                    ) : vacio ? (
+                      <tr className="text-center">
+                        <td colSpan="8">No hay ningun registro</td>
+                      </tr>
+                    ) : (
+                      data && data.map((item, index) => {
+                        return (
+                          <tr key={index} 
+                          style={{
+                            fontFamily:"Geomanist-Regular",
+                            cursor: "pointer",
+                          }}>
+                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.agencia)}</center></td>
+                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.descripcion)}</center></td>
+                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.estado)}</center></td>
+                            <td><center><a href={`/cotizaciones/detalles/${item.cotizaciones.map((cotizacion) => cotizacion.id)}`}>{item.cotizaciones.map((cotizacion) => cotizacion.precio)}</a></center></td>
+                          </tr>
+                        );
+                      })
+                    )}
+                  </tbody>
+                </Table>
+                </div>
+                </div>
       </Session>
     </Wrapper>
   )
