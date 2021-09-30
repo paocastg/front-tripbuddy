@@ -52,7 +52,7 @@ const QuotationPage = () => {
       <Session>
         <div className={styles.quotation}>
           <H2>Cotizaciones Abiertas</H2>
-          <div style = {{overflow: 'scroll', width:'1400px'}}>
+          <div style = {{overflow: 'scroll'}}>
           <Table bordered style = {{width:'1400px'}} >
                   <thead>
                     <tr style={{ background: "#00B2E3", color: "#fff", fontFamily:"Geomanist-Regular",  height: '60px' }}>                      
