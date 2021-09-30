@@ -1,11 +1,12 @@
 import styles from './index.module.scss'
 
-const DetailsCardSection = () => {
+const DetailsCardSection = ({ el }) => {
+  const { descripcion, destino } = el
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h3 className={styles.header__text}>
-          <strong>Cusco</strong> - 2 días
+          <strong>{destino}</strong> - 2 días
         </h3>
         <a href="#" className={styles.header__action}>
           Ver el plan día por día
@@ -23,8 +24,7 @@ const DetailsCardSection = () => {
         <div className={styles.body__content}>
           <h3 className={styles.body__subtitle}>Plaza de armas</h3>
           <p className={styles.body__paragraph}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
-            eaque! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis voluptate delectus deserunt rem beatae voluptatibus officiis ipsum sapiente eos fuga?
+            {descripcion}
           </p>
           <h3 className={styles.body__subtitle}>Cosas por hacer</h3>
           <p className={styles.body__paragraph}>
