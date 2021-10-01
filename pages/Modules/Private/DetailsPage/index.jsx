@@ -61,7 +61,7 @@ const DetailsPage = () => {
     )
     const endDate = new Date(end)
     endDate.setMinutes(endDate.getMinutes() + endDate.getTimezoneOffset())
-    const resta = startDate.getTime() - endDate.getTime()
+    const resta = endDate.getTime() - startDate.getTime()
     if (resta < 0) {
       return '--'
     }
