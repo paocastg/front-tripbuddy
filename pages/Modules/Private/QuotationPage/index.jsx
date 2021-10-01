@@ -1,30 +1,13 @@
 import styles from './index.module.scss'
 /* Components */
-import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Container,
-  Button,
-  Table,
-  InputGroupAddon,
-  InputGroupText,
-  FormGroup,
-  InputGroup,
-  Input,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem, Tooltip
-} from 'reactstrap'
+import { Table } from 'reactstrap'
 import H2 from 'components/H2'
 import moment from 'moment'
 
 /* Layout */
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
-import { API, HOST } from 'assets/Utils/Constants'
+import { HOST } from 'assets/Utils/Constants'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
@@ -36,16 +19,12 @@ const QuotationPage = () => {
   const fetchUsers = async () => {
     const response = await axios.get(HOST + "/solicitud/list_cotizaciones/10");
     setData(response.data.solicitud);
-    console.log(response.data);
     setLoading(false);
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
-  function onChange (pagination, filters, sorter, extra) {
-    console.log('params', sorter, extra)
-  }
 
   return (
     <Wrapper>
@@ -128,10 +107,10 @@ const QuotationPage = () => {
                             fontFamily:"Geomanist-Regular",
                             cursor: "pointer",
                           }}>
-                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.agencia)}</center></td>
-                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.descripcion)}</center></td>
-                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.estado)}</center></td>
-                            <td><center><a href={`/cotizaciones/detalles/${item.cotizaciones.map((cotizacion) => cotizacion.id)}`}>{item.cotizaciones.map((cotizacion) => cotizacion.precio)}</a></center></td>
+                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.agencia) + "  "}</center></td>
+                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.descripcion) + "  "}</center></td>
+                            <td><center>{item.cotizaciones.map((cotizacion) => cotizacion.estado) + "  "}</center></td>
+                            <td><center><a href={`/cotizaciones/detalles/${item.cotizaciones.map((cotizacion) => cotizacion.id) + "  "}`}>{item.cotizaciones.map((cotizacion) => cotizacion.precio) + "  "}</a></center></td>
                           </tr>
                         );
                       })
