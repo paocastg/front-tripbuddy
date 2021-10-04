@@ -10,12 +10,14 @@ import Wrapper from 'layout/Wrapper'
 import { HOST } from 'assets/Utils/Constants'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import { Auth } from 'assets/Utils/Auth'
 
 const QuotationPage = () => {
   const [data, setData] = useState([])
 
   const fetchUsers = async () => {
-    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/10')
+    const user = Auth.getSession().usuario.id
+    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user)
     setData(response.data.solicitud)
   }
 
