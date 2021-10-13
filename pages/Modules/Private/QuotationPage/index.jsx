@@ -1,8 +1,7 @@
 import styles from './index.module.scss'
-import UserTable from "./UserTable";
-import EditUserForm from "./EditUserForm";
+import UserTable from './UserTable'
+import EditUserForm from './EditUserForm'
 /* Components */
-import { Table } from 'reactstrap'
 import H2 from 'components/H2'
 
 /* Layout */
@@ -15,10 +14,10 @@ import { Auth } from 'assets/Utils/Auth'
 import Button from 'components/Button'
 
 const QuotationPage = () => {
-  const initialFormState = { agencia: null, descripcion: "", estado: "", lista: "" };
-  const [users, setUsers] = useState('');
-  const [editing, setEditing] = useState(false);
-  const [currentUser, setCurrentUser] = useState(initialFormState);
+  const initialFormState = { agencia: null, descripcion: '', estado: '', lista: '' }
+  const [users, setUsers] = useState('')
+  const [editing, setEditing] = useState(false)
+  const [currentUser, setCurrentUser] = useState(initialFormState)
   const fetchUsers = async () => {
     const user = Auth.getSession().usuario.id
     const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user)
@@ -30,16 +29,16 @@ const QuotationPage = () => {
   }, [])
 
   const editRow = user => {
-    setEditing(true);
-    setCurrentUser(user);
-    esconder();
-  };
+    setEditing(true)
+    setCurrentUser(user)
+    esconder()
+  }
   const updateUser = (solicitud, updatedUser) => {
     console.log(solicitud)
-    setEditing(false);
-    setUsers(users.map(user => user.cotizaciones.map((item) => item.solicitud === solicitud ? updatedUser : user)));
-  };
-  const esconder = () => {        
+    setEditing(false)
+    setUsers(users.map(user => user.cotizaciones.map((item) => item.solicitud === solicitud ? updatedUser : user)))
+  }
+  const esconder = () => {
     document.getElementById('solicitud').style.display = 'none'
     document.getElementById('cotizaciones').style.display = 'block'
   }
@@ -52,7 +51,7 @@ const QuotationPage = () => {
       <Session>
         <div className={styles.quotation}>
           <H2>Cotizaciones Abiertas</H2>
-          <div id='cotizaciones' style = {{display: 'none'}}>
+          <div id='cotizaciones' style = {{ display: 'none' }}>
             <EditUserForm
               editing={editing}
               setEditing={setEditing}
@@ -68,7 +67,7 @@ const QuotationPage = () => {
         <div className="flex-large">
           <UserTable users={users} editRow={editRow}/>
         </div>
-      </div>          
+      </div>
       </div>
       </Session>
     </Wrapper>

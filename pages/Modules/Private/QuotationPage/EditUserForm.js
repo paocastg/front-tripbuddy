@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
 import { Table } from 'reactstrap'
 import moment from 'moment'
 
 const EditUserForm = props => {
-  const initialFormState = { agencia: null, descripcion: "", estado: "", lista: "" };
+  const initialFormState = { agencia: null, descripcion: '', estado: '', lista: '' }
   const [user, setUser] = useState(
     props.editing ? props.currentUser : initialFormState
-  );
+  )
   useEffect(() => {
-    setUser(props.currentUser);
+    setUser(props.currentUser)
     console.log(user)
     console.log('user')
-  }, [props]);
+  }, [props])
 
   return (
     <div>
@@ -27,7 +27,7 @@ const EditUserForm = props => {
                       <th>Precio</th>
                       <th></th>
       </tr>
-      <tr style={{ background: '#2C2C2C', color: '#fff', fontFamily: 'Geomanist-Regular', width: '1400px' }}>
+      <tr style={{ background: '#2C2C2C', color: '#fff', fontFamily: 'Geomanist-Regular', width: '1400px', border: ' 3px solid' }}>
                       <th></th>
                       <th></th>
                       <th></th>
@@ -38,31 +38,25 @@ const EditUserForm = props => {
     </thead>
     <tbody>
         {
-            <tr key={1} style={{
-                background: '#2C2C2C',
-                fontFamily: 'Geomanist-Regular',
-                color: '#fff',
-                cursor: 'pointer',
-                border: '0.5px solid'
-              }}>
-            <td>{user.destino && user.destino.map((destinos) => destinos.nombre) + '  '}</td>
-            <td>{'   / ' + ((moment(user.fecha_fin).diff(moment(user.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias'}</td>
+            <tr key={1} style={{ background: '#2C2C2C', fontFamily: 'Geomanist-Regular', color: '#fff', cursor: 'pointer', border: '0.5px solid' }}>
+            <td><center>{user.destino && user.destino.map((destinos) => destinos.nombre) + '  ' }</center></td>
+            <td>{'   / ' + ((moment(user.fecha_fin).diff(moment(user.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }</td>
             <td>{ ' / ' + (user.numero_adultos + user.numero_adolescentes + user.numero_ninos) + ' Personas ' }</td>
             <td>{ user.categoria && user.categoria.map((categorias) => categorias.nombre) + '  ' }</td>
             <td>{ user.actividad && user.actividad.map((actividads) => actividads.nombre) + ' ' }</td>
-            <td style = {{display: 'none'}}>{(user.cotizaciones) && (user.cotizaciones.map((item) => item.solicitud) + ' ')[0] }</td>
-            <td></td>          
+            <td style = {{ display: 'none' }}>{(user.cotizaciones) && (user.cotizaciones.map((item) => item.solicitud) + ' ')[0] }</td>
+            <td></td>
           </tr>
         }
       {
-      user.cotizaciones && user.cotizaciones.map((item) => 
-      <tr style={{ border: 'silver 2px solid' }}>
-      <td>{item.agencia}</td>
-      <td>{item.descripcion}</td>
+      user.cotizaciones && user.cotizaciones.map((item) =>
+      <tr key={ 10 } style={{ border: 'silver 2px solid' }}>
+      <td><center>{ item.agencia }</center></td>
+      <td>{ item.descripcion }</td>
       <td></td>
-      <td>{item.estado}</td>
+      <td>{ item.estado }</td>
       <td></td>
-      <td><center><a href={`/cotizaciones/detalles/${ item.id + '  '}`}>{ item.precio + '  '}</a></center></td>
+      <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.precio + '  '}</a></center></td>
       </tr>
       )
       }
@@ -70,7 +64,7 @@ const EditUserForm = props => {
   </Table>
   </div>
     </div>
-  );
-};
+  )
+}
 
-export default EditUserForm;
+export default EditUserForm
