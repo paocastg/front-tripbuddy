@@ -1,0 +1,25 @@
+$font: 'Geomanist-Regular';
+$font-bold: 'Geomanist-Bold';
+$black-color: #000;
+$white-color: #fff;
+$first-color-tripbuddy: #00B2E3;
+$second-color-tripbuddy: #009CD7;
+
+
+.dayToDay {
+  padding-top: 1rem;
+  &__title {
+    font-family: $font;
+    font-size: 1.2em;
+    color: $white-color;
+    background-color: $black-color;
+    border-color: $first-color-tripbuddy;
+    border-radius: 20px;
+    padding: 6px 12px;
+  }
+  &__city {
+    font-family: $font;
+    font-size: 1.4em;
+    color: $black-color;
+  }
+}

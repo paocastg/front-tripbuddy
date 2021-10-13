@@ -9,6 +9,7 @@ import { HOST, MAPS_KEY } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 
 const { TabPane } = Tabs
 
@@ -199,7 +200,8 @@ const DetailsPage = () => {
                   </div>
                 </TabPane>
                 <TabPane tab="Día a Día" key="2">
-                  <h2>Proximamente ...</h2>
+                  <DayToDaySection/>
+                  <DayToDaySection/>
                 </TabPane>
               </Tabs>
             </section>
