@@ -1,8 +1,8 @@
 import styles from './index.module.scss'
+import UserTable from './UserTable'
+import EditUserForm from './EditUserForm'
 /* Components */
-import { Table } from 'reactstrap'
 import H2 from 'components/H2'
-import moment from 'moment'
 
 /* Layout */
 import Session from 'layout/Session'
@@ -11,83 +11,64 @@ import { HOST } from 'assets/Utils/Constants'
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Auth } from 'assets/Utils/Auth'
+import Button from 'components/Button'
 
 const QuotationPage = () => {
-  const [data, setData] = useState([])
-
+  const initialFormState = { agencia: null, descripcion: '', estado: '', lista: '' }
+  const [users, setUsers] = useState('')
+  const [editing, setEditing] = useState(false)
+  const [currentUser, setCurrentUser] = useState(initialFormState)
   const fetchUsers = async () => {
     const user = Auth.getSession().usuario.id
     const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user)
-    setData(response.data.solicitud)
+    setUsers(response.data.solicitud)
   }
-
+  console.log(users)
   useEffect(() => {
     fetchUsers()
   }, [])
 
+  const editRow = user => {
+    setEditing(true)
+    setCurrentUser(user)
+    esconder()
+  }
+  const updateUser = (solicitud, updatedUser) => {
+    console.log(solicitud)
+    setEditing(false)
+    setUsers(users.map(user => user.cotizaciones.map((item) => item.solicitud === solicitud ? updatedUser : user)))
+  }
+  const esconder = () => {
+    document.getElementById('solicitud').style.display = 'none'
+    document.getElementById('cotizaciones').style.display = 'block'
+  }
+  const atras = () => {
+    document.getElementById('solicitud').style.display = 'block'
+    document.getElementById('cotizaciones').style.display = 'none'
+  }
   return (
     <Wrapper>
       <Session>
         <div className={styles.quotation}>
           <H2>Cotizaciones Abiertas</H2>
-          <div style = {{ overflow: 'scroll' }}>
-          <Table bordered style = {{ width: '1400px' }}>
-                  <thead>
-                    <tr style={{ background: '#00B2E3', color: '#fff', fontFamily: 'Geomanist-Regular', height: '60px' }}>
-                    <th>Agencia</th>
-                      <th>Descripcion</th>
-                      <th>Destinos</th>
-                      <th>Precio</th>
-                    </tr>
-                    <tr><th></th><th></th></tr>
-                    <tr style={{ background: '#2C2C2C', color: '#fff', fontFamily: 'Geomanist-Regular' }}>
-                      <th></th>
-                      <th></th>
-                      <th>Categoria</th>
-                      <th>Actividades</th>
-                      </tr>
-                    {
-                      data && data.map((item, index, key) => {
-                        return (
-                          <tr key={key} style={{
-                            background: '#2C2C2C',
-                            fontFamily: 'Geomanist-Regular',
-                            color: '#fff',
-                            cursor: 'pointer'
-                          }}>
-                           <center><td>{ item.destino.map((destinos) => destinos.nombre) + '  ' }</td></center>
-                          <th>
-                          <th>{ '   / ' + ((moment(item.fecha_fin).diff(moment(item.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }</th>
-                          <th>{ ' / ' + (item.numero_adultos + item.numero_adolescentes + item.numero_ninos) + ' Personas ' }</th>
-                          </th>
-                          <th>{ item.categoria.map((categorias) => categorias.nombre) + '  ' }</th>
-                          <th>{ item.actividad.map((actividads) => actividads.nombre) + ' ' }</th>
-                          </tr>
-                        )
-                      })
-                    }
-                    <tr><th></th></tr><br></br>
-                  </thead>
-                  <tbody>{
-                      data && data.map((item, index) => {
-                        return (
-                          <tr key={index}
-                          style={{
-                            fontFamily: 'Geomanist-Regular',
-                            cursor: 'pointer'
-                          }}>
-                            <td><center>{ item.cotizaciones.map((cotizacion) => cotizacion.agencia) + '  ' }</center></td>
-                            <td><center>{ item.cotizaciones.map((cotizacion) => cotizacion.descripcion) + '  ' }</center></td>
-                            <td><center>{ item.cotizaciones.map((cotizacion) => cotizacion.estado) + '  ' }</center></td>
-                            <td><center><a href={`/cotizaciones/detalles/${item.cotizaciones.map((cotizacion) => cotizacion.id) + '  '}`}>{item.cotizaciones.map((cotizacion) => cotizacion.precio) + '  '}</a></center></td>
-                          </tr>
-                        )
-                      })
-                    }
-                  </tbody>
-                </Table>
-                </div>
-                </div>
+          <div id='cotizaciones' style = {{ display: 'none' }}>
+            <EditUserForm
+              editing={editing}
+              setEditing={setEditing}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              updateUser={updateUser}
+            /><br></br><br></br>
+            <center><div>
+              <Button onClick={atras}>Atrás</Button>
+            </div></center>
+            </div>
+      <div id='solicitud'>
+        <div className="flex-large">
+          <UserTable users={users} editRow={editRow}/>
+        </div>
+      </div>
+      </div>
       </Session>
     </Wrapper>
   )
