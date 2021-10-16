@@ -2,15 +2,17 @@ import styles from './index.module.scss'
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
 import { useRouter } from 'next/router'
-import { Timeline, Tabs, Result, Spin } from 'antd'
+import { Timeline, Tabs, Result, Spin, Anchor } from 'antd'
 
 import DetailsMap from 'components/DetailsMap'
 import { HOST, MAPS_KEY } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 
 const { TabPane } = Tabs
+const { Link } = Anchor
 
 const DetailsPage = () => {
   const [dbDetails, setDbDetails] = useState(null)
@@ -27,8 +29,8 @@ const DetailsPage = () => {
     return idSplitted[3]
   }
 
-  const endDate = dbDetails && dbDetails.solicitud[0].fecha_fin
-  const startDate = dbDetails && dbDetails.solicitud[0].fecha_inicio
+  const endDate = dbDetails && ''
+  const startDate = dbDetails && ''
 
   /*
    * Transforma una fecha de la forma '21-09-29' a 'Septiembre 29, 2021'
@@ -71,20 +73,24 @@ const DetailsPage = () => {
     /*
      * Obtener los detalles de cotizacion de la API de detalles
      */
+    console.log('yep use effect')
     setLoading(true)
     const getQuotationDetails = async () => {
       try {
         const url = `${HOST}/solicitud/list_detallecotizacion/${idParams(
           router
         )}`
+        console.log('yep url: ', url)
         const res = await axios.get(url)
         const json = await res.data
-        if (!json.detalle || !json.solicitud) {
+        console.log('yep json: ', json)
+        if (!json.detalles_cotizacion) {
           throw new Error()
         }
         setDbDetails(json)
         setLoading(false)
       } catch (err) {
+        console.log('Uups error: ', err)
         setError({
           err: true,
           status: err.response?.status || '404',
@@ -188,7 +194,7 @@ const DetailsPage = () => {
                   </section>
                   <div className={styles.section4}>
                     {dbDetails &&
-                      dbDetails.detalle.map((el) => (
+                      dbDetails.detalles_cotizacion.map((el) => (
                         <DetailsCardSection key={el.id} el={el} />
                       ))}
                   </div>
@@ -199,7 +205,28 @@ const DetailsPage = () => {
                   </div>
                 </TabPane>
                 <TabPane tab="Día a Día" key="2">
-                  <h2>Proximamente ...</h2>
+                  <div className={styles.container__dayToDay}>
+                    <Anchor>
+                      <h2>Mayo</h2>
+                      <Link
+                        href="#15"
+                        title="15"
+                      />
+                      <Link
+                        href="#16"
+                        title="16"
+                      />
+                      <Link
+                        href="#17"
+                        title="17"
+                      />
+                    </Anchor>
+                    <div className={styles.container__day}>
+                      <DayToDaySection day="15"/>
+                      <DayToDaySection day="16"/>
+                      <DayToDaySection day="17"/>
+                    </div>
+                  </div>
                 </TabPane>
               </Tabs>
             </section>
