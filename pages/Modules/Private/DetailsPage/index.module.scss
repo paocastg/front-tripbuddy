@@ -95,3 +95,12 @@ $font-bold: 'Geomanist-Bold';
     }
   }
 }
+
+.container {
+  &__dayToDay {
+    display: flex;
+  }
+  &__day {
+    margin: 0 5rem;
+  }
+}
