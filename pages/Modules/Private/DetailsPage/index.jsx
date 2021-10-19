@@ -29,8 +29,8 @@ const DetailsPage = () => {
     return idSplitted[3]
   }
 
-  const endDate = dbDetails && ''
-  const startDate = dbDetails && ''
+  const endDate = dbDetails && dbDetails.solicitud[0].fecha_fin
+  const startDate = dbDetails && dbDetails.solicitud[0].fecha_inicio
 
   /*
    * Transforma una fecha de la forma '21-09-29' a 'Septiembre 29, 2021'
@@ -84,7 +84,7 @@ const DetailsPage = () => {
         const res = await axios.get(url)
         const json = await res.data
         console.log('yep json: ', json)
-        if (!json.detalles_cotizacion) {
+        if (!json.mejores_lugares || !json.solicitud) {
           throw new Error()
         }
         setDbDetails(json)
@@ -194,41 +194,32 @@ const DetailsPage = () => {
                   </section>
                   <div className={styles.section4}>
                     {dbDetails &&
-                      dbDetails.detalles_cotizacion.map((el) => (
-                        <DetailsCardSection key={el.id} el={el} />
+                      dbDetails.mejores_lugares.map((el) => (
+                        <DetailsCardSection key={el.destino} el={el} />
                       ))}
-                  </div>
-                  <div className={styles.actions}>
-                    <a href="/cotizaciones" className={styles.actions__button}>
-                      VOLVER
-                    </a>
                   </div>
                 </TabPane>
                 <TabPane tab="Día a Día" key="2">
                   <div className={styles.container__dayToDay}>
                     <Anchor>
                       <h2>Mayo</h2>
-                      <Link
-                        href="#15"
-                        title="15"
-                      />
-                      <Link
-                        href="#16"
-                        title="16"
-                      />
-                      <Link
-                        href="#17"
-                        title="17"
-                      />
+                      <Link href="#15" title="15" />
+                      <Link href="#16" title="16" />
+                      <Link href="#17" title="17" />
                     </Anchor>
                     <div className={styles.container__day}>
-                      <DayToDaySection day="15"/>
-                      <DayToDaySection day="16"/>
-                      <DayToDaySection day="17"/>
+                      <DayToDaySection day="15" />
+                      <DayToDaySection day="16" />
+                      <DayToDaySection day="17" />
                     </div>
                   </div>
                 </TabPane>
               </Tabs>
+              <div className={styles.actions}>
+                <a href="/cotizaciones" className={styles.actions__button}>
+                  VOLVER
+                </a>
+              </div>
             </section>
           </>
         )}

@@ -7,12 +7,12 @@ const UserMenu = () => {
   }
   return (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key="1">
         <a href="/cotizaciones">
           Cotizaciones abiertas
         </a>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="2">
         <a onClick={handleClick} href="">
           Logout
         </a>
