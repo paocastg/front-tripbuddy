@@ -19,13 +19,29 @@
 }
 
 .user {
-  height: 47px;
-  width: 150px;
+  display: flex;
+  align-items: center;
   padding-left: 15px;
-  line-height: 47px;
+  &__figure {
+    margin: 0;
+  }
+  &__img {
+    width: 28px;
+    height: 28px;
+    background: gray;
+    border-radius: 50%;
+  }
+  &__text {
+    margin: 0;
+    padding: 0 6px;
+    font-family: "Geomanist-Regular";
+    font-size: 1.1em;
+    color: #41495c;
+  }
 }
 
 .header_button {
+  margin: 0 6px;
   border: 1px solid #00B2E3;
   color: #00b2e3;
   padding: 6px 12px;
