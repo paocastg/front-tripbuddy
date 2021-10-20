@@ -1,0 +1,77 @@
+$font: 'Geomanist-Regular';
+$font-bold: 'Geomanist-Bold';
+$black-color: #000;
+$white-color: #fff;
+$first-color-tripbuddy: #00B2E3;
+$second-color-tripbuddy: #009CD7;
+
+
+.dayToDay {
+  padding-top: 1rem;
+  &__title {
+    font-family: $font;
+    font-size: 1.2em;
+    color: $white-color;
+    background-color: $black-color;
+    border-color: $first-color-tripbuddy;
+    border-radius: 20px;
+    padding: 6px 12px;
+  }
+  &__city {
+    margin: 1rem 0;
+    font-family: $font;
+    font-size: 1.4em;
+    color: $black-color;
+  }
+}
+
+.timeCard {
+  margin: 16px 0;
+  padding: 32px;
+  border: 1px solid #ccc;
+  &__time {
+    margin: 0;
+    font-family: "Geomanist-Regular";
+    font-size: 1.1em;
+    color: #000;
+    text-align: left;
+    &_bold {
+      font-weight: bold;
+    }
+  }
+  &__timeGroup {
+    margin-bottom: 1rem;
+  }
+  &__figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__picture {
+    max-width: 100%;
+    height: auto;
+  }
+  &__title {
+    font-family: "Geomanist-Regular";
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #000;
+  }
+  &__text {
+    font-family: "Geomanist-Regular";
+    font-size: 1.1em;
+    color: #000;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .timeCard {
+    display: flex;
+    &__timeGroup {
+      padding-right: 4rem;
+    }
+    &__figure {
+      padding: 0 2rem;
+    }
+  }
+}

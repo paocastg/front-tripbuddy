@@ -2,20 +2,25 @@ import styles from './index.module.scss'
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
 import { useRouter } from 'next/router'
-import { Timeline, Tabs, Result, Spin } from 'antd'
+import { Timeline, Tabs, Result, Spin, Anchor } from 'antd'
 
 import DetailsMap from 'components/DetailsMap'
 import { HOST, MAPS_KEY } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 
 const { TabPane } = Tabs
+const { Link } = Anchor
 
 const DetailsPage = () => {
   const [dbDetails, setDbDetails] = useState(null)
+  const [dbDayToDay, setDbDayToDay] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  // para el tabs
+  const [activeKey, setActiveKey] = useState('1')
 
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${MAPS_KEY}`
   /*
@@ -71,20 +76,24 @@ const DetailsPage = () => {
     /*
      * Obtener los detalles de cotizacion de la API de detalles
      */
+    console.log('yep use effect')
     setLoading(true)
     const getQuotationDetails = async () => {
       try {
         const url = `${HOST}/solicitud/list_detallecotizacion/${idParams(
           router
         )}`
+        console.log('yep url: ', url)
         const res = await axios.get(url)
         const json = await res.data
-        if (!json.detalle || !json.solicitud) {
+        console.log('yep json: ', json)
+        if (!json.detalles_cotizacion || !json.solicitud) {
           throw new Error()
         }
         setDbDetails(json)
         setLoading(false)
       } catch (err) {
+        console.log('Uups error: ', err)
         setError({
           err: true,
           status: err.response?.status || '404',
@@ -93,9 +102,27 @@ const DetailsPage = () => {
         setLoading(false)
       }
     }
+    const getDayToDay = async () => {
+      try {
+        // define url api
+        const url = `${HOST}/solicitud/list_dia_a_dia/${idParams(router)}`
+        // make a query get to api
+        const res = await axios.get(url)
+        const json = await res.data
+        console.log('yep day to day: ', json)
+        setDbDayToDay(json)
+      } catch (err) {
+        console.log('Uups err: ', err)
+      }
+    }
     getQuotationDetails()
+    getDayToDay()
   }, [])
 
+  const handleTabs = (activityKey) => {
+    // console.log('yep activity key: ', activityKey)
+    setActiveKey(activityKey)
+  }
   return (
     <Wrapper>
       <Session>
@@ -137,7 +164,7 @@ const DetailsPage = () => {
               </aside>
             </article>
             <section className={styles.section2}>
-              <Tabs>
+              <Tabs onChange={handleTabs} activeKey={activeKey}>
                 <TabPane tab="Ruta" key="1">
                   <section className={styles.section3}>
                     {/* Section DestinyDetails */}
@@ -188,20 +215,31 @@ const DetailsPage = () => {
                   </section>
                   <div className={styles.section4}>
                     {dbDetails &&
-                      dbDetails.detalle.map((el) => (
-                        <DetailsCardSection key={el.id} el={el} />
+                      dbDetails.detalles_cotizacion.map((el) => (
+                        <DetailsCardSection key={el.destino} el={el} setActiveKey={setActiveKey} />
                       ))}
-                  </div>
-                  <div className={styles.actions}>
-                    <a href="/cotizaciones" className={styles.actions__button}>
-                      VOLVER
-                    </a>
                   </div>
                 </TabPane>
                 <TabPane tab="Día a Día" key="2">
-                  <h2>Proximamente ...</h2>
+                  <div className={styles.container__dayToDay}>
+                    <Anchor>
+                      <h2>Mayo</h2>
+                      <Link href="#15" title="15" />
+                      <Link href="#16" title="16" />
+                      <Link href="#17" title="17" />
+                    </Anchor>
+                    <div className={styles.container__day}>
+                      {dbDayToDay &&
+                        dbDayToDay.dia_a_dia.map((el, index) => <DayToDaySection key={index} el={el}/>)}
+                    </div>
+                  </div>
                 </TabPane>
               </Tabs>
+              <div className={styles.actions}>
+                <a href="/cotizaciones" className={styles.actions__button}>
+                  VOLVER
+                </a>
+              </div>
             </section>
           </>
         )}
