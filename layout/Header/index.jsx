@@ -11,12 +11,10 @@ const Header = () => {
   const [logged, setLogged] = useState(false)
   const [user, setUser] = useState('')
   const router = useRouter()
-  console.log('yep user: ', user.nombres)
   useEffect(() => {
     const session = Auth.getSession()
     if (session?.usuario && session?.token) {
       setLogged(true)
-      console.log('yep session: ', session.usuario.nombres)
       setUser(session.usuario)
     } else {
       setLogged(false)
