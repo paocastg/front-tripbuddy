@@ -16,8 +16,11 @@ const { Link } = Anchor
 
 const DetailsPage = () => {
   const [dbDetails, setDbDetails] = useState(null)
+  const [dbDayToDay, setDbDayToDay] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  // para el tabs
+  const [activeKey, setActiveKey] = useState('1')
 
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${MAPS_KEY}`
   /*
@@ -84,7 +87,7 @@ const DetailsPage = () => {
         const res = await axios.get(url)
         const json = await res.data
         console.log('yep json: ', json)
-        if (!json.mejores_lugares || !json.solicitud) {
+        if (!json.detalles_cotizacion || !json.solicitud) {
           throw new Error()
         }
         setDbDetails(json)
@@ -99,9 +102,27 @@ const DetailsPage = () => {
         setLoading(false)
       }
     }
+    const getDayToDay = async () => {
+      try {
+        // define url api
+        const url = `${HOST}/solicitud/list_dia_a_dia/${idParams(router)}`
+        // make a query get to api
+        const res = await axios.get(url)
+        const json = await res.data
+        console.log('yep day to day: ', json)
+        setDbDayToDay(json)
+      } catch (err) {
+        console.log('Uups err: ', err)
+      }
+    }
     getQuotationDetails()
+    getDayToDay()
   }, [])
 
+  const handleTabs = (activityKey) => {
+    // console.log('yep activity key: ', activityKey)
+    setActiveKey(activityKey)
+  }
   return (
     <Wrapper>
       <Session>
@@ -143,7 +164,7 @@ const DetailsPage = () => {
               </aside>
             </article>
             <section className={styles.section2}>
-              <Tabs>
+              <Tabs onChange={handleTabs} activeKey={activeKey}>
                 <TabPane tab="Ruta" key="1">
                   <section className={styles.section3}>
                     {/* Section DestinyDetails */}
@@ -194,8 +215,8 @@ const DetailsPage = () => {
                   </section>
                   <div className={styles.section4}>
                     {dbDetails &&
-                      dbDetails.mejores_lugares.map((el) => (
-                        <DetailsCardSection key={el.destino} el={el} />
+                      dbDetails.detalles_cotizacion.map((el) => (
+                        <DetailsCardSection key={el.destino} el={el} setActiveKey={setActiveKey} />
                       ))}
                   </div>
                 </TabPane>
@@ -208,9 +229,8 @@ const DetailsPage = () => {
                       <Link href="#17" title="17" />
                     </Anchor>
                     <div className={styles.container__day}>
-                      <DayToDaySection day="15" />
-                      <DayToDaySection day="16" />
-                      <DayToDaySection day="17" />
+                      {dbDayToDay &&
+                        dbDayToDay.dia_a_dia.map((el, index) => <DayToDaySection key={index} el={el}/>)}
                     </div>
                   </div>
                 </TabPane>

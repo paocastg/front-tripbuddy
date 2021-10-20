@@ -1,24 +1,24 @@
 import styles from './index.module.scss'
 
-const DetailsCardSection = ({ el }) => {
+const DetailsCardSection = ({ el, setActiveKey }) => {
   const {
     destino,
     num_dias: numDias,
-    detalle_cotizacion: detalleCotizacion
+    mejores_lugares: mejoresLugares
   } = el
   const {
     descripcion,
     lugar,
     cosas_por_hacer: cosasPorHacer,
     viajes_secundarios: viajesSecundarios
-  } = detalleCotizacion[0]
+  } = mejoresLugares[0]
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h3 className={styles.header__text}>
           <strong>{destino}</strong> - {numDias} días
         </h3>
-        <a href="#" className={styles.header__action}>
+        <a onClick={() => setActiveKey('2')} href="#15" className={styles.header__action}>
           Ver el plan día por día
         </a>
       </div>
@@ -44,8 +44,8 @@ const DetailsCardSection = ({ el }) => {
       <div className={styles.places}>
         <h3 className={styles.body__subtitle}>Mejores lugares de tu viaje</h3>
         <div className={styles.places__images}>
-          {detalleCotizacion &&
-            detalleCotizacion.map((el) => {
+          {mejoresLugares &&
+            mejoresLugares.map((el) => {
               return (
                 <figure key={el.id} className={styles.places__figure}>
                   <img
