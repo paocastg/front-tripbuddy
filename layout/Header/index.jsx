@@ -15,7 +15,7 @@ const Header = () => {
     const session = Auth.getSession()
     if (session?.usuario && session?.token) {
       setLogged(true)
-      setUser(session.usuario)
+      setUser(session?.usuario)
     } else {
       setLogged(false)
     }
