@@ -9,7 +9,7 @@ const Wrapper = ({ children }) => {
   return (
     <div className={styles.wrapper}>
         <Header />
-        <div className={`${styles.wrapper_view} e-container`}>{children}</div>
+        <div className={styles.wrapper_view}>{children}</div>
         <Footer />
     </div>
   )

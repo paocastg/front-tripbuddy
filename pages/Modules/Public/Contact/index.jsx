@@ -57,7 +57,7 @@ const Contact = () => {
   }
   return (
     <Wrapper>
-      <article className={styles.about}>
+      <article className={`${styles.about} e-container`}>
         <h2 className={styles.about__title}>Contacto</h2>
 
         <Form

@@ -5,7 +5,9 @@ import Wrapper from 'layout/Wrapper'
 const LoginPage = () => {
   return (
     <Wrapper>
-      <FormSection />
+      <div className='e-container'>
+        <FormSection />
+      </div>
     </Wrapper>
   )
 }

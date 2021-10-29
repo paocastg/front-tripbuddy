@@ -6,7 +6,7 @@ import Wrapper from 'layout/Wrapper'
 const CookiePolicies = () => {
   return (
     <Wrapper>
-      <article className={styles.cookiePolicies}>
+      <article className={`${styles.cookiePolicies} e-container`}>
         <section className={styles.cookiePolicies__text}>
           <h2 className={styles.cookiePolicies__title}>Políticas de Cookies</h2>
             <p>Fecha de última actualización: 3 de Julio de 2021</p>
