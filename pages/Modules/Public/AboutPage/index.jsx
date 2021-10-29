@@ -6,7 +6,7 @@ import Wrapper from 'layout/Wrapper'
 const AboutPage = () => {
   return (
     <Wrapper>
-      <article className={styles.about}>
+      <article className={`${styles.about} e-container`}>
         <h2 className={styles.about__title}>Acerca de nosotros</h2>
         <section className={styles.about__text}>
           <p>

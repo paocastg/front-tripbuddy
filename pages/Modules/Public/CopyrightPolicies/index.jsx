@@ -6,7 +6,7 @@ import Wrapper from 'layout/Wrapper'
 const CopyrightPolicies = () => {
   return (
     <Wrapper>
-      <article className={styles.copyrightPolicies}>
+      <article className={`${styles.copyrightPolicies} e-container`}>
         <section className={styles.copyrightPolicies__text}>
           <h2 className={styles.copyrightPolicies__title}>Política de derechos de autor de Trip Buddy</h2>
           <p>Última actualización: 3 de julio de 2021</p>
