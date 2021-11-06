@@ -70,7 +70,7 @@ const Contact = () => {
           <p>Póngase en contacto con nosotros</p>
           <Form.Item className={styles.form}>
             <Form.Item
-            name="nombre"
+              name="nombre"
               className={styles.formItem}
               label={<strong>Nombres</strong>}
               rules={[

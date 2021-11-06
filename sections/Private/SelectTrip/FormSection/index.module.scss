@@ -1,3 +1,24 @@
+.formSelectTrip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__inputSelect{
+    min-width: 70%;
+  }
+  &__groupInput {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+}
+
 .customSvgIcon:hover {
 	background-color: #00B2E3;
 	border: thin;
@@ -39,7 +60,7 @@
 .dropdown {
 	display: inline-block;
   margin: 0 4px;
-	
+
 }
 .select{
 	width:100% ;
