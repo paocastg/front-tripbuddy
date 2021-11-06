@@ -1,45 +1,84 @@
-import React, { useState } from 'react'
-import { Menu, Button, Dropdown, Space } from 'antd'
+import React, { useContext, useState } from 'react'
+import { Menu, Button, Dropdown, Space, Form } from 'antd'
 import { DownOutlined, UserOutlined } from '@ant-design/icons'
 import styles from './index.module.scss'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
+import SelectTripContext from 'context/SelectTripContext'
+import { TYPES } from 'actions/quotationActions'
 
 const FormPassengers = () => {
   const [state, setState] = useState('')
-  const [adulto, setAdulto] = useLocalStorage('adultos', 0)
-  const [adolescente, setAdolescente] = useLocalStorage('adolescentes', 0)
-  const [nino, setNino] = useLocalStorage('ninos', 0)
+  const { state: stateContext, dispatch } = useContext(SelectTripContext)
 
   const handleVisibleChange = (flag) => {
     setState({ visible: flag })
   }
 
   const handleClick1 = () => {
-    if (adulto > 0) {
-      setAdulto(adulto - 1)
+    if (stateContext.numero_adultos > 0) {
+      dispatch({
+        type: TYPES.UPDATE_ONE_QUOTATION,
+        payload: {
+          field: 'numero_adultos',
+          data: stateContext.numero_adultos - 1,
+          manyOptions: false
+        }
+      })
     }
   }
   const handleClick2 = () => {
-    setAdulto(adulto + 1)
+    dispatch({
+      type: TYPES.UPDATE_ONE_QUOTATION,
+      payload: {
+        field: 'numero_adultos',
+        data: stateContext.numero_adultos + 1,
+        manyOptions: false
+      }
+    })
   }
   const handleClick3 = () => {
-    if (adolescente > 0) {
-      setAdolescente(adolescente - 1)
+    if (stateContext.numero_adolescentes > 0) {
+      dispatch({
+        type: TYPES.UPDATE_ONE_QUOTATION,
+        payload: {
+          field: 'numero_adolescentes',
+          data: stateContext.numero_adolescentes - 1,
+          manyOptions: false
+        }
+      })
     }
   }
   const handleClick4 = () => {
-    setAdolescente(adolescente + 1)
+    dispatch({
+      type: TYPES.UPDATE_ONE_QUOTATION,
+      payload: {
+        field: 'numero_adolescentes',
+        data: stateContext.numero_adolescentes + 1,
+        manyOptions: false
+      }
+    })
   }
   const handleClick5 = () => {
-    if (nino > 0) {
-      setNino(nino - 1)
+    if (stateContext.numero_ninos > 0) {
+      dispatch({
+        type: TYPES.UPDATE_ONE_QUOTATION,
+        payload: {
+          field: 'numero_ninos',
+          data: stateContext.numero_ninos - 1,
+          manyOptions: false
+        }
+      })
     }
   }
   const handleClick6 = () => {
-    setNino(nino + 1)
+    dispatch({
+      type: TYPES.UPDATE_ONE_QUOTATION,
+      payload: {
+        field: 'numero_ninos',
+        data: stateContext.numero_ninos + 1,
+        manyOptions: false
+      }
+    })
   }
-
-  const suma = adulto + adolescente + nino
 
   const menu = () => {
     return (
@@ -49,11 +88,11 @@ const FormPassengers = () => {
             <div className={styles.dropdownCenter}>
               <span>Adultos</span>
               <Space>
-                <Button type="text" onClick={handleClick1} value={adulto}>
+                <Button type="text" onClick={handleClick1}>
                   -
                 </Button>
-                {adulto}
-                <Button type="text" onClick={handleClick2} value={adulto}>
+                {stateContext.numero_adultos}
+                <Button type="text" onClick={handleClick2}>
                   +
                 </Button>
               </Space>
@@ -64,11 +103,11 @@ const FormPassengers = () => {
             <div className={styles.dropdownCenter}>
               <span>Adolescentes</span>
               <Space>
-                <Button type="text" onClick={handleClick3} value={adolescente}>
+                <Button type="text" onClick={handleClick3}>
                   -
                 </Button>
-                {adolescente}
-                <Button type="text" onClick={handleClick4} value={adolescente}>
+                {stateContext.numero_adolescentes}
+                <Button type="text" onClick={handleClick4}>
                   +
                 </Button>
               </Space>
@@ -79,11 +118,11 @@ const FormPassengers = () => {
             <div className={styles.dropdownCenter}>
               <span>Niños</span>
               <Space>
-                <Button type="text" onClick={handleClick5} value={nino}>
+                <Button type="text" onClick={handleClick5}>
                   -
                 </Button>
-                {nino}
-                <Button type="text" onClick={handleClick6} value={nino}>
+                {stateContext.numero_ninos}
+                <Button type="text" onClick={handleClick6}>
                   +
                 </Button>
               </Space>
@@ -93,8 +132,9 @@ const FormPassengers = () => {
       </div>
     )
   }
+
   return (
-    <div>
+    <Form.Item>
       <Dropdown.Button
         className={styles.dropdown}
         overlay={menu}
@@ -104,10 +144,13 @@ const FormPassengers = () => {
         icon={<DownOutlined />}
         size="large"
       >
-          {<UserOutlined />} {suma} Personas
-           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {<UserOutlined />}{' '}
+        {stateContext.numero_adolescentes +
+          stateContext.numero_adultos +
+          stateContext.numero_ninos}{' '}
+        Personas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </Dropdown.Button>
-    </div>
+    </Form.Item>
   )
 }
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import moment from 'moment'
-import { DatePicker } from 'antd'
+import { DatePicker, Form } from 'antd'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import styles from './index.module.scss'
 import { TYPES } from 'actions/quotationActions'
@@ -45,21 +45,27 @@ const FormDates = () => {
     return current && current < moment().endOf('day')
   }
   return (
-    <div>
+    <Form.Item
+      name="date"
+      rules={[
+        {
+          required: true,
+          message: 'Este campo es obligatorio'
+        }
+      ]}
+    >
       <RangePicker
         className={styles.rangepicker}
         value={[
-          state.fecha_inicio ? moment(state.fecha_inicio) : moment(),
-          state.fecha_fin ? moment(state.fecha_fin) : moment()
+          state.fecha_inicio ? moment(state.fecha_inicio) : null,
+          state.fecha_fin ? moment(state.fecha_fin) : null
         ]}
         size="large"
         disabledDate={disabledDate}
         onCalendarChange={onCalendarChange}
         format={dateFormat}
       />
-      <input type="hidden" name="fechaInicio" value={fechaInicio}/>
-      <input type="hidden" name="fechaFin" value={fechaFin}/>
-    </div>
+    </Form.Item>
   )
 }
 
