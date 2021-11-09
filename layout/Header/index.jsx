@@ -6,6 +6,7 @@ import { Auth } from 'assets/Utils/Auth'
 import { Dropdown } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import UserMenu from 'components/UserMenu'
+import GoogleTranslate from 'components/GoogleTranslate'
 
 const Header = () => {
   const [logged, setLogged] = useState(false)
@@ -31,6 +32,7 @@ const Header = () => {
             {/* <img src="https://file-loenviamostest.s3.amazonaws.com/images/logo-tripbuddy.svg" alt="chart" /> */}
           </div>
           <div className={styles.header_user}>
+            <GoogleTranslate/>
             {logged
               ? (
               <div className={styles.user}>

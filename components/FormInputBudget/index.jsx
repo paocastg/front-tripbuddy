@@ -14,7 +14,7 @@ const validatePrice = (price) => {
   }
   return {
     validateStatus: 'error',
-    errorMsg: 'Presupuesto no valido, se acepta un monto minimo de 100 dolares.'
+    errorMsg: 'Presupuesto no valido'
   }
 }
 
@@ -36,10 +36,8 @@ const FormInputBudget = () => {
 
   return (
     <Form.Item
-      className={styles.containerInput}
       name="price"
       validateStatus={price.validateStatus}
-      hasFeedback
       help={price.errorMsg}
       rules={[
         {
