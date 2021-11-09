@@ -26,7 +26,9 @@ const FormSection = ({ setShowSection }) => {
   }
   const onFinish = (values) => {
     console.log('Received values of form: ', values)
-    // setShowSection(2)
+    if (values) {
+      setShowSection(2)
+    }
   }
 
   return (
@@ -73,8 +75,8 @@ const FormSection = ({ setShowSection }) => {
           </Col>
         </Row>
         <Form.Item>
-          <Button onClick={handleBack}>Atrás</Button>
-          <Button htmlType="submit">Siguiente</Button>
+          <Button className={styles.formSelectTrip__button} onClick={handleBack}>Atrás</Button>
+          <Button className={styles.formSelectTrip__button} htmlType="submit">Siguiente</Button>
         </Form.Item>
       </Form>
     </section>
