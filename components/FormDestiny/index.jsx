@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Select } from 'antd'
+import { Form, Select } from 'antd'
 import styles from './index.module.scss'
 import { TYPES } from 'actions/quotationActions'
 import SelectTripContext from 'context/SelectTripContext'
@@ -18,17 +18,29 @@ const FormDestiny = ({ disabled }) => {
   }
 
   return (
-    <Select
-      className={styles.select}
-      value={state.destino}
-      mode="multiple"
-      placeholder={<EnvironmentOutlined />}
-      onChange={handleChange}
-      disabled={disabled}
+    <Form.Item
+      className={styles.item}
+      name="select"
+      rules={[
+        {
+          required: true,
+          message: 'Este campo es obligatorio!'
+        }
+      ]}
+      extra="+ Agrega otro destino"
     >
-      {dbDestiny &&
-        dbDestiny.map((d) => <Option key={d.nombre}>{d.nombre}</Option>)}
-    </Select>
+      <Select
+        className={styles.select}
+        value={state.destino}
+        mode="multiple"
+        placeholder={<EnvironmentOutlined />}
+        onChange={handleChange}
+        disabled={disabled}
+      >
+        {dbDestiny &&
+          dbDestiny.map((d) => <Option key={d.nombre}>{d.nombre}</Option>)}
+      </Select>
+    </Form.Item>
   )
 }
 
