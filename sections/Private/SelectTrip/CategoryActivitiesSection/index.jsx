@@ -8,12 +8,15 @@ import H2 from 'components/H2'
 import SelectTripContext from 'context/SelectTripContext'
 
 const CategoryActivitiesSection = ({ setShowSection }) => {
-  const { dbCategory, dbActivity } = useContext(SelectTripContext)
+  const { dbCategory, dbActivity, state } = useContext(SelectTripContext)
   // console.log(selectOtherActivities)
   const handleBack = () => {
     setShowSection(1)
   }
   const handleNext = () => {
+    if (state.categoria.length === 0 || state.actividad.length === 0) {
+      return
+    }
     setShowSection(3)
   }
   return (
