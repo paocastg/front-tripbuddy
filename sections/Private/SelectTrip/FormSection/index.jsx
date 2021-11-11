@@ -37,34 +37,22 @@ const FormSection = ({ setShowSection }) => {
         Elige tu destino y las fechas <br /> en que piensas viajar
       </H2>
       <Form className={styles.formSelectTrip__form} onFinish={onFinish}>
-        <Form.Item
-          className={styles.formSelectTrip__inputSelect}
-          name="select"
-          rules={[
-            {
-              required: false,
-              message: 'Elegir un destino por favor!'
-            }
-          ]}
-          extra="+ Agrega otro destino"
-        >
-          {isActiveDestiny
-            ? (
-            <SelectDestinos disabled={false} dbDestiny={dbDestiny} />
-              )
-            : (
-            <SelectDestinos disabled={true} />
-              )}
-        </Form.Item>
+        {isActiveDestiny
+          ? (
+          <SelectDestinos disabled={false} dbDestiny={dbDestiny} />
+            )
+          : (
+          <SelectDestinos disabled={true} />
+            )}
         <div className={styles.formSelectTrip__groupInput}>
-          <FormDates/>
+          <FormDates />
           <FormPassengers />
-          <FormInputBudget/>
+          <FormInputBudget />
         </div>
         <Form.Item>
           <h3 align="center">
             Te gustaria incluir alojamiento &nbsp;
-            <Tooltip title="Extra information">
+            <Tooltip title="Este criterio es opcional">
               <QuestionCircleOutlined />
             </Tooltip>
           </h3>
@@ -75,8 +63,15 @@ const FormSection = ({ setShowSection }) => {
           </Col>
         </Row>
         <Form.Item>
-          <Button className={styles.formSelectTrip__button} onClick={handleBack}>Atrás</Button>
-          <Button className={styles.formSelectTrip__button} htmlType="submit">Siguiente</Button>
+          <Button
+            className={styles.formSelectTrip__button}
+            onClick={handleBack}
+          >
+            Atrás
+          </Button>
+          <Button className={styles.formSelectTrip__button} htmlType="submit">
+            Siguiente
+          </Button>
         </Form.Item>
       </Form>
     </section>
