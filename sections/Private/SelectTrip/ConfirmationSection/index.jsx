@@ -79,7 +79,7 @@ const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
   return (
     <div className={styles.confirmation}>
       <ConfirmationHeroImage
-        urlImg={'https://placeimg.com/640/480/tech'}
+        urlImg={'/banner-interno.png'}
         setShowSection={setShowSection}
       />
       <main className={styles.main}>
@@ -98,9 +98,7 @@ const ConfirmationSection = ({ setShowSection, storeValue, destinos }) => {
           />
           <br/>
           <ConfirmationDate />
-
         </div>
-
       </div>
     </main>
       <div className={styles.confirmation__actions}>
