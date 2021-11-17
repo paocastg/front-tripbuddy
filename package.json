@@ -27,6 +27,7 @@
     "react-facebook-login": "^4.1.1",
     "react-google-login": "^5.2.2",
     "react-google-maps": "^9.4.5",
+    "react-paypal-button-v2": "^2.6.3",
     "react-router-dom": "^5.2.0",
     "reactstrap": "^8.10.0",
     "sass": "^1.35.2",
