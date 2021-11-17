@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './index.module.scss'
 
 /* Components */
@@ -8,6 +8,7 @@ import H2 from 'components/H2'
 import SelectTripContext from 'context/SelectTripContext'
 
 const CategoryActivitiesSection = ({ setShowSection }) => {
+  const [error, setError] = useState(false)
   const { dbCategory, dbActivity, state } = useContext(SelectTripContext)
   // console.log(selectOtherActivities)
   const handleBack = () => {
@@ -15,7 +16,8 @@ const CategoryActivitiesSection = ({ setShowSection }) => {
   }
   const handleNext = () => {
     if (state.categoria.length === 0 || state.actividad.length === 0) {
-      return
+      setError(true)
+      return null
     }
     setShowSection(3)
   }
@@ -47,6 +49,7 @@ const CategoryActivitiesSection = ({ setShowSection }) => {
             />
           ))}
       </div>
+      {error && <p style={{ color: 'red' }}>Elija al menos una categoria y actividad</p>}
       <div>
         <Button onClick={handleBack}>Atrás</Button>
         <Button onClick={handleNext}>Siguiente</Button>
