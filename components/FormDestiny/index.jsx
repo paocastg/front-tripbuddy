@@ -5,7 +5,7 @@ import { TYPES } from 'actions/quotationActions'
 import SelectTripContext from 'context/SelectTripContext'
 import { EnvironmentOutlined } from '@ant-design/icons'
 
-const { Option } = Select
+const { Option, OptGroup } = Select
 
 const FormDestiny = ({ disabled }) => {
   const { state, dbDestiny, dispatch } = useContext(SelectTripContext)
@@ -37,8 +37,10 @@ const FormDestiny = ({ disabled }) => {
         onChange={handleChange}
         disabled={disabled}
       >
-        {dbDestiny &&
-          dbDestiny.map((d) => <Option key={d.nombre}>{d.nombre}</Option>)}
+        <OptGroup label='Peru'>
+          {dbDestiny &&
+            dbDestiny.map((d) => <Option key={d.nombre}>{d.nombre}</Option>)}
+        </OptGroup>
       </Select>
     </Form.Item>
   )

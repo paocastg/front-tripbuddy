@@ -10,16 +10,26 @@ import { TYPES } from 'actions/quotationActions'
 
 const OtherActivitiesSection = ({ setShowSection }) => {
   const [count, setCount] = useState(0)
+  const [msg, setMsg] = useState(false)
   const { state, dispatch } = useContext(SelectTripContext)
   const handleBack = () => {
     setShowSection(2)
   }
   const handleNext = () => {
+    if (msg) {
+      return null
+    }
     setShowSection(4)
   }
   const handleChange = (e) => {
     // console.log(e.target.value)
-    setCount(e.target.value.split('').length)
+    const numberChar = e.target.value.split('').length
+    if (numberChar > 250) {
+      setMsg(true)
+    } else {
+      setMsg(false)
+    }
+    setCount(numberChar)
     dispatch({
       type: TYPES.UPDATE_ONE_QUOTATION,
       payload: { field: 'comentarios', data: e.target.value, manyOptions: false }
@@ -43,7 +53,8 @@ const OtherActivitiesSection = ({ setShowSection }) => {
           defaultValue={state.comentarios || ''}
         ></textarea>
       </div>
-      <p className={styles.finally__recommendation}>{count}/250 palabras</p>
+      <p className={styles.finally__recommendation}>{count}/250 caracteres</p>
+      {msg && <p style={{ color: 'red' }}>Excedio el numero maximo de caracteres</p>}
       <div>
         <Button onClick={handleBack}>Atrás</Button>
         <Button onClick={handleNext}>Siguiente</Button>
