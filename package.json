@@ -19,6 +19,7 @@
     "moment": "^2.29.1",
     "next": "^11.1.2",
     "node-fetch": "^2.6.1",
+    "paypal-checkout": "^4.0.331",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-calendar": "^3.4.0",
