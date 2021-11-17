@@ -1,13 +1,29 @@
-import React, { useContext } from 'react'
-import { Input } from 'antd'
+import React, { useContext, useState } from 'react'
+import { Form, Input } from 'antd'
 import styles from './index.module.scss'
-import { WalletOutlined } from '@ant-design/icons'
+import { DollarOutlined } from '@ant-design/icons'
 import SelectTripContext from 'context/SelectTripContext'
 import { TYPES } from 'actions/quotationActions'
 
+const validatePrice = (price) => {
+  if (price >= 100) {
+    return {
+      validateStatus: 'success',
+      errorMsg: null
+    }
+  }
+  return {
+    validateStatus: 'error',
+    errorMsg: 'Presupuesto no valido'
+  }
+}
+
 const FormInputBudget = () => {
+  const [price, setPrice] = useState(0)
   const { state, dispatch } = useContext(SelectTripContext)
-  const budgetOnChange = (e) => {
+  const handleChange = (e) => {
+    console.log('yep price: ', e.target.value)
+    setPrice({ ...validatePrice(e.target.value), value: e.target.value })
     dispatch({
       type: TYPES.UPDATE_ONE_QUOTATION,
       payload: {
@@ -19,17 +35,26 @@ const FormInputBudget = () => {
   }
 
   return (
-    <div className={styles.input}>
+    <Form.Item
+      name="price"
+      validateStatus={price.validateStatus}
+      help={price.errorMsg}
+      rules={[
+        {
+          required: true,
+          message: 'Se requiere un presupuesto por persona'
+        }
+      ]}
+    >
       <Input
-        type='number'
-        prefix={<WalletOutlined />}
+        className={styles.input}
         size="large"
-        min="100"
         placeholder="Presupuesto por persona"
-        onChange={budgetOnChange}
+        addonBefore={<DollarOutlined />}
+        onChange={handleChange}
         value={state.presupuesto}
       />
-    </div>
+    </Form.Item>
   )
 }
 

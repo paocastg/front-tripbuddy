@@ -1,12 +1,29 @@
 .destinations {
+  list-style: none;
+  margin-bottom: 1.6rem;
   &__item {
     color: #000;
   }
-  &__number {
+  &__text {
+    margin: 0;
+    font-family: 'Geomanist-Regular';
+    font-size: 1.5em;
     color: #000;
   }
-  &__text {
+  &__circle {
     color: #000;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #00B2E3;
+    border-radius: 50%;
+    width: 50px ;
+    height: 50px ;
+    display: inline-block;
+    padding: 7px 15px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    text-align: center;
   }
   &__space {
     color: #000;

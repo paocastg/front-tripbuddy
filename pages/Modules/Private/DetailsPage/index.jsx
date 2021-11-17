@@ -10,8 +10,6 @@ import { HOST, MAPS_KEY } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
 import axios from 'axios'
 import DayToDaySection from 'sections/Private/Details/DayToDaySection'
-import PaypalCheckoutButton from 'components/PaypalCheckout'
-
 const { TabPane } = Tabs
 const { Link } = Anchor
 
@@ -185,38 +183,13 @@ const DetailsPage = () => {
                 </div>
               </aside>
             </article>
-            <section className={styles.section2}>
+            <section className={`${styles.section2} e-container`}>
               <Tabs onChange={handleTabs} activeKey={activeKey}>
                 <TabPane tab="Ruta" key="1">
                   <section className={styles.section3}>
                     {/* Section DestinyDetails */}
                     <div className={styles.section3__first}>
-                      <Timeline>
-                        <Timeline.Item>
-                          Lima - 2 dias
-                          <br />
-                          <br />
-                        </Timeline.Item>
-                        <Timeline.Item>
-                          Cusco - 6 dias
-                          <br />
-                          <br />
-                          <br />
-                          <br />
-                          <br />
-                          <br />
-                        </Timeline.Item>
-                        <Timeline.Item>
-                          Arequipa - 3 dias
-                          <br />
-                          <br />
-                          <br />
-                        </Timeline.Item>
-                        <Timeline.Item>
-                          Lima - 1 dias
-                          <br />
-                        </Timeline.Item>
-                      </Timeline>
+                      <TimeLineSection items={dbDetails.detalles_cotizacion}/>
                     </div>
                     {/* Section MapDetails */}
                     <div className={styles.section3__second}>

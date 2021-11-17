@@ -8,90 +8,73 @@ import styles from './index.module.scss'
 /* Components */
 import FormPassengers from 'components/FormPassengers'
 import SelectDestinos from 'components/FormDestiny'
-import { Form, Tooltip, Row, Col } from 'antd'
+import { Form, Tooltip, Row, Col, Button } from 'antd'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import FormDates from 'components/FormDates'
-import Button from 'components/Button'
 import H2 from 'components/H2'
 import FormSelectAccomodation from 'components/FormSelectAccomodation'
 import FormInputBudget from 'components/FormInputBudget'
 import SelectTripContext from 'context/SelectTripContext'
 import { TYPES } from 'actions/quotationActions'
 
-const FormSection = ({
-  setShowSection
-}) => {
-  const { isActiveDestiny, dbDestiny, dispatch } = useContext(SelectTripContext)
+const FormSection = ({ setShowSection }) => {
+  const { isActiveDestiny, dbDestiny, dispatch } =
+    useContext(SelectTripContext)
   const handleBack = () => {
     setShowSection(0)
     dispatch({ type: TYPES.CLEAR_ALL_QUOTATION })
   }
   const onFinish = (values) => {
     console.log('Received values of form: ', values)
+    if (values) {
+      setShowSection(2)
+    }
   }
 
   return (
-    <section className={styles.section}>
-       <div className={styles.visible}>
-      <Form onFinish={onFinish}>
-        <Row>
-          <Col span={24}>
-            <H2>
-              Elige tu destino y las fechas <br /> en que piensas viajar
-            </H2>
-            {isActiveDestiny
-              ? (<Form.Item
-                rules={[
-                  {
-                    required: true,
-                    message: 'Elegir un destino por favor!',
-                    type: 'array'
-                  }
-                ]}
-              >
-                <SelectDestinos disabled={false} dbDestiny={dbDestiny} />
-                </Form.Item>
-                )
-              : (
-              <SelectDestinos disabled={true} />
-                )}
-          </Col>
-        </Row>
-        <br />
-        <Form.Item className={styles.form}>
-          <Form.Item className={styles.rangepicker}>
-            <FormDates style={{ width: '100%' }} />
-          </Form.Item>
-          <Form.Item className={styles.dropdown}>
-            <FormPassengers />
-          </Form.Item>
-          <Form.Item className={styles.dropdown}>
-            <FormInputBudget />
-          </Form.Item>
-        </Form.Item>
-        <br />
+    <section className={`${styles.formSelectTrip} e-container`}>
+      <H2>
+        Elige tu destino y las fechas <br /> en que piensas viajar
+      </H2>
+      <Form className={styles.formSelectTrip__form} onFinish={onFinish}>
+        {isActiveDestiny
+          ? (
+          <SelectDestinos disabled={false} dbDestiny={dbDestiny} />
+            )
+          : (
+          <SelectDestinos disabled={true} />
+            )}
+        <div className={styles.formSelectTrip__groupInput}>
+          <FormDates />
+          <FormPassengers />
+          <FormInputBudget />
+        </div>
         <Form.Item>
           <h3 align="center">
             Te gustaria incluir alojamiento &nbsp;
-            <Tooltip title="Extra information">
+            <Tooltip title="Este criterio es opcional">
               <QuestionCircleOutlined />
             </Tooltip>
           </h3>
         </Form.Item>
         <Row>
           <Col span={24}>
-          <FormSelectAccomodation />
+            <FormSelectAccomodation />
           </Col>
         </Row>
-        <br />
+        <Form.Item>
+          <Button
+            className={styles.formSelectTrip__button}
+            onClick={handleBack}
+          >
+            Atrás
+          </Button>
+          <Button className={styles.formSelectTrip__button} htmlType="submit">
+            Siguiente
+          </Button>
+        </Form.Item>
       </Form>
-      </div>
-      <div>
-        <Button onClick={handleBack}>Atrás</Button>
-        <Button onClick={() => setShowSection(2)} >Siguiente</Button>
-      </div>
     </section>
-
   )
 }
 export default FormSection

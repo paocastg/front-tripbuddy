@@ -6,7 +6,7 @@ import Wrapper from 'layout/Wrapper'
 const Faq = () => {
   return (
     <Wrapper>
-      <article className={styles.faq}>
+      <article className={`${styles.faq} e-container`}>
         <h2 className={styles.faq__title}>Preguntas frecuentes de los viajeros</h2>
         <section className={styles.faq__text}>
           <h3 className={styles.faq__subtitle}>Cómo funciona</h3>
