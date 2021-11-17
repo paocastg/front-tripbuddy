@@ -2,14 +2,16 @@ import styles from './index.module.scss'
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
 import { useRouter } from 'next/router'
-import { Timeline, Tabs, Result, Spin, Anchor, Button } from 'antd'
-import { useState } from 'react'
+import { Tabs, Result, Spin, Anchor } from 'antd'
 
 import DetailsMap from 'components/DetailsMap'
 import { HOST, MAPS_KEY } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import DayToDaySection from 'sections/Private/Details/DayToDaySection'
+import TimeLineSection from 'sections/Private/Details/TimeLineSection'
+import { PayPalButton } from 'react-paypal-button-v2'
 const { TabPane } = Tabs
 const { Link } = Anchor
 
@@ -122,26 +124,6 @@ const DetailsPage = () => {
     // console.log('yep activity key: ', activityKey)
     setActiveKey(activityKey)
   }
-  const order = {
-    customer: '123456',
-    total: '550.00',
-    items: [
-      {
-        sku: '112',
-        name: 'Camisa ReactJS',
-        price: '300.00',
-        quantity: 1,
-        currency: 'MXN'
-      },
-      {
-        sku: '99',
-        name: 'Camisa JS',
-        price: '125.00',
-        quantity: 2,
-        currency: 'MXN'
-      },
-    ],
-  };
   return (
     <Wrapper>
       <Session>
@@ -179,7 +161,18 @@ const DetailsPage = () => {
                   <p className={styles.heroImage__paragraph}>
                     {transformDate(startDate)} - {transformDate(endDate)}
                   </p>
-                  <PaypalCheckoutButton order={order} />
+                  <PayPalButton
+                    amount="0.01"
+                    onSuccess={(details, data) => {
+                      alert("Transaction completed by " + details.payer.name.given_name);
+                      return fetch("/paypal-transaction-complete", {
+                        method: "post",
+                        body: JSON.stringify({
+                          orderID: data.orderID
+                        })
+                      });
+                    }}
+                  />
                 </div>
               </aside>
             </article>
