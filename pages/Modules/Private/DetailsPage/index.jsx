@@ -12,6 +12,7 @@ import axios from 'axios'
 import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 import TimeLineSection from 'sections/Private/Details/TimeLineSection'
 import { PayPalButton } from 'react-paypal-button-v2'
+import { Auth } from 'assets/Utils/Auth'
 const { TabPane } = Tabs
 const { Link } = Anchor
 
@@ -20,6 +21,7 @@ const DetailsPage = () => {
   const [dbDayToDay, setDbDayToDay] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [data, setData] = useState('')
   // para el tabs
   const [activeKey, setActiveKey] = useState('1')
 
@@ -124,6 +126,40 @@ const DetailsPage = () => {
     // console.log('yep activity key: ', activityKey)
     setActiveKey(activityKey)
   }
+  const fetchUsers = async () => {
+    const user = Auth.getSession().usuario.id
+    console.log(user)
+    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user)
+    setData(response.data.solicitud)
+
+  }
+  const [ list, setList] = useState({ idLis: '' })
+  const datosPaypal = () =>{
+    setList({ ...list, idLis: idParams(router)})
+    console.log(list)
+    // const id = Number(idParams(router))
+    data && data.map((index) => 
+    index.cotizaciones.map((lista) => {
+      if( lista.id === 1 && lista.id > 0 ){
+        console.log(lista.precio)
+        idPaypal(lista.id, lista.precio, lista.descripcion)
+        console.log(lista.id)
+      }
+    }
+    ))
+  }
+  const [paypal, setPaypal] = useState({ precio: '', descripcion: '', id: '' })
+  const idPaypal = (id, precio, descripcion) => {
+      setPaypal({ ...paypal, precio: precio, descripcion: descripcion, id: id})
+      console.log(idParams(router))
+  }
+  console.log(data)
+  useEffect(() => {
+    idPaypal()
+    datosPaypal()
+    fetchUsers()
+  }, [])
+  const preciosss = 100
   return (
     <Wrapper>
       <Session>
@@ -162,7 +198,7 @@ const DetailsPage = () => {
                     {transformDate(startDate)} - {transformDate(endDate)}
                   </p>
                   <PayPalButton
-                    amount="0.01"
+                    amount= {paypal.precio}
                     onSuccess={(details, data) => {
                       alert("Transaction completed by " + details.payer.name.given_name);
                       return fetch("/paypal-transaction-complete", {
