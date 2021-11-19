@@ -8,6 +8,7 @@
 
 .footer_options {
   display: flex;
+  justify-content: space-between;
   & > div {
     width: 25%;
     padding: 0px 20px;

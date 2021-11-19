@@ -24,11 +24,6 @@ const Footer = () => {
             <a href="/politicas-de-cookies">Políticas de Cookies</a>
             <a href="/terminos-de-uso">Terminos de uso</a>
           </div>
-          <div>
-            <h2>Configuración</h2>
-            <a href="#">Tipo de cambio: U.S. Dollar</a>
-            <a href="#">Idioma: Español</a>
-          </div>
         </div>
       </footer>
       <div className={styles.footer_desc}>© 2021 Trip Buddy - Todos los derechos reservados</div>
