@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'reactstrap'
 import moment from 'moment'
+import styles from './index.module.scss'
 
 const EditUserForm = props => {
   const initialFormState = { agencia: null, descripcion: '', estado: '', lista: '' }
@@ -14,54 +15,38 @@ const EditUserForm = props => {
   }, [props])
 
   return (
-    <div>
-    <div style = {{ overflow: 'scroll' }}>
-    <Table style = {{ width: '1400px' }}>
+  <div>
+  
+  <div className={styles.quotation_Dos}>
+    <center><Table>
     <thead>
-    <tr style={{ background: '#00B2E3', color: '#fff', fontFamily: 'Geomanist-Regular', height: '60px' }}>
-                      <th>Agencia</th>
-                      <th>Descripcion</th>
-                      <th></th>
-                      <th>Destinos</th>
-                      <th></th>
-                      <th>Precio</th>
-                      <th></th>
-      </tr>
-      <tr style={{ background: '#2C2C2C', color: '#fff', fontFamily: 'Geomanist-Regular', width: '1400px', border: ' 3px solid' }}>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th>Categoria</th>
-                      <th>Actividades</th>
-                      <th></th>
-                      </tr>
+    <tr style={{ backgroundColor: 'rgb(75, 4, 240)', height: '60px' }} key={1}>
+      <th>Viaje:</th>
+      <th>{ user.destino && user.destino.map((destinos) => destinos.nombre + ' ') + '    ' }</th>
+      <th>{'/ ' + ((moment(user.fecha_fin).diff(moment(user.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }{ ' / ' + (user.numero_adultos + user.numero_adolescentes + user.numero_ninos) + ' Personas ' }</th>
+      <th></th>
+    </tr>
+    <tr style={{ backgroundColor: '#f7f3f3', height: '10px' }} key={1}></tr>
+    <tr style={{ height: '60px' }}>
+      <th>Agencia</th>
+      <th>Descripcion</th>
+      <th>Destinos</th>
+      <th>Precio</th>
+    </tr>
     </thead>
-    <tbody>
-        {
-            <tr key={1} style={{ background: '#2C2C2C', fontFamily: 'Geomanist-Regular', color: '#fff', cursor: 'pointer', border: '0.5px solid' }}>
-            <td><center>{user.destino && user.destino.map((destinos) => destinos.nombre) + '  ' }</center></td>
-            <td>{'   / ' + ((moment(user.fecha_fin).diff(moment(user.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }</td>
-            <td>{ ' / ' + (user.numero_adultos + user.numero_adolescentes + user.numero_ninos) + ' Personas ' }</td>
-            <td>{ user.categoria && user.categoria.map((categorias) => categorias.nombre) + '  ' }</td>
-            <td>{ user.actividad && user.actividad.map((actividads) => actividads.nombre) + ' ' }</td>
-            <td style = {{ display: 'none' }}>{(user.cotizaciones) && (user.cotizaciones.map((item) => item.solicitud) + ' ')[0] }</td>
-            <td></td>
-          </tr>
-        }
+    <tbody>      
       {
       user.cotizaciones && user.cotizaciones.map((item) =>
       <tr key={ 10 } style={{ border: 'silver 2px solid' }}>
       <td><center>{ item.agencia }</center></td>
       <td>{ item.descripcion }</td>
-      <td></td>
       <td>{ item.estado }</td>
-      <td></td>
       <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.precio + '  '}</a></center></td>
       </tr>
       )
       }
     </tbody>
-  </Table>
+  </Table></center>
   </div>
     </div>
   )
