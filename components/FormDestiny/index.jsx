@@ -23,7 +23,7 @@ const FormDestiny = ({ disabled }) => {
       name="select"
       rules={[
         {
-          required: true,
+          required: !disabled,
           message: 'Este campo es obligatorio!'
         }
       ]}
