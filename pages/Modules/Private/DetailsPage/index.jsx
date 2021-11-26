@@ -12,6 +12,7 @@ import axios from 'axios'
 import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 import TimeLineSection from 'sections/Private/Details/TimeLineSection'
 import { PayPalButton } from 'react-paypal-button-v2'
+import { NextSeo } from 'next-seo'
 const { TabPane } = Tabs
 const { Link } = Anchor
 
@@ -126,6 +127,10 @@ const DetailsPage = () => {
   }
   return (
     <Wrapper>
+      <NextSeo
+        title="Detalles"
+        description="A short description goes here."
+      />
       <Session>
         {loading && (
           <div
@@ -164,13 +169,16 @@ const DetailsPage = () => {
                   <PayPalButton
                     amount="0.01"
                     onSuccess={(details, data) => {
-                      alert("Transaction completed by " + details.payer.name.given_name);
-                      return fetch("/paypal-transaction-complete", {
-                        method: "post",
+                      alert(
+                        'Transaction completed by ' +
+                          details.payer.name.given_name
+                      )
+                      return fetch('/paypal-transaction-complete', {
+                        method: 'post',
                         body: JSON.stringify({
                           orderID: data.orderID
                         })
-                      });
+                      })
                     }}
                   />
                 </div>
@@ -182,7 +190,7 @@ const DetailsPage = () => {
                   <section className={styles.section3}>
                     {/* Section DestinyDetails */}
                     <div className={styles.section3__first}>
-                      <TimeLineSection items={dbDetails.detalles_cotizacion}/>
+                      <TimeLineSection items={dbDetails.detalles_cotizacion} />
                     </div>
                     {/* Section MapDetails */}
                     <div className={styles.section3__second}>
@@ -204,7 +212,11 @@ const DetailsPage = () => {
                   <div className={styles.section4}>
                     {dbDetails &&
                       dbDetails.detalles_cotizacion.map((el) => (
-                        <DetailsCardSection key={el.destino} el={el} setActiveKey={setActiveKey} />
+                        <DetailsCardSection
+                          key={el.destino}
+                          el={el}
+                          setActiveKey={setActiveKey}
+                        />
                       ))}
                   </div>
                 </TabPane>
@@ -218,7 +230,9 @@ const DetailsPage = () => {
                     </Anchor>
                     <div className={styles.container__day}>
                       {dbDayToDay &&
-                        dbDayToDay.dia_a_dia.map((el, index) => <DayToDaySection key={index} el={el}/>)}
+                        dbDayToDay.dia_a_dia.map((el, index) => (
+                          <DayToDaySection key={index} el={el} />
+                        ))}
                     </div>
                   </div>
                 </TabPane>
