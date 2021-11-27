@@ -13,6 +13,11 @@ const UserMenu = () => {
         </a>
       </Menu.Item>
       <Menu.Item key="2">
+        <a href="/mis-viajes">
+          Mis viajes
+        </a>
+      </Menu.Item>
+      <Menu.Item key="3">
         <a onClick={handleClick} href="">
           Logout
         </a>
