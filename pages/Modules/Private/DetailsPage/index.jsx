@@ -13,13 +13,6 @@ import axios from 'axios'
 import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 import TimeLineSection from 'sections/Private/Details/TimeLineSection'
 import { PayPalButton } from 'react-paypal-button-v2'
-import { Auth } from 'assets/Utils/Auth'
-import SweetAlert from 'sweetalert2'
-import { toast } from 'react-toastify'
-import withReactContent from 'sweetalert2-react-content'
-toast.configure()
-
-const MySwal = withReactContent(SweetAlert)
 const { TabPane } = Tabs
 const { Link } = Anchor
 
@@ -257,6 +250,10 @@ const DetailsPage = () => {
   };
   return (
     <Wrapper>
+      <NextSeo
+        title="Detalles"
+        description="A short description goes here."
+      />
       <Session>
         {loading && (
           <div
@@ -293,24 +290,7 @@ const DetailsPage = () => {
                     {transformDate(startDate)} - {transformDate(endDate)}
                   </p>
                   <div style={{ width: "200px", margin: "0 auto" }}>
-                  {/* <PayPalButton
-                    amount={pay.data.precio}
-                    // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                    onSuccess={(details, data) => {
-                      alert("Transaction completed by " + details.payer.name.given_name + 'id de transaccion ' + data.orderID);
-
-                      // OPTIONAL: Call your server to save the transaction
-                      return fetch("/paypal-transaction-complete", {
-                        method: "post",
-                        body: JSON.stringify({
-                          orderId: data.orderID
-                        })
-                      });
-                    }}
-                    options={{
-                      clientId: "PRODUCTION_CLIENT_ID"
-                    }}
-                  /> */}
+                  
                   <PayPalButton 
                     createOrder={(data, actions) => createOrder(data, actions)}
                     onApprove={(data, actions) => onApprove(data, actions)}
@@ -377,7 +357,7 @@ const DetailsPage = () => {
                   <section className={styles.section3}>
                     {/* Section DestinyDetails */}
                     <div className={styles.section3__first}>
-                      <TimeLineSection items={dbDetails.detalles_cotizacion}/>
+                      <TimeLineSection items={dbDetails.detalles_cotizacion} />
                     </div>
                     {/* Section MapDetails */}
                     <div className={styles.section3__second}>
@@ -399,7 +379,11 @@ const DetailsPage = () => {
                   <div className={styles.section4}>
                     {dbDetails &&
                       dbDetails.detalles_cotizacion.map((el) => (
-                        <DetailsCardSection key={el.destino} el={el} setActiveKey={setActiveKey} />
+                        <DetailsCardSection
+                          key={el.destino}
+                          el={el}
+                          setActiveKey={setActiveKey}
+                        />
                       ))}
                   </div>
                 </TabPane>
@@ -413,7 +397,9 @@ const DetailsPage = () => {
                     </Anchor>
                     <div className={styles.container__day}>
                       {dbDayToDay &&
-                        dbDayToDay.dia_a_dia.map((el, index) => <DayToDaySection key={index} el={el}/>)}
+                        dbDayToDay.dia_a_dia.map((el, index) => (
+                          <DayToDaySection key={index} el={el} />
+                        ))}
                     </div>
                   </div>
                 </TabPane>

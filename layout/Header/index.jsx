@@ -32,7 +32,7 @@ const Header = () => {
             {/* <img src="https://file-loenviamostest.s3.amazonaws.com/images/logo-tripbuddy.svg" alt="chart" /> */}
           </div>
           <div className={styles.header_user}>
-            <GoogleTranslate/>
+            <GoogleTranslate />
             {logged
               ? (
               <div className={styles.user}>
@@ -42,7 +42,7 @@ const Header = () => {
                 >
                   Comienza tu viaje
                 </button>
-                <Dropdown overlay={<UserMenu/>}>
+                <Dropdown overlay={<UserMenu />}>
                   <a
                     className="ant-dropdown-link"
                     onClick={(e) => e.preventDefault()}
@@ -66,11 +66,7 @@ const Header = () => {
                 >
                   Iniciar sesión
                 </button>
-                <button
-                  className={styles.header_button}
-                >
-                  Registro
-                </button>
+                <button className={styles.header_button}>Registro</button>
               </>
                 )}
           </div>

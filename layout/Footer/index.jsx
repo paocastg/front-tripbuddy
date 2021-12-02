@@ -8,7 +8,7 @@ const Footer = () => {
       <footer className={styles.wrapper}>
         <div className={`e-container ${styles.footer_options}`}>
           <div>
-            <h2>Trip Buddy</h2>
+            <h2><img src='./logo-tripbuddy-w.png'/></h2>
             <a href="/acerca">Acerca de nosotros</a>
           </div>
           <div>
@@ -23,11 +23,6 @@ const Footer = () => {
             <a href="/politicas-de-derechos-de-autor">Políticas de derechos de autor</a>
             <a href="/politicas-de-cookies">Políticas de Cookies</a>
             <a href="/terminos-de-uso">Terminos de uso</a>
-          </div>
-          <div>
-            <h2>Configuración</h2>
-            <a href="#">Tipo de cambio: U.S. Dollar</a>
-            <a href="#">Idioma: Español</a>
           </div>
         </div>
       </footer>

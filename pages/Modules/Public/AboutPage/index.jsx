@@ -2,10 +2,15 @@ import styles from './index.module.scss'
 
 /* layout */
 import Wrapper from 'layout/Wrapper'
+import { NextSeo } from 'next-seo'
 
 const AboutPage = () => {
   return (
     <Wrapper>
+      <NextSeo
+        title="Acerca de Nosotros"
+        description="A short description goes here."
+      />
       <article className={`${styles.about} e-container`}>
         <h2 className={styles.about__title}>Acerca de nosotros</h2>
         <section className={styles.about__text}>

@@ -15,6 +15,7 @@ class MyDocument extends Document {
             name="facebook-domain-verification"
             content="i1lbtk4rn99jb25u6x9mk0qqpfmpss"
           />
+          <link rel="shortcut icon" href="/favicon.ico" />
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=[UA-64139340-8]"
