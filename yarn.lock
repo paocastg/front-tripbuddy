@@ -4206,7 +4206,12 @@
   "resolved" "https://registry.npmjs.org/negotiator/-/negotiator-0.6.2.tgz"
   "version" "0.6.2"
 
-"next@^11.1.2":
+"next-seo@^4.28.1":
+  "integrity" "sha512-WZgwdM+UhpNF3A37zFllzmPhnOVJ9vYeYlc0n3Z/kYfz/QQgy8NEdncNNggS9dU4JD8xriaCcyknhy5OsrFsJw=="
+  "resolved" "https://registry.npmjs.org/next-seo/-/next-seo-4.28.1.tgz"
+  "version" "4.28.1"
+
+"next@^11.1.2", "next@^8.1.1-canary.54 || >=9.0.0":
   "integrity" "sha512-azEYL0L+wFjv8lstLru3bgvrzPvK0P7/bz6B/4EJ9sYkXeW8r5Bjh78D/Ol7VOg0EIPz0CXoe72hzAlSAXo9hw=="
   "resolved" "https://registry.npmjs.org/next/-/next-11.1.2.tgz"
   "version" "11.1.2"

@@ -3,8 +3,6 @@ import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
 import { useRouter } from 'next/router'
 import { Tabs, Result, Spin, Anchor, Alert, Popover } from 'antd'
-// import { Button, Modal, Form, Select, Input, InputNumber, DatePicker, Row, Col, Divider, Popover,  } from 'antd'
-
 import DetailsMap from 'components/DetailsMap'
 import { HOST, MAPS_KEY, API } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
@@ -13,6 +11,14 @@ import axios from 'axios'
 import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 import TimeLineSection from 'sections/Private/Details/TimeLineSection'
 import { PayPalButton } from 'react-paypal-button-v2'
+import { Auth } from 'assets/Utils/Auth'
+import SweetAlert from 'sweetalert2'
+import { toast } from 'react-toastify'
+import withReactContent from 'sweetalert2-react-content'
+import { NextSeo } from 'next-seo'
+toast.configure()
+
+const MySwal = withReactContent(SweetAlert)
 const { TabPane } = Tabs
 const { Link } = Anchor
 
@@ -230,10 +236,9 @@ const DetailsPage = () => {
         onOpen: async () => {
           MySwal.showLoading();
           MySwal.close();
-          paypalGuardar();
           }
       });
-    // paypalGuardar();
+    paypalGuardar();
     redirec();
     return actions.order.capture();
   } else {
@@ -289,64 +294,11 @@ const DetailsPage = () => {
                   <p className={styles.heroImage__paragraph}>
                     {transformDate(startDate)} - {transformDate(endDate)}
                   </p>
-                  <div style={{ width: "200px", margin: "0 auto" }}>
-                  
+                  <div style={{ width: "200px", margin: "0 auto" }}>                  
                   <PayPalButton 
                     createOrder={(data, actions) => createOrder(data, actions)}
                     onApprove={(data, actions) => onApprove(data, actions)}
                     options={{ clientId: "AZSpsDSNwuRjnVMD68Pfmd0QP63XacmdREIRJIhYf4Z19YAfM1FTmsnpZyAZuPHf_x6cODsmBJQsj6Vi" }} />
-                    {/* <PayPalButton
-                      
-                      createOrder={(data, actions) => {
-                        return actions.order.create({
-                          purchase_units: [
-                            {
-                              amount: {
-                                currency_code: "USD",
-                                value: pay.data.precio
-                              }
-                            }
-                          ],
-                          application_context: {
-                            shipping_preference: "NO_SHIPPING" // default is "GET_FROM_FILE"
-                          }
-                        });
-                      }}
-                      onApprove={(details, data) => {
-                        // alert("Transaction completed by " + details.payer.name.given_name);
-                        // <Popover
-                        // content={<Alert message="Transacción completada " type="warning" showIcon/>}
-                        // >{ data.orderID }
-                        // </Popover>
-              
-                        // OPTIONAL: Call your server to save the transaction
-                        
-                        return fetch("/paypal-transaction-complete", {
-                          method: "post",
-                          body: JSON.stringify({
-                            orderId: data.orderID
-                          }),                          
-                          paypalGuardar
-                        });
-                      }}
-                      // ={(data, actions) => {
-                      //   return actions.order.capture().then(function(details) {
-                      //     alert(
-                      //       "Transaction completed by " + details.payer.name.given_name
-                      //     );
-                      //   // onClick={paypalGuardar}
-                      //   return fetch("/paypal-transaction-complete", {
-                      //       method: "post",
-                      //       body: JSON.stringify({
-                      //         orderID: data.orderID
-                      //       })
-                      //     })
-                      //   });
-                      // }}
-                      options={{
-                        clientId: "AZSpsDSNwuRjnVMD68Pfmd0QP63XacmdREIRJIhYf4Z19YAfM1FTmsnpZyAZuPHf_x6cODsmBJQsj6Vi"
-                      }}
-                    /> */}
                   </div>
                 </div>
               </aside>
