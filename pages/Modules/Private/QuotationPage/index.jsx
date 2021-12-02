@@ -1,8 +1,6 @@
 import styles from './index.module.scss'
 import UserTable from './UserTable'
 import EditUserForm from './EditUserForm'
-/* Components */
-import H2 from 'components/H2'
 
 /* Layout */
 import Session from 'layout/Session'
@@ -18,12 +16,16 @@ const QuotationPage = () => {
   const [users, setUsers] = useState('')
   const [editing, setEditing] = useState(false)
   const [currentUser, setCurrentUser] = useState(initialFormState)
+  // console.log(saved)
   const fetchUsers = async () => {
     const user = Auth.getSession().usuario.id
-    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user)
+    const config = {
+      // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
+       headers: { Authorization: `Token d4e97b7df5a2785717f9889d9c870525d3222f1a` },
+    }
+    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user, config)
     setUsers(response.data.solicitud)
   }
-  console.log(users)
   useEffect(() => {
     fetchUsers()
   }, [])
@@ -50,7 +52,8 @@ const QuotationPage = () => {
     <Wrapper>
       <Session>
         <div className={styles.quotation}>
-          <H2>Cotizaciones Abiertas</H2>
+          <div style = {{ display: 'none' }}>
+            </div>
           <div id='cotizaciones' style = {{ display: 'none' }}>
             <EditUserForm
               editing={editing}
@@ -61,6 +64,7 @@ const QuotationPage = () => {
             /><br></br><br></br>
             <center><div>
               <Button onClick={atras}>Atrás</Button>
+              <Button onClick={atras}>Eliminar viaje</Button>
             </div></center>
             </div>
       <div id='solicitud'>

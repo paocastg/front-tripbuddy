@@ -13,7 +13,7 @@ const EditUserForm = props => {
     console.log(user)
     console.log('user')
   }, [props])
-
+console.log(user)
   return (
   <div>
   
@@ -38,9 +38,9 @@ const EditUserForm = props => {
       {
       user.cotizaciones && user.cotizaciones.map((item) =>
       <tr key={ 10 } style={{ border: 'silver 2px solid' }}>
-      <td><center>{ item.agencia }</center></td>
-      <td>{ item.descripcion }</td>
-      <td>{ item.estado }</td>
+      <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.agencia }</a></center></td>
+      <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.descripcion }</a></td>
+      <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.estado }</a></td>
       <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.precio + '  '}</a></center></td>
       </tr>
       )

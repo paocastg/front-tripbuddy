@@ -2,10 +2,11 @@ import styles from './index.module.scss'
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
 import { useRouter } from 'next/router'
-import { Tabs, Result, Spin, Anchor } from 'antd'
+import { Tabs, Result, Spin, Anchor, Alert, Popover } from 'antd'
+// import { Button, Modal, Form, Select, Input, InputNumber, DatePicker, Row, Col, Divider, Popover,  } from 'antd'
 
 import DetailsMap from 'components/DetailsMap'
-import { HOST, MAPS_KEY } from 'assets/Utils/Constants'
+import { HOST, MAPS_KEY, API } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -13,6 +14,12 @@ import DayToDaySection from 'sections/Private/Details/DayToDaySection'
 import TimeLineSection from 'sections/Private/Details/TimeLineSection'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Auth } from 'assets/Utils/Auth'
+import SweetAlert from 'sweetalert2'
+import { toast } from 'react-toastify'
+import withReactContent from 'sweetalert2-react-content'
+toast.configure()
+
+const MySwal = withReactContent(SweetAlert)
 const { TabPane } = Tabs
 const { Link } = Anchor
 
@@ -22,7 +29,6 @@ const DetailsPage = () => {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState('')
-  // para el tabs
   const [activeKey, setActiveKey] = useState('1')
 
   const mapURL = `https://maps.googleapis.com/maps/api/js?v=3.exp&key=${MAPS_KEY}`
@@ -126,40 +132,129 @@ const DetailsPage = () => {
     // console.log('yep activity key: ', activityKey)
     setActiveKey(activityKey)
   }
-  const fetchUsers = async () => {
+  const paypalGuardar = async () => {
     const user = Auth.getSession().usuario.id
-    console.log(user)
-    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user)
-    setData(response.data.solicitud)
-
+    const config = {
+      // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
+       headers: { Authorization: `Token d4e97b7df5a2785717f9889d9c870525d3222f1a` },
+    }
+    const usuario = Auth.getSession().usuario
+    console.log(usuario)
+    const response = await axios.post(API + '/pago/', { 
+    estado: "PAGADO",//ESTADO VACIO
+    total_de_la_compra: pay.data.precio,
+    nombre_cliente: usuario.nombres,
+    apellido_cliente: usuario.apellidos,
+    correo_cliente: usuario.email,
+    cotizacion: pay.data.id //pay.data.id //nombre de COTIZACION DESCRIPCION
+  }, config)
   }
+  console.log(data)
   const [ list, setList] = useState({ idLis: '' })
-  const datosPaypal = () =>{
+  const datosPaypal = (ids) =>{
     setList({ ...list, idLis: idParams(router)})
-    console.log(list)
+    // console.log(data)
     // const id = Number(idParams(router))
     data && data.map((index) => 
     index.cotizaciones.map((lista) => {
-      if( lista.id === 1 && lista.id > 0 ){
+      if( lista.id === ids && lista.id > 0 ){
         console.log(lista.precio)
         idPaypal(lista.id, lista.precio, lista.descripcion)
         console.log(lista.id)
       }
-    }
-    ))
+    }))
   }
+  console.log(list)
   const [paypal, setPaypal] = useState({ precio: '', descripcion: '', id: '' })
   const idPaypal = (id, precio, descripcion) => {
+      console.log(precio)
       setPaypal({ ...paypal, precio: precio, descripcion: descripcion, id: id})
       console.log(idParams(router))
   }
-  console.log(data)
+  console.log(paypal)
   useEffect(() => {
-    idPaypal()
-    datosPaypal()
     fetchUsers()
   }, [])
-  const preciosss = 100
+  // ^TS$B8fr
+  const fetchUsers = async () => {
+    const user = Auth.getSession().usuario.id
+    const miToken = Auth.getSession().token
+    console.log(miToken)
+    const config = {
+      // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
+       headers: { Authorization: `Token d4e97b7df5a2785717f9889d9c870525d3222f1a` },
+    }
+    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user, config)
+    setCliente(response.data.solicitud)
+    setData(response.data.solicitud.map((item) =>{
+      item.cotizaciones.map((lista) => {
+        console.log(lista)
+        probando(lista)
+       if( lista.id === idParams(router) ){ 
+        console.log(lista)
+        console.log(response.data.solicitud)
+          return lista
+        }
+      })
+    }))
+    //datosPaypal(idParams(router))
+  }
+  const [ pay, setPay ] = useState('')
+  const [ cliente, setCliente ] = useState('')
+  const preciosss = idParams(router)  
+  const probando = (data) =>{
+    console.log(data)
+    if( data.id === Number(preciosss) ){ 
+       console.log(data)
+       setPay({ data })
+      }
+  }
+  const createOrder = (data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            currency_code: 'USD',
+            value: pay.data.precio
+          },
+          description: pay.data.descripcion//'Compra en Test App'
+        }
+      ]
+    });
+  };
+  const redirec = () => {
+    // return <Redirect to="/cotizaciones" />;
+    return (<a href={ `/cotizaciones` }>{'  '}</a>)
+  }
+  const onApprove = (data, actions) => {
+    console.log(actions.order)
+    console.log(data) 
+    if(data){
+      MySwal.fire({
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        title: 'Transacción completada exitosamente...Nro. de transacción: ' + data.orderID + '   recibirá un correo con los detalles',
+        onOpen: async () => {
+          MySwal.showLoading();
+          MySwal.close();
+          paypalGuardar();
+          }
+      });
+    // paypalGuardar();
+    redirec();
+    return actions.order.capture();
+  } else {
+    MySwal.fire({
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      title: 'Transaccion fallida...',
+      onOpen: async () => {
+        MySwal.showLoading();
+        MySwal.close();
+        }
+    });
+  }
+  };
   return (
     <Wrapper>
       <Session>
@@ -197,18 +292,82 @@ const DetailsPage = () => {
                   <p className={styles.heroImage__paragraph}>
                     {transformDate(startDate)} - {transformDate(endDate)}
                   </p>
-                  <PayPalButton
-                    amount= {paypal.precio}
+                  <div style={{ width: "200px", margin: "0 auto" }}>
+                  {/* <PayPalButton
+                    amount={pay.data.precio}
+                    // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                     onSuccess={(details, data) => {
-                      alert("Transaction completed by " + details.payer.name.given_name);
+                      alert("Transaction completed by " + details.payer.name.given_name + 'id de transaccion ' + data.orderID);
+
+                      // OPTIONAL: Call your server to save the transaction
                       return fetch("/paypal-transaction-complete", {
                         method: "post",
                         body: JSON.stringify({
-                          orderID: data.orderID
+                          orderId: data.orderID
                         })
                       });
                     }}
-                  />
+                    options={{
+                      clientId: "PRODUCTION_CLIENT_ID"
+                    }}
+                  /> */}
+                  <PayPalButton 
+                    createOrder={(data, actions) => createOrder(data, actions)}
+                    onApprove={(data, actions) => onApprove(data, actions)}
+                    options={{ clientId: "AZSpsDSNwuRjnVMD68Pfmd0QP63XacmdREIRJIhYf4Z19YAfM1FTmsnpZyAZuPHf_x6cODsmBJQsj6Vi" }} />
+                    {/* <PayPalButton
+                      
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              amount: {
+                                currency_code: "USD",
+                                value: pay.data.precio
+                              }
+                            }
+                          ],
+                          application_context: {
+                            shipping_preference: "NO_SHIPPING" // default is "GET_FROM_FILE"
+                          }
+                        });
+                      }}
+                      onApprove={(details, data) => {
+                        // alert("Transaction completed by " + details.payer.name.given_name);
+                        // <Popover
+                        // content={<Alert message="Transacción completada " type="warning" showIcon/>}
+                        // >{ data.orderID }
+                        // </Popover>
+              
+                        // OPTIONAL: Call your server to save the transaction
+                        
+                        return fetch("/paypal-transaction-complete", {
+                          method: "post",
+                          body: JSON.stringify({
+                            orderId: data.orderID
+                          }),                          
+                          paypalGuardar
+                        });
+                      }}
+                      // ={(data, actions) => {
+                      //   return actions.order.capture().then(function(details) {
+                      //     alert(
+                      //       "Transaction completed by " + details.payer.name.given_name
+                      //     );
+                      //   // onClick={paypalGuardar}
+                      //   return fetch("/paypal-transaction-complete", {
+                      //       method: "post",
+                      //       body: JSON.stringify({
+                      //         orderID: data.orderID
+                      //       })
+                      //     })
+                      //   });
+                      // }}
+                      options={{
+                        clientId: "AZSpsDSNwuRjnVMD68Pfmd0QP63XacmdREIRJIhYf4Z19YAfM1FTmsnpZyAZuPHf_x6cODsmBJQsj6Vi"
+                      }}
+                    /> */}
+                  </div>
                 </div>
               </aside>
             </article>
