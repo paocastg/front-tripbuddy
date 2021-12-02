@@ -30,9 +30,12 @@
     "react-google-maps": "^9.4.5",
     "react-paypal-button-v2": "^2.6.3",
     "react-router-dom": "^5.2.0",
+    "react-toastify": "^8.1.0",
     "reactstrap": "^8.10.0",
     "sass": "^1.35.2",
     "save": "^2.4.0",
+    "sweetalert2": "^11.2.1",
+    "sweetalert2-react-content": "^4.2.0",
     "url-loader": "^4.1.1",
     "url-polyfill": "^1.1.12"
   },
