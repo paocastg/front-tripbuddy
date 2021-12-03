@@ -10,18 +10,24 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Auth } from 'assets/Utils/Auth'
 import Button from 'components/Button'
+import SweetAlert from 'sweetalert2'
+import { toast } from 'react-toastify'
+import withReactContent from 'sweetalert2-react-content'
+toast.configure()
 
+const MySwal = withReactContent(SweetAlert)
 const QuotationPage = () => {
   const initialFormState = { agencia: null, descripcion: '', estado: '', lista: '' }
   const [users, setUsers] = useState('')
   const [editing, setEditing] = useState(false)
   const [currentUser, setCurrentUser] = useState(initialFormState)
+  const [loading, setLoading] = useState(false)
   // console.log(saved)
   const fetchUsers = async () => {
     const user = Auth.getSession().usuario.id
     const config = {
       // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
-       headers: { Authorization: `Token d4e97b7df5a2785717f9889d9c870525d3222f1a` },
+      headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
     }
     const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user, config)
     setUsers(response.data.solicitud)
@@ -48,6 +54,52 @@ const QuotationPage = () => {
     document.getElementById('solicitud').style.display = 'block'
     document.getElementById('cotizaciones').style.display = 'none'
   }
+  console.log(loading)
+  const updateSolicitud = (item) => {
+    console.log(item)
+    SweetAlert.fire({
+      title: 'Esta seguro(a)?',
+      text: 'Esta seguro que desea eliminar la solicitud',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, estoy seguro(a).'
+    }).then(async (result) => {
+      if (result.value) {
+        setLoading(true)
+        try {
+          const config = {
+            headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
+          }
+          const res = await axios.delete(HOST + '/solicitud/cancelar/2',
+            config
+          )
+          console.log(res)
+          const response = await res.data
+          console.log(response)
+          if (!response.error) {
+            setLoading(false)
+            MySwal.fire({
+              icon: 'success',
+              title: 'Genial',
+              text: 'La solicitud ha sido eliminada exitosamente.'
+            })
+          }
+        } catch (e) {
+          MySwal.close()
+          console.log(e)
+        }
+      }
+    })
+  }
+  // const [solicitud, setSolicitud] = useState('')
+  const eliminar = () => {
+    currentUser.cotizaciones && currentUser.cotizaciones.map((item) => {
+      return updateSolicitud(item)
+    })
+  }
+  console.log(eliminar)
   return (
     <Wrapper>
       <Session>
@@ -64,7 +116,7 @@ const QuotationPage = () => {
             /><br></br><br></br>
             <center><div>
               <Button onClick={atras}>Atrás</Button>
-              <Button onClick={atras}>Eliminar viaje</Button>
+              <Button onClick={updateSolicitud}>Eliminar viaje</Button>
             </div></center>
             </div>
       <div id='solicitud'>

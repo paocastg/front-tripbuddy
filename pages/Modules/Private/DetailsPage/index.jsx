@@ -2,7 +2,7 @@ import styles from './index.module.scss'
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
 import { useRouter } from 'next/router'
-import { Tabs, Result, Spin, Anchor, Alert, Popover } from 'antd'
+import { Tabs, Result, Spin, Anchor } from 'antd'
 import DetailsMap from 'components/DetailsMap'
 import { HOST, MAPS_KEY, API } from 'assets/Utils/Constants'
 import DetailsCardSection from 'sections/Private/Details/DetailsCardSection'
@@ -132,45 +132,22 @@ const DetailsPage = () => {
     setActiveKey(activityKey)
   }
   const paypalGuardar = async () => {
-    const user = Auth.getSession().usuario.id
     const config = {
       // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
-       headers: { Authorization: `Token d4e97b7df5a2785717f9889d9c870525d3222f1a` },
+      headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
     }
     const usuario = Auth.getSession().usuario
     console.log(usuario)
-    const response = await axios.post(API + '/pago/', { 
-    estado: "PAGADO",//ESTADO VACIO
-    total_de_la_compra: pay.data.precio,
-    nombre_cliente: usuario.nombres,
-    apellido_cliente: usuario.apellidos,
-    correo_cliente: usuario.email,
-    cotizacion: pay.data.id //pay.data.id //nombre de COTIZACION DESCRIPCION
-  }, config)
+    const response = await axios.post(API + '/pago/', {
+      estado: 'PAGADO',
+      total_de_la_compra: pay.data.precio,
+      nombre_cliente: usuario.nombres,
+      apellido_cliente: usuario.apellidos,
+      correo_cliente: usuario.email,
+      cotizacion: pay.data.id
+    }, config)
+    console.log(response)
   }
-  console.log(data)
-  const [ list, setList] = useState({ idLis: '' })
-  const datosPaypal = (ids) =>{
-    setList({ ...list, idLis: idParams(router)})
-    // console.log(data)
-    // const id = Number(idParams(router))
-    data && data.map((index) => 
-    index.cotizaciones.map((lista) => {
-      if( lista.id === ids && lista.id > 0 ){
-        console.log(lista.precio)
-        idPaypal(lista.id, lista.precio, lista.descripcion)
-        console.log(lista.id)
-      }
-    }))
-  }
-  console.log(list)
-  const [paypal, setPaypal] = useState({ precio: '', descripcion: '', id: '' })
-  const idPaypal = (id, precio, descripcion) => {
-      console.log(precio)
-      setPaypal({ ...paypal, precio: precio, descripcion: descripcion, id: id})
-      console.log(idParams(router))
-  }
-  console.log(paypal)
   useEffect(() => {
     fetchUsers()
   }, [])
@@ -181,34 +158,32 @@ const DetailsPage = () => {
     console.log(miToken)
     const config = {
       // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
-       headers: { Authorization: `Token d4e97b7df5a2785717f9889d9c870525d3222f1a` },
+      headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
     }
     const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user, config)
     setCliente(response.data.solicitud)
-    setData(response.data.solicitud.map((item) =>{
-      item.cotizaciones.map((lista) => {
-        console.log(lista)
-        probando(lista)
-       if( lista.id === idParams(router) ){ 
-        console.log(lista)
-        console.log(response.data.solicitud)
-          return lista
-        }
-      })
+    setData(response.data.solicitud.map((item) => {
+      return (
+        item.cotizaciones.map((lista) => {
+          console.log(lista)
+          return probando(lista)
+        }))
     }))
-    //datosPaypal(idParams(router))
   }
-  const [ pay, setPay ] = useState('')
-  const [ cliente, setCliente ] = useState('')
-  const preciosss = idParams(router)  
-  const probando = (data) =>{
+  console.log(data)
+  const [pay, setPay] = useState('')
+  const [cliente, setCliente] = useState('')
+  console.log(cliente)
+  const preciosss = idParams(router)
+  const probando = (data) => {
     console.log(data)
-    if( data.id === Number(preciosss) ){ 
-       console.log(data)
-       setPay({ data })
-      }
+    if (data.id === Number(preciosss)) {
+      console.log(data)
+      setPay({ data })
+    }
   }
   const createOrder = (data, actions) => {
+    console.log(data)
     return actions.order.create({
       purchase_units: [
         {
@@ -216,43 +191,43 @@ const DetailsPage = () => {
             currency_code: 'USD',
             value: pay.data.precio
           },
-          description: pay.data.descripcion//'Compra en Test App'
+          description: pay.data.descripcion
         }
       ]
-    });
-  };
+    })
+  }
   const redirec = () => {
     // return <Redirect to="/cotizaciones" />;
-    return (<a href={ `/cotizaciones` }>{'  '}</a>)
+    return (<a href={ '/cotizaciones' }>{'  '}</a>)
   }
   const onApprove = (data, actions) => {
     console.log(actions.order)
-    console.log(data) 
-    if(data){
+    console.log(data)
+    if (data) {
       MySwal.fire({
         allowOutsideClick: false,
         allowEscapeKey: false,
         title: 'Transacción completada exitosamente...Nro. de transacción: ' + data.orderID + '   recibirá un correo con los detalles',
         onOpen: async () => {
-          MySwal.showLoading();
-          MySwal.close();
-          }
-      });
-    paypalGuardar();
-    redirec();
-    return actions.order.capture();
-  } else {
-    MySwal.fire({
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      title: 'Transaccion fallida...',
-      onOpen: async () => {
-        MySwal.showLoading();
-        MySwal.close();
+          MySwal.showLoading()
+          MySwal.close()
         }
-    });
+      })
+      paypalGuardar()
+      redirec()
+      return actions.order.capture()
+    } else {
+      MySwal.fire({
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        title: 'Transaccion fallida...',
+        onOpen: async () => {
+          MySwal.showLoading()
+          MySwal.close()
+        }
+      })
+    }
   }
-  };
   return (
     <Wrapper>
       <NextSeo
@@ -294,11 +269,11 @@ const DetailsPage = () => {
                   <p className={styles.heroImage__paragraph}>
                     {transformDate(startDate)} - {transformDate(endDate)}
                   </p>
-                  <div style={{ width: "200px", margin: "0 auto" }}>                  
-                  <PayPalButton 
+                  <div style={{ width: '200px', margin: '0 auto' }}>
+                  <PayPalButton
                     createOrder={(data, actions) => createOrder(data, actions)}
                     onApprove={(data, actions) => onApprove(data, actions)}
-                    options={{ clientId: "AZSpsDSNwuRjnVMD68Pfmd0QP63XacmdREIRJIhYf4Z19YAfM1FTmsnpZyAZuPHf_x6cODsmBJQsj6Vi" }} />
+                    options={{ clientId: 'AZSpsDSNwuRjnVMD68Pfmd0QP63XacmdREIRJIhYf4Z19YAfM1FTmsnpZyAZuPHf_x6cODsmBJQsj6Vi' }} />
                   </div>
                 </div>
               </aside>

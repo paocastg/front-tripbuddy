@@ -13,11 +13,10 @@ const EditUserForm = props => {
     console.log(user)
     console.log('user')
   }, [props])
-console.log(user)
+  console.log(user)
   return (
   <div>
-  
-  <div className={styles.quotation_Dos}>
+  <div className={ styles.quotation_Dos }>
     <center><Table>
     <thead>
     <tr style={{ backgroundColor: 'rgb(75, 4, 240)', height: '60px' }} key={1}>
@@ -34,9 +33,8 @@ console.log(user)
       <th>Precio</th>
     </tr>
     </thead>
-    <tbody>      
-      {
-      user.cotizaciones && user.cotizaciones.map((item) =>
+    <tbody>
+      { user.cotizaciones && user.cotizaciones.map((item) =>
       <tr key={ 10 } style={{ border: 'silver 2px solid' }}>
       <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.agencia }</a></center></td>
       <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.descripcion }</a></td>
