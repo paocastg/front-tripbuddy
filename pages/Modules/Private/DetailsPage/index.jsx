@@ -160,7 +160,7 @@ const DetailsPage = () => {
       // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
       headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
     }
-    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user, config)
+    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user +'/estado=pendiente', config)
     setCliente(response.data.solicitud)
     setData(response.data.solicitud.map((item) => {
       return (
