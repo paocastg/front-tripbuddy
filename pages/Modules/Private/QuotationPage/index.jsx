@@ -72,7 +72,7 @@ const QuotationPage = () => {
           const config = {
             headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
           }
-          const res = await axios.delete(HOST + '/solicitud/cancelar/2',
+          const res = await axios.delete(HOST + '/solicitud/cancelar/15',
             config
           )
           console.log(res)
