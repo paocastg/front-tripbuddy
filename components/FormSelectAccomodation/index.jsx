@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect, useContext } from 'react'
 import { Slider, Form, Button } from 'antd'
 import styles from './index.module.scss'

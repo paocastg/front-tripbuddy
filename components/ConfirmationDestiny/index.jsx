@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocalStorage } from 'assets/Utils/LocalStorage'
 import H2 from 'components/H2'

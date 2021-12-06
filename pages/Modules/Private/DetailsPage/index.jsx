@@ -1,3 +1,4 @@
+/* eslint-disable */
 import styles from './index.module.scss'
 import Session from 'layout/Session'
 import Wrapper from 'layout/Wrapper'
