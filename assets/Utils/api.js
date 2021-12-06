@@ -88,14 +88,11 @@ const sendQuotation = async (data) => {
   try {
     console.log('data desde api', data)
     const options = {
-      method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset=utf-8',
         Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a'
-      },
-      data: JSON.stringify(data)
+      }
     }
-    const res = await Http.post(`${API}/solicitud/`, options)
+    const res = await axios.post(`${API}/solicitud/`, data, options)
     const json = await res.data
     return json
     // console.log(json)
