@@ -90,7 +90,8 @@ const sendQuotation = async (data) => {
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json; charset=utf-8'
+        'Content-Type': 'application/json; charset=utf-8',
+        Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a'
       },
       data: JSON.stringify(data)
     }
