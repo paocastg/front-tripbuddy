@@ -71,8 +71,8 @@ export default function SolicitudesPage() {
                 </div>
                 )}
                 <br/>
-                <br/><center><Button color="success"
-                        className="btn-block">Ver Viaje</Button></center>
+                <br/>
+                <center><Button><a href={ `/cotizaciones/detalles/${item.cotizaciones[0]}` }>Ver Viaje</a></Button></center>
                 <br/>
                 </button>
               ))}
