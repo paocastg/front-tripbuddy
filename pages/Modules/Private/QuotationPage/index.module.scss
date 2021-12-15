@@ -30,6 +30,11 @@ $tripbuddy-color: #00B2E3;
 		padding: 56px;
 		height: 100px;
 	}
+	tr:hover {
+			color: rgb(14, 13, 13);
+			background-color: #00b2e31a;
+			text-decoration: none;
+		  }
 	&__bodyTable {
 		font-family: "Geomanist-Regular";
 	}
