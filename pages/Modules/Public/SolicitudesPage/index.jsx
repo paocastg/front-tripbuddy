@@ -2,13 +2,23 @@ import React, { useState, useEffect } from 'react'
 import Wrapper from 'layout/Wrapper'
 import axios from 'axios'
 import Pagination from 'react-js-pagination'
-import { Tag, Col } from 'antd'
+import { Tag, Button } from 'antd'
 import styles from './index.module.scss'
+import { NextSeo } from 'next-seo'
+import {
+  Col,
+  Card,
+  CardBody,
+  Container,
+  Row,
+  Badge,
+  Table,
+} from 'reactstrap'
 export default function SolicitudesPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(5);
+  const [postsPerPage, setPostsPerPage] = useState(6);
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
@@ -28,36 +38,49 @@ export default function SolicitudesPage() {
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   return (
     <Wrapper>
-    <div className="App">
-      <br/><br/>
+    <NextSeo title="Solicitudes" description="A short description goes here." />
+    <br/><br/>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <>
-         
+        <center>        
+        <div className="e-container">
+                <section className={styles.overview}>
               {currentPosts.map((item) => (
-                <button> <h3><strong>Viajeros</strong></h3><div>
-                 <Tag>{item.numero_adultos} Adultos</Tag>
-                 <Tag>{item.numero_adolescentes} Adolescentes</Tag>
-                 <Tag>{item.numero_ninos} Niños</Tag>
+                    <button className={styles.button}>
+                <div>
+                  <img className={styles.img} src='https://media.staticontent.com/media/pictures/8d0efdc4-38ac-4d12-b54e-a21c9b3583eb/300x200'/>
+                </div>
+                <h3><strong>Viajeros</strong></h3>
+                <div className={styles.tag_container}>
+                 <Tag className={styles.tag}>{item.numero_adultos} Adultos</Tag>
+                 <Tag className={styles.tag}>{item.numero_adolescentes} Adolescentes </Tag>
+                 <Tag className={styles.tag}>{item.numero_ninos} Niños </Tag>
                  </div>
                  <h3><strong>Categoria de Viaje</strong></h3>
                  {item.categoria.map((list) => 
-                <div>
-                  <Tag>{ list.nombre }</Tag>
+                <div className={styles.tag_container}>
+                  <Tag className={styles.tag}>{ list.nombre }</Tag>
                 </div>
                 )}
                 <h3><strong>Actividades</strong></h3>
                 { item.actividad&&item.actividad.map((list) =>
-                <div>
-                  <Tag id='linea'> { list.nombre }</Tag>
+                <div className={styles.tag_container}>
+                  <Tag className={styles.tag} id='linea'> { list.nombre }</Tag>
                 </div>
                 )}
+                <br/>
+                <br/><center><Button color="success"
+                        className="btn-block">Ver Viaje</Button></center>
+                <br/>
                 </button>
               ))}
+            </section></div>
+            </center>
         </>
       )}
-      <div className={styles.pagination}>
+      <center>
         <Pagination
           activePage={posts}
           itemsCountPerPage={postsPerPage}
@@ -67,7 +90,6 @@ export default function SolicitudesPage() {
           itemClass="page-item"
           linkClass="page-link"
         />
-      </div>
-    </div></Wrapper>
+    </center></Wrapper>
   );
 }
