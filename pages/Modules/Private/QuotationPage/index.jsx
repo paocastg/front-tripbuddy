@@ -61,6 +61,7 @@ const QuotationPage = () => {
   console.log(loading)
   const updateSolicitud = (item) => {
     console.log(item)
+    console.log(item.id)
     SweetAlert.fire({
       title: 'Esta seguro(a)?',
       text: 'Esta seguro que desea eliminar la solicitud',
@@ -80,7 +81,7 @@ const QuotationPage = () => {
       // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
       headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
     }
-          const res = await axios.delete(HOST + '/solicitud/cancelar/15',
+          const res = await axios.delete(HOST + '/solicitud/cancelar/' + item.id,
             config
           )
           console.log(res)
@@ -103,7 +104,8 @@ const QuotationPage = () => {
   }
   // const [solicitud, setSolicitud] = useState('')
   const eliminar = () => {
-    currentUser.cotizaciones && currentUser.cotizaciones.map((item) => {
+    currentUser.cotizaciones && currentUser[0].cotizaciones.map((item) => {
+      console.log(item)
       updateSolicitud(item)
       return updateSolicitud(item)
     })
