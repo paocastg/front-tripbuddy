@@ -17,7 +17,7 @@ $tripbuddy-color: #00B2E3;
 	}
 	thead {
 		background-color: $tripbuddy-color !important;
-		color: #fff;
+		color: rgb(250, 244, 244);
 		height: 60px;
 		font-family: "Geomanist-Regular";
 		text-align: center;
@@ -25,9 +25,9 @@ $tripbuddy-color: #00B2E3;
 	tbody {
 		text-align: center;
 		background-color: #f7f3f3;
-		color: rgb(7, 6, 6);
-		margin: 10;
-		padding: 16px;
+		color: rgb(14, 13, 13);
+		margin: 50;
+		padding: 56px;
 		height: 100px;
 	}
 	&__bodyTable {
@@ -60,7 +60,7 @@ $tripbuddy-color: #00B2E3;
 	tbody {
 		text-align: center;
 		background-color: #f7f3f3;
-		color: rgb(7, 6, 6);
+		color: rgb(236, 233, 233);
 		margin: 10;
 		padding: 16px;
 		height: 60px;

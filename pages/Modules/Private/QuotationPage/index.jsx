@@ -34,6 +34,7 @@ const QuotationPage = () => {
   }
   useEffect(() => {
     fetchUsers()
+    eliminar()
   }, [])
 
   const editRow = user => {
@@ -96,6 +97,7 @@ const QuotationPage = () => {
   // const [solicitud, setSolicitud] = useState('')
   const eliminar = () => {
     currentUser.cotizaciones && currentUser.cotizaciones.map((item) => {
+      updateSolicitud(item)
       return updateSolicitud(item)
     })
   }

@@ -35,7 +35,7 @@ const EditUserForm = props => {
     </thead>
     <tbody>
       { user.cotizaciones && user.cotizaciones.map((item) =>
-      <tr key={ 10 } style={{ border: 'silver 2px solid' }}>
+      <tr key={ 10 } style={{ border: ' 2px solid' }}>
       <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.agencia }</a></center></td>
       <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.descripcion }</a></td>
       <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.estado }</a></td>

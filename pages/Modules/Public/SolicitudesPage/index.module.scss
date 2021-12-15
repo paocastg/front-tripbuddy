@@ -1,0 +1,43 @@
+.button {
+	height: '100px';
+	width: '300px';
+	border-radius: 10px;
+	border: #fbfbfb 15px solid;
+	background: #fbfbfb;
+    border: 10px solid transparent;
+    -moz-border-image: -moz-linear-gradient(top, #fbfbfb 0%, #090d29 100%);
+    -webkit-border-image: -webkit-linear-gradient(top, #fbfbfb 0%, #dbdffa 100%);
+    border-image: linear-gradient(to bottom, #fbfbfb 0%, #dfe2f3 100%);
+    border-image-slice: 1;
+}
+.overview {
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.tag_container {
+	display: inline-block;
+	height: '100px';
+	width: '300px';
+}
+.tag {
+border-color: black;
+background-color: #ffffff;
+border-radius: 10px;
+display: inline-block;
+}
+.linea
+{
+    display: inline-block;
+}
+.comment {
+	font-family: 'Geomanist-Regular';
+}
+.pagination {
+	align-items: center;
+	margin-top: 2rem;
+	margin-left: 30rem;
+	font-family: inherit;
+	font-size: 15px;
+	display: inline-block;
+  }
