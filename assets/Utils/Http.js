@@ -7,7 +7,7 @@ class Http {
 
     return await axios.get(url, {
       headers: {
-        Authorization: `Bearer ${session?.token}`,
+        Authorization: `Token ${session?.token}`,
         ...options
       },
     })
@@ -20,7 +20,7 @@ class Http {
 			...options,
       headers: {
 				...options.headers,
-        Authorization: `Bearer ${session.token}`,
+        Authorization: `Token ${session.token}`,
       }
     })
   }

@@ -3,24 +3,55 @@ import Wrapper from 'layout/Wrapper'
 import { NextSeo } from 'next-seo'
 import H2 from 'components/H2'
 import { Table } from 'antd'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { Http } from 'assets/Utils/Http'
+import { Auth } from 'assets/Utils/Auth'
 
 const MyTrips = () => {
-  // const [dbQuotation, setDbQuotation] = useState([])
-  useEffect(() => {
-    /* const fetchQuotation = async () => {
-      const res = await axios.get(
-        'https://api.devopsacademy.pe/solicitud/list_cotizaciones/8',
-        {
-          headers: {
-            Authorization: 'Token 621c43d6c3a84e83ce97b8fc2617ac4ccc1aeea4',
-            'Content-Type': 'application/json'
+  const [dbQuotation, setDbQuotation] = useState(null)
+  // mapper quotation
+  const quotationMapper = (res) => {
+    if (res) {
+      const queryMapper = res.map((solicitud) => {
+        // filtrar comprados
+        const quotationFilter = solicitud.cotizaciones.filter(
+          (cotizacion) => cotizacion.estado === 'comprado'
+        )
+        const quotationMapper = quotationFilter.map((cotizacion) => {
+          const destinos = solicitud.destino.map((el) => el.nombre)
+          return {
+            ...cotizacion,
+            key: cotizacion.id,
+            destinos,
+            fecha: solicitud.fecha_inicio,
+            tipoDeExperiencia: [
+              solicitud.actividad.map((el) => el.nombre),
+              solicitud.categoria.map((el) => el.nombre)
+            ],
+            descripcion: cotizacion.descripcion,
+            paquete: [`${destinos.join(' - ')}`, solicitud.fecha_fin, solicitud.fecha_inicio]
           }
-        }
+        })
+        return quotationMapper
+      })
+      const newQueryMapper = queryMapper.reduce((a, b) => a.concat(b))
+      return newQueryMapper
+    } else {
+      return null
+    }
+  }
+  useEffect(() => {
+    const fetchQuotation = async () => {
+      const user = Auth.getSession()
+      const res = await Http.get(
+        `https://api.devopsacademy.pe/solicitud/list_cotizaciones/${user.usuario.id}/asignado`
       )
-      setDbQuotation(res)
-    } */
-    // fetchQuotation()
+      console.log('yep', res.data.solicitud)
+      res && quotationMapper(res.data.solicitud)
+      console.log('yep quotation mapper', quotationMapper(res.data.solicitud))
+      setDbQuotation(quotationMapper(res.data.solicitud))
+    }
+    fetchQuotation()
   }, [])
   /* ========== Columns ========== */
   const columns = [
@@ -34,7 +65,7 @@ const MyTrips = () => {
           children: (
             <div>
               <img src="" />
-              <p>{text}</p>
+              <p style={{ textAlign: 'center' }}>{text.join(', ')}</p>
             </div>
           )
         }
@@ -45,7 +76,7 @@ const MyTrips = () => {
       dataIndex: 'fecha',
       key: 'fecha',
       render: (text, row, index) => {
-        return text
+        return { children: (<p style={{ textAlign: 'center' }}>{text}</p>) }
       }
     },
     {
@@ -55,7 +86,12 @@ const MyTrips = () => {
       render: (text, row, index) => {
         return {
           children: (
-            <ul>{text && text.map((el, i) => <li key={i}>{el}</li>)}</ul>
+            <div>
+              <h4>ACTIVIDADES:</h4>
+              <ul>{text && text[0].map((el, i) => <li key={i}>{el}</li>)}</ul>
+              <h4>CATEGORIAS:</h4>
+              <ul>{text && text[1].map((el, i) => <li key={i}>{el}</li>)}</ul>
+            </div>
           )
         }
       }
@@ -74,7 +110,14 @@ const MyTrips = () => {
       dataIndex: 'paquete',
       key: 'paquete',
       render: (text, row, index) => {
-        return text
+        return {
+          children: (
+            <div>
+              <p>{text[0]}</p>
+              <p>{`${text[1]} a ${text[2]}`}</p>
+            </div>
+          )
+        }
       }
     }
   ]
@@ -82,7 +125,7 @@ const MyTrips = () => {
     console.log('params', sorter, extra)
   }
   /* ========== Rows data ========== */
-  const data = [
+  /* const data = [
     {
       key: 1,
       destinos: 'Peru',
@@ -115,7 +158,7 @@ const MyTrips = () => {
       descripcion: 'Lorem ipsum ..',
       paquete: 'Lima - Cusco - Arequipa 12 dias - 11 noches'
     }
-  ]
+  ] */
   return (
     <Wrapper>
       <NextSeo
@@ -126,7 +169,7 @@ const MyTrips = () => {
         <H2>Mis Viajes</H2>
         <Table
           columns={columns}
-          dataSource={data}
+          dataSource={dbQuotation}
           pagination={false}
           scroll={{ y: 500, x: 920 }}
           className={`${styles.quotation__headerTable} ${styles.quotation__tdTable}`}
