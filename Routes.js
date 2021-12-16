@@ -5,6 +5,7 @@ export const RoutesPrivate = {
 }
 
 export const RoutesPublic = {
+  SolicitudesPage: { slug: '/las-solicitudes', file: '/Modules/Public/SolicitudesPage' },
   HomePage: { slug: '/', file: '/Modules/Public/HomePage' },
   Faq: { slug: '/faq', file: '/Modules/Public/Faq' }
 }
