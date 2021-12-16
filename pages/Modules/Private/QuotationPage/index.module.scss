@@ -3,14 +3,11 @@ $tripbuddy-color: #00B2E3;
 .quotation {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	margin-top: 40px;
 	margin-bottom: 75px;
 	&__headerTable thead > tr > th {
 		background-color: $tripbuddy-color !important;
 		color: #fff;
-		font-family: "Geomanist-Regular";
-		text-align: center;
 	}
 	table {
 		width: 70%;
@@ -21,6 +18,7 @@ $tripbuddy-color: #00B2E3;
 		height: 60px;
 		font-size: 15px;
 		line-height: 12px;
+		text-align: center;
 	}
 	tbody {
 		background-color: #f7f3f3;
@@ -37,7 +35,6 @@ $tripbuddy-color: #00B2E3;
 			text-decoration: none;
 		  }
 	&__bodyTable {
-		font-family: "Geomanist-Regular";
 	}
 }
 

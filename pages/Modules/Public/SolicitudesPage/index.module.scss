@@ -1,19 +1,10 @@
-.button {
-	height: '100px';
-	width: '300px';
-	border-radius: 10px;
-	border: #fbfbfb 15px solid;
-	background: #fbfbfb;
-    border: 10px solid transparent;
-    -moz-border-image: -moz-linear-gradient(top, #fbfbfb 0%, #090d29 100%);
-    -webkit-border-image: -webkit-linear-gradient(top, #fbfbfb 0%, #dbdffa 100%);
-    border-image: linear-gradient(to bottom, #fbfbfb 0%, #dfe2f3 100%);
-    border-image-slice: 1;
-}
 .overview {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
+}
+.verviaje {
+	background-color: '#00B2E3';
 }
 .tag_container {
 	display: inline-block;
@@ -41,3 +32,109 @@ display: inline-block;
 	font-size: 15px;
 	display: inline-block;
   }
+  
+.booksContainer {
+	display: flex;
+	flex-wrap: wrap;
+  }
+  
+  .booksContainer > div {
+	position: relative;
+	width: 30%;
+	margin: 10px;
+	padding: 5px 5px 45px 5px;
+	box-sizing: border-box;
+	justify-content: center;
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 30px 0px;
+  }
+  
+  @media only screen and (min-width: 768px) {
+	.books-container > div {
+	  width: 45%;
+	}
+  }
+  
+  @media only screen and (min-width: 1024px) {
+	.books-container > div {
+	  width: calc(0.25 * (100% - 80px));
+	  margin: 10px;
+	  padding: 5px 5px 45px 5px;
+	}
+  }
+  
+  .book-cover {
+	width: 100%;
+	height: 200px;
+  }
+  
+  .book-title {
+	font-weight: bold;
+  }
+  
+  .book-value-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+  }
+  
+  .book-show-btn {
+	position: absolute;
+	bottom: 5px;
+	width: calc(100% - 10px);
+	height: 30px;
+	background-color: green;
+	border: 0;
+	border-radius: 5px;
+	color: white;
+  }
+  
+  .breadcrumbs {
+	padding: 0 10%;
+	margin-bottom: 0;
+  }
+  
+  .book-detail-container {
+	display: flex;
+	flex-direction: column;
+	padding: 20px 10% 0 10%;
+  }
+  
+  @media only screen and (min-width: 1024px) {
+	.book-detail-container {
+	  flex-direction: row;
+	}
+  }
+  
+  .book-detail-cover-wrapper {
+	height: 400px;
+  }
+  
+  @media only screen and (min-width: 1024px) {
+	.book-detail-cover-wrapper {
+	  width: 35%;
+	}
+  }
+  
+  .book-detail-cover-image {
+	width: 100%;
+	height: 100%;
+  }
+  
+  .book-detail-misc {
+	width: 65%;
+	padding: 0 20px;
+	box-sizing: border-box;
+	margin-top: 20px;
+  }
+  
+  @media only screen and (min-width: 1024px) {
+	.book-detail-misc {
+	  margin-top: 0;
+	}
+  }
+  
+  .book-detail-title {
+	font-size: 35px;
+	margin: 0;
+  }
+  
