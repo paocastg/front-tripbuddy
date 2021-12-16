@@ -1,42 +1,42 @@
 /* eslint-disable */
-import React, { useContext, useEffect, useState } from 'react'
-import { useLocalStorage } from 'assets/Utils/LocalStorage'
-import H2 from 'components/H2'
-import styles from './index.module.scss'
-import { Tag } from 'antd'
-import CustomTag from 'components/CustomTag'
-import { ExclamationCircleOutlined } from '@ant-design/icons'
-import SelectTripContext from 'context/SelectTripContext'
-import { TYPES } from 'actions/quotationActions'
+import React, { useContext, useEffect, useState } from "react";
+import { useLocalStorage } from "assets/Utils/LocalStorage";
+import H2 from "components/H2";
+import styles from "./index.module.scss";
+import { Tag } from "antd";
+import CustomTag from "components/CustomTag";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import SelectTripContext from "context/SelectTripContext";
+import { TYPES } from "actions/quotationActions";
 
 const ConfirmationDestiny = () => {
-  const [adulto] = useLocalStorage('adultos', 0)
-  const [adolescente] = useLocalStorage('adolescentes', 0)
-  const [nino] = useLocalStorage('ninos', 0)
-  const [costo] = useLocalStorage('costo', '')
-  const [alojamiento] = useLocalStorage('tipoAlojamiento', '')
+  const [adulto] = useLocalStorage("adultos", 0);
+  const [adolescente] = useLocalStorage("adolescentes", 0);
+  const [nino] = useLocalStorage("ninos", 0);
+  const [costo] = useLocalStorage("costo", "");
+  const [alojamiento] = useLocalStorage("tipoAlojamiento", "");
 
-  const [myQuotation, setMyQuotation] = useState(null)
-  const { state, dispatch } = useContext(SelectTripContext)
+  const [myQuotation, setMyQuotation] = useState(null);
+  const { state, dispatch } = useContext(SelectTripContext);
 
   useEffect(() => {
     // read myQuotation of localStorage
-    const myQuotationInit = JSON.parse(localStorage.getItem('myQuotation')) || {
+    const myQuotationInit = JSON.parse(localStorage.getItem("myQuotation")) || {
       activity: [],
-      category: []
-    }
+      category: [],
+    };
     // console.log(myQuotationInit)
-    setMyQuotation(myQuotationInit)
-  }, [])
+    setMyQuotation(myQuotationInit);
+  }, []);
 
   const handleDeleteTag = (e, data, field) => {
-    console.log(e)
-    e.preventDefault()
+    console.log(e);
+    e.preventDefault();
     confirm({
       title: `Quieres eliminar "${data.name}" de tu cotizacion ?`,
       icon: <ExclamationCircleOutlined />,
-      content: '',
-      onOk () {
+      content: "",
+      onOk() {
         // console.log('OK')
         // delete from myQuotation
         // const fieldFiltered = myQuotation[field].filter(
@@ -46,58 +46,59 @@ const ConfirmationDestiny = () => {
         //   ...myQuotation,
         //   [field]: fieldFiltered
         // }
-        dispatch({ type: TYPES.REMOVE_ONE_QUOTATION, payload: { field, data, manyOptions: true } })
+        dispatch({
+          type: TYPES.REMOVE_ONE_QUOTATION,
+          payload: { field, data, manyOptions: true },
+        });
 
         // update locaStorage
         // setMyQuotation(quotation)
         // localStorage.setItem('myQuotation', JSON.stringify(quotation))
       },
-      onCancel () {
+      onCancel() {
         // console.log('Cancel')
-      }
-    })
-  }
-  let tipo = ''
-  let costoAlojamiento = ''
+      },
+    });
+  };
+  let tipo = "";
+  let costoAlojamiento = "";
   // eslint-disable-next-line eqeqeq
-  if (alojamiento == '1') {
-    tipo = 'Hotel'
+  if (alojamiento == "1") {
+    tipo = "Hotel";
     // eslint-disable-next-line eqeqeq
-  } else if (alojamiento == '2') {
-    tipo = 'Airbnb'
+  } else if (alojamiento == "2") {
+    tipo = "Airbnb";
   } else {
-    tipo = 'No desea'
+    tipo = "No desea";
   }
   // eslint-disable-next-line eqeqeq
-  if (costo == '1') {
-    costoAlojamiento = 'bajo costo'
+  if (costo == "1") {
+    costoAlojamiento = "bajo costo";
     // eslint-disable-next-line eqeqeq
-  } else if (costo == '2') {
-    costoAlojamiento = '2 estrellas'
+  } else if (costo == "2") {
+    costoAlojamiento = "2 estrellas";
     // eslint-disable-next-line eqeqeq
-  } else if (costo == '3') {
-    costoAlojamiento = '3 estrellas'
+  } else if (costo == "3") {
+    costoAlojamiento = "3 estrellas";
     // eslint-disable-next-line eqeqeq
-  } else if (costo == '4') {
-    costoAlojamiento = '4 estrellas'
+  } else if (costo == "4") {
+    costoAlojamiento = "4 estrellas";
     // eslint-disable-next-line eqeqeq
-  } else if (costo == '5') {
-    costoAlojamiento = 'Lujoso'
+  } else if (costo == "5") {
+    costoAlojamiento = "Lujoso";
   } else {
-    costoAlojamiento = ''
+    costoAlojamiento = "";
   }
   return (
     <section className={styles.overview}>
       <H2>Resumen de viaje</H2>
-      {state.destino.length === 0
-        ? (
+      {state.destino.length === 0 ? (
         <></>
-          )
-        : (
+      ) : (
         <h3>
           <strong>Destinos</strong>
         </h3>
-          )}
+      )}
       <div>
         {state.destino &&
           state.destino.map((d) => (
@@ -111,9 +112,11 @@ const ConfirmationDestiny = () => {
         <strong>Viajeros</strong>
       </h3>
       <div className={styles.tag_container}>
-        <Tag className={styles.tag}>{adulto} Adultos</Tag>
-        <Tag className={styles.tag}>{adolescente} Adolescentes</Tag>
-        <Tag className={styles.tag}>{nino} Niños</Tag>
+        <Tag className={styles.tag}>{state.numero_adultos} Adultos</Tag>
+        <Tag className={styles.tag}>
+          {state.numero_adolescentes} Adolescentes
+        </Tag>
+        <Tag className={styles.tag}>{state.numero_ninos} Niños</Tag>
       </div>
       <br />
       <h3>
@@ -132,56 +135,44 @@ const ConfirmationDestiny = () => {
         </Tag>
       </div>
       <br />
-      {state.categoria.length === 0
-        ? (
+      {state.categoria.length === 0 ? (
         <></>
-          )
-        : (
+      ) : (
         <h3>
           <strong>Categoria de Viaje</strong>
         </h3>
-          )}
+      )}
       <div className={styles.tag_container}>
-        {state.categoria.length === 0
-          ? (
+        {state.categoria.length === 0 ? (
           <></>
-            )
-          : (
-              state.categoria.map((el) => (
-            <CustomTag
-              key={el.id}
-              el={el}
-              handleDeleteTag={handleDeleteTag}
-              field="categoria"
-            />
-              ))
-            )}
+        ) : (
+          state.categoria.map((el) => (
+            <Tag className={styles.tag} key={el.id}>
+              {el.name}
+            </Tag>
+          ))
+        )}
       </div>
-      {state.actividad.length === 0
-        ? (
+      <br />
+      {state.actividad.length === 0 ? (
         <></>
-          )
-        : (
+      ) : (
         <h3>
           <strong>Actividades</strong>
         </h3>
-          )}
+      )}
       <div className={styles.tag_container}>
-        {state.actividad.length === 0
-          ? (
+        {state.actividad.length === 0 ? (
           <></>
-            )
-          : (
-              state.actividad.map((el) => (
-            <CustomTag
-              key={el.id}
-              el={el}
-              handleDeleteTag={handleDeleteTag}
-              field="actividad"
-            />
-              ))
-            )}
+        ) : (
+          state.actividad.map((el) => (
+            <Tag className={styles.tag} key={el.id}>
+              {el.name}
+            </Tag>
+          ))
+        )}
       </div>
+      <br />
       {state.comentarios && (
         <div>
           <h3>
@@ -191,6 +182,6 @@ const ConfirmationDestiny = () => {
         </div>
       )}
     </section>
-  )
-}
-export default ConfirmationDestiny
+  );
+};
+export default ConfirmationDestiny;
