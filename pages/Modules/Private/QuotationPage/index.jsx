@@ -1,3 +1,4 @@
+/* eslint-disable */
 import styles from './index.module.scss'
 import UserTable from './UserTable'
 import EditUserForm from './EditUserForm'
