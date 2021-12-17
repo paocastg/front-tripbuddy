@@ -90,7 +90,7 @@ export default function SolicitudesPage() {
           totalItemsCount={posts.length}
           pageRangeDisplayed={posts.length / postsPerPage}
           onChange={handlePageChange}
-          itemClass="page-item"
+          itemClass={ styles.pagination }
           linkClass="page-link"
         />
     </center></Wrapper>
