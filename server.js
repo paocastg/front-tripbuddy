@@ -37,7 +37,8 @@ nextApp
       { slug: '/politicas-de-cookies', file: '/Modules/Public/CookiePolicies' },
       { slug: '/terminos-de-uso', file: '/Modules/Public/TermsOfUse' },
       { slug: '/contacto', file: '/Modules/Public/Contact' },
-      { slug: '/las-solicitudes', file: '/Modules/Public/SolicitudesPage' }
+      { slug: '/viajes-otros-usuarios', file: '/Modules/Public/SolicitudesPage' },
+      { slug: '/solicitudes/detalles/:id', file: '/Modules/Public/DetailsPage' },
     ]
 
     for (const route of routes) {

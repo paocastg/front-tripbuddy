@@ -8,15 +8,7 @@ import styles from './index.module.scss'
 import { NextSeo } from 'next-seo'
 import H2 from 'components/H2'
 import moment from 'moment'
-import {
-  Col,
-  Card,
-  CardBody,
-  Container,
-  Row,
-  Badge,
-  Table,
-} from 'reactstrap'
+import { HOST } from 'assets/Utils/Constants'
 export default function SolicitudesPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,7 +17,7 @@ export default function SolicitudesPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await axios.get('https://api.devopsacademy.pe/solicitud/list_cotizaciones_compradas/asignado');
+      const res = await axios.get(HOST + '/solicitud/list_cotizaciones_compradas/asignado');
       setPosts(res.data.solicitud);
       setLoading(false);
     };
@@ -49,8 +41,7 @@ export default function SolicitudesPage() {
         <p>Loading...</p>
       ) : (
         <>
-        <center>        
-        <div style={{ display: 'inline-block' }} className="e-container">
+        <center>
               <section className={styles.booksContainer}>
               {currentPosts.map((item) => (
                 <><div>
@@ -79,14 +70,14 @@ export default function SolicitudesPage() {
                 )}
                 <br/>
                 <br/>
-                <center><Button style={{ backgroundColor: '#00B2E3', width: '70%', color: 'rgb(250, 244, 244)' }}><a href={ `/cotizaciones/detalles/${item.cotizaciones[0]}` }>Ver Viaje</a></Button></center>
+                <center><Button style={{ backgroundColor: '#00B2E3', width: '70%', color: 'rgb(250, 244, 244)' }}><a href={ `/solicitudes/detalles/7` }>Ver Viaje</a></Button></center>
                 <br/>            
                 </div>
                 </>
 
               ))}
 
-            </section></div>
+            </section>
             </center>
         </>
       )}

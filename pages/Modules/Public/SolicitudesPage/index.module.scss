@@ -36,12 +36,13 @@ display: inline-block;
 .booksContainer {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
   }
   
-  .booksContainer > div {
+.booksContainer > div {
 	position: relative;
-	width: 30%;
-	margin: 10px;
+	width: 22%;
+	margin: 5px;
 	padding: 5px 5px 45px 5px;
 	box-sizing: border-box;
 	justify-content: center;
@@ -50,7 +51,7 @@ display: inline-block;
   
   @media only screen and (min-width: 768px) {
 	.books-container > div {
-	  width: 45%;
+	  width: 55%;
 	}
   }
   

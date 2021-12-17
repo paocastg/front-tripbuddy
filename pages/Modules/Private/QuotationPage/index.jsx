@@ -11,6 +11,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { Auth } from 'assets/Utils/Auth'
 import Button from 'components/Button'
+import H2 from 'components/H2'
 import SweetAlert from 'sweetalert2'
 import { toast } from 'react-toastify'
 import withReactContent from 'sweetalert2-react-content'
@@ -110,6 +111,7 @@ const QuotationPage = () => {
           <div style = {{ display: 'none' }}>
             </div>
           <div id='cotizaciones' style = {{ display: 'none' }}>
+      <H2>Cotizaciones</H2>
             <EditUserForm
               editing={editing}
               setEditing={setEditing}
@@ -123,6 +125,7 @@ const QuotationPage = () => {
             </div></center>
             </div>
       <div id='solicitud'>
+          <H2>Solicitudes</H2>
         <div className="flex-large">
           <UserTable users={users} editRow={editRow}/>
         </div>
