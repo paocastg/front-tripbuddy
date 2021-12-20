@@ -9,6 +9,7 @@ import { NextSeo } from 'next-seo'
 import H2 from 'components/H2'
 import moment from 'moment'
 import { HOST } from 'assets/Utils/Constants'
+import '/node_modules/bootstrap/dist/css/bootstrap.min.css';
 export default function SolicitudesPage() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -74,9 +75,7 @@ export default function SolicitudesPage() {
                 <br/>            
                 </div>
                 </>
-
               ))}
-
             </section>
             </center>
         </>
@@ -90,7 +89,8 @@ export default function SolicitudesPage() {
           totalItemsCount={posts.length}
           pageRangeDisplayed={posts.length / postsPerPage}
           onChange={handlePageChange}
-          itemClass={ styles.pagination }
+          // itemClass={ styles.pagination }
+          itemClass="page-item"
           linkClass="page-link"
         />
     </center></Wrapper>
