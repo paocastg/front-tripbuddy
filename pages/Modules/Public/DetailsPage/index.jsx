@@ -132,104 +132,6 @@ const DetailsPage = () => {
     // console.log('yep activity key: ', activityKey)
     setActiveKey(activityKey)
   }
-  const paypalGuardar = async (idPay) => {
-    const config = {
-      // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
-      headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
-    }
-    const usuario = Auth.getSession().usuario
-    console.log(usuario)
-    const response = await axios.post(API + '/pago/', {
-      estado: 'PAGADO',
-      total_de_la_compra: pay.data.precio,
-      nombre_cliente: usuario.nombres,
-      apellido_cliente: usuario.apellidos,
-      correo_cliente: usuario.email,
-      cotizacion: pay.data.id,
-      transaccion_paypal: idPay
-    }, config)
-    console.log(response)
-  }
-  useEffect(() => {
-    fetchUsers()
-  }, [])
-  // ^TS$B8fr
-  const fetchUsers = async () => {
-    const user = Auth.getSession().usuario.id
-    const miToken = Auth.getSession().token
-    console.log(miToken)
-    const config = {
-      // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
-      headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
-    }
-    const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user +'/pendiente', config)
-    setCliente(response.data.solicitud)
-    setData(response.data.solicitud.map((item) => {
-      return (
-        item.cotizaciones.map((lista) => {
-          console.log(lista)
-          return probando(lista)
-        }))
-    }))
-  }
-  console.log(data)
-  const [pay, setPay] = useState('')
-  const [cliente, setCliente] = useState('')
-  console.log(cliente)
-  const preciosss = idParams(router)
-  const probando = (data) => {
-    console.log(data)
-    if (data.id === Number(preciosss)) {
-      console.log(data)
-      setPay({ data })
-    }
-  }
-  const createOrder = (data, actions) => {
-    console.log(data)
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            currency_code: 'USD',
-            value: pay.data.precio
-          },
-          description: pay.data.descripcion
-        }
-      ]
-    })
-  }
-  const redirec = () => {
-    // return <Redirect to="/cotizaciones" />;
-    return (<a href={ '/cotizaciones' }>{'  '}</a>)
-  }
-  const onApprove = (data, actions) => {
-    console.log(actions.order)
-    console.log(data)
-    if (data) {
-      MySwal.fire({
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        title: 'Transacción completada exitosamente...Nro. de transacción: ' + data.orderID + '   recibirá un correo con los detalles',
-        onOpen: async () => {
-          MySwal.showLoading()
-          MySwal.close()
-        }
-      })
-      paypalGuardar(data.orderID)
-      redirec()
-      return actions.order.capture()
-    } else {
-      MySwal.fire({
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        title: 'Transaccion fallida...',
-        onOpen: async () => {
-          MySwal.showLoading()
-          MySwal.close()
-        }
-      })
-    }
-  }
   return (
     <Wrapper>
       <NextSeo
@@ -271,12 +173,6 @@ const DetailsPage = () => {
                   <p className={styles.heroImage__paragraph}>
                     {transformDate(startDate)} - {transformDate(endDate)}
                   </p>
-                  <div style={{ width: '200px', margin: '0 auto' }}>
-                  <PayPalButton
-                    createOrder={(data, actions) => createOrder(data, actions)}
-                    onApprove={(data, actions) => onApprove(data, actions)}
-                    options={{ clientId: 'AZSpsDSNwuRjnVMD68Pfmd0QP63XacmdREIRJIhYf4Z19YAfM1FTmsnpZyAZuPHf_x6cODsmBJQsj6Vi' }} />
-                  </div>
                 </div>
               </aside>
             </article>
@@ -334,7 +230,7 @@ const DetailsPage = () => {
                 </TabPane>
               </Tabs>
               <div className={styles.actions}>
-                <a href="/cotizaciones" className={styles.actions__button}>
+                <a href="/viajes-otros-usuarios" className={styles.actions__button}>
                   VOLVER
                 </a>
               </div>

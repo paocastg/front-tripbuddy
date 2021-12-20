@@ -1,0 +1,106 @@
+$first-color-tripbuddy: #00B2E3;
+$second-color-tripbuddy: #009CD7;
+$white-color: #fff;
+$font: 'Geomanist-Regular';
+$font-bold: 'Geomanist-Bold';
+
+
+.heroImage {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center top;
+	&__opacity {
+    width: 100%;
+		min-height: 500px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+
+	&__title {
+    font-family: 'Geomanist-Regular';
+    font-weight: 700;
+    font-size: 2.5em;
+		color: $white-color;
+	}
+  &__paragraph {
+    font-family: 'Geomanist-Regular';
+    font-weight: 700;
+    font-size: 1.8em;
+		color: $white-color;
+  }
+}
+
+.circle {
+  font-size: 1.2em;
+  margin-left: 25px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #00B2E3;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  text-align: center;
+}
+.section2 {
+  padding: 16px 0;
+}
+
+.section3 {
+  padding: 16px 0;
+}
+
+.section4 {
+  padding: 16px 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0 48px 0;
+  &__button {
+    font-family: $font;
+    font-size: 1.2em;
+    color: $white-color;
+    background-color: $first-color-tripbuddy;
+    border-color: $first-color-tripbuddy;
+    border-radius: 20px;
+    padding: 6px 50px;
+    &:hover {
+      color: $white-color;
+      background-color: $second-color-tripbuddy;
+      border-color: $second-color-tripbuddy;
+    }
+  }
+}
+
+.map {
+  height: 350px;
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 960px) {
+  .section3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__second {
+      width: 300px;
+    }
+  }
+}
+
+.container {
+  &__dayToDay {
+    display: flex;
+  }
+  &__day {
+    margin: 0 5rem;
+  }
+}

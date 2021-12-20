@@ -19,14 +19,14 @@ const EditUserForm = props => {
   <div className={ styles.quotation_Dos }>
     <center><Table>
     <thead>
-    <tr style={{ backgroundColor: 'rgb(75, 4, 240)', height: '60px' }} key={1}>
+    <tr style={{ color: '#fff', backgroundColor: 'rgb(75, 4, 240)', height: '60px' }} key={1}>
       <th>Viaje:</th>
       <th>{ user.destino && user.destino.map((destinos) => destinos.nombre + ' ') + '    ' }</th>
       <th>{'/ ' + ((moment(user.fecha_fin).diff(moment(user.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }{ ' / ' + (user.numero_adultos + user.numero_adolescentes + user.numero_ninos) + ' Personas ' }</th>
       <th></th>
     </tr>
     <tr style={{ backgroundColor: '#f7f3f3', height: '10px' }} key={1}></tr>
-    <tr style={{ height: '60px' }}>
+    <tr style={{ fontFamily: 'Geomanist-Regular', color: '#fff', backgroundColor: '#00B2E3', height: '60px' }}>
       <th>Agencia</th>
       <th>Descripcion</th>
       <th>Destinos</th>

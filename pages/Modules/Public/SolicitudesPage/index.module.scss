@@ -30,18 +30,34 @@ display: inline-block;
 	margin-left: 30rem;
 	font-family: inherit;
 	font-size: 15px;
+	display: flex;
+	flex-direction: row;
+	// display: inline-block;
+	// height: '100px';
+	// width: '300px';
+  }
+.paginationlinia {
+	display: inline-block;
+}
+.pagination  > ul {
+	align-items: center;
+	margin-top: 2rem;
+	margin-left: 30rem;
+	font-family: inherit;
+	font-size: 15px;
 	display: inline-block;
   }
   
 .booksContainer {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
   }
   
-  .booksContainer > div {
+.booksContainer > div {
 	position: relative;
-	width: 30%;
-	margin: 10px;
+	width: 22%;
+	margin: 5px;
 	padding: 5px 5px 45px 5px;
 	box-sizing: border-box;
 	justify-content: center;
@@ -50,7 +66,7 @@ display: inline-block;
   
   @media only screen and (min-width: 768px) {
 	.books-container > div {
-	  width: 45%;
+	  width: 55%;
 	}
   }
   
