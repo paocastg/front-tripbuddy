@@ -15,6 +15,12 @@ const TripStepSection = () => {
         <img src="images/flecha.svg" alt="flecha" />
         <img src="images/paso5.svg" alt="paso5" />
       </div>
+      <div className={styles.icon_whatsapp}>
+        <a
+          href="https://api.whatsapp.com/send?phone=+51922553728">
+          <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" />
+        </a>
+      </div>
     </article>
   )
 }

@@ -27,12 +27,12 @@ const Footer = () => {
         </div>
       </footer>
       <div className={styles.footer_desc}>© 2021 Trip Buddy - Todos los derechos reservados</div>
-      <div className={styles.icon_whatsapp}>
+      {/* <div className={styles.icon_whatsapp}>
         <a
           href="https://api.whatsapp.com/send?phone=+51922553728">
           <img src="http://s2.accesoperu.com/logos/btn_whatsapp.png" />
         </a>
-      </div>
+      </div> */}
     </>
   )
 }
