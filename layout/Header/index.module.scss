@@ -58,3 +58,25 @@
     transition: .3s ease-out;
   }
 }
+
+
+@media only screen and (max-width: 1280px) and (min-width: 180px) {
+	.header_button {
+    margin: 0 6px;
+    border: 1px solid #00B2E3;
+    color: #00b2e3;
+    padding: -2px 0px;
+    font-size: 1.0em;
+    background-color: white;
+    border-radius: 4px;
+    outline: none;
+    height: 44px;
+    cursor: pointer;
+    transition: .3s ease-in;
+	}
+  .hover {
+    color: white;
+    background-color: #00b2e3;
+    transition: .3s ease-out;
+  }
+}
