@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import styles from './index.module.scss'
+import { API } from 'assets/Utils/Constants'
 
 /* layout */
 import Wrapper from 'layout/Wrapper'
@@ -10,7 +11,7 @@ const { TextArea } = Input
 
 const Contact = () => {
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
+  const [correo, setCorreo] = useState('')
   const [telephone, setTelephone] = useState('')
   const [asunto, setAsunto] = useState('')
   const [message, setMessage] = useState('')
@@ -23,7 +24,7 @@ const Contact = () => {
     if (name === '') {
       isValid = false
     }
-    if (email === '') {
+    if (correo === '') {
       isValid = false
     }
     if (telephone === '') {
@@ -38,17 +39,17 @@ const Contact = () => {
     if (!isValid) return
 
     try {
-      const response = await axios.post('http://localhost:5000/mensaje', {
+      const response = await axios.post(API + '/contacto/', {
         id: Math.random() * 100,
         nombre: name,
-        email: email,
-        telephone: telephone,
+        correo: correo,
+        telefono: telephone,
         asunto: asunto,
-        message: message
+        mensaje_contacto: message
       })
       console.log('response', response)
       setName('')
-      setEmail('')
+      setCorreo('')
       setTelephone('')
       setMessage('')
       setMessage('')
@@ -95,7 +96,7 @@ const Contact = () => {
               />
             </Form.Item>
             <Form.Item
-              name="email"
+              name="correo"
               className={styles.formItem}
               label={<strong>E-mail</strong>}
               rules={[
@@ -108,9 +109,9 @@ const Contact = () => {
               <Input
                 className={styles.input}
                 placeholder="E-mail"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="correo"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
               />
             </Form.Item>
           </Form.Item>
@@ -177,7 +178,7 @@ const Contact = () => {
             />
           </Form.Item>
           <Form.Item className={styles.itemMessage}>
-            <Button className={styles.button} htmlType="submit">
+            <Button className={styles.button} onClick={handleSubmit} htmlType="submit">
               Enviar Mensaje
             </Button>
           </Form.Item>
