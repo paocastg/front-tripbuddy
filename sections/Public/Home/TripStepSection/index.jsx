@@ -1,5 +1,5 @@
 import styles from './index.module.scss'
-
+import Viajes from './Viajes_otros_usuarios/index'
 const TripStepSection = () => {
   return (
     <article className={styles.tripStep}>
@@ -15,6 +15,8 @@ const TripStepSection = () => {
         <img src="images/flecha.svg" alt="flecha" />
         <img src="images/paso5.svg" alt="paso5" />
       </div>
+      <h2 className={styles.tripStep__title}>Viajes de otros usuarios</h2>
+      <Viajes/>
       <div className={styles.icon_whatsapp}>
         <a
           href="https://api.whatsapp.com/send?phone=+51922553728">
