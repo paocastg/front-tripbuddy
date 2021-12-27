@@ -5,7 +5,7 @@ import axios from 'axios'
 const getCategory = async () => {
   try {
     const urlCategory = `${API}/categoria/`
-    const res = await Http.get(urlCategory)
+    const res = await get(urlCategory)
     const json = await res.data
     // console.log(json)
     return json
@@ -18,7 +18,7 @@ const getCategory = async () => {
 const getActivity = async () => {
   try {
     const urlActivity = `${API}/actividad/`
-    const res = await Http.get(urlActivity)
+    const res = await get(urlActivity)
     const json = await res.data
     return json
   } catch (err) {
@@ -29,8 +29,9 @@ const getActivity = async () => {
 const getDestiny = async () => {
   try {
     const urlActivity = `${API}/destino/`
-    const res = await Http.get(urlActivity)
+    const res = await get(urlActivity)
     const json = await res.data
+    console.log(json)
     return json
   } catch (err) {
     const message = err.statusText
