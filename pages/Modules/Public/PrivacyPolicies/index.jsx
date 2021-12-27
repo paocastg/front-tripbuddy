@@ -8,7 +8,7 @@ const PrivacyPolicies = () => {
   return (
     <Wrapper>
       <NextSeo
-        title="Politicas de Privacidad"
+        title="Políticas de privacidad"
         description="A short description goes here."
       />
       <article className={`${styles.privacyPolicies} e-container`}>

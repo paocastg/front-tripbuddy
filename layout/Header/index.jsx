@@ -66,7 +66,7 @@ const Header = () => {
                 >
                   Iniciar sesión
                 </button>
-                <button className={styles.header_button}>Registro</button>
+                {/* <button className={styles.header_button}>Registro</button> */}
               </>
                 )}
           </div>

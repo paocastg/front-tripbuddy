@@ -8,7 +8,7 @@ const CookiePolicies = () => {
   return (
     <Wrapper>
       <NextSeo
-        title="Politicas de Cookies"
+        title="Políticas de Cookies"
         description="A short description goes here."
       />
       <article className={`${styles.cookiePolicies} e-container`}>
