@@ -8,7 +8,7 @@ const TermsOfUse = () => {
   return (
     <Wrapper>
       <NextSeo
-        title="Terminos de uso"
+        title="Términos de uso"
         description="A short description goes here."
       />
       <article className={`${styles.termsOfUse} e-container`}>

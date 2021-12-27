@@ -8,7 +8,7 @@ const CopyrightPolicies = () => {
   return (
     <Wrapper>
       <NextSeo
-        title="Politicas de derecho de autor"
+        title="Políticas de derecho de autor"
         description="A short description goes here."
       />
       <article className={`${styles.copyrightPolicies} e-container`}>

@@ -22,7 +22,7 @@ const Footer = () => {
             <a href="/politicas-de-privacidad">Políticas de privacidad</a>
             <a href="/politicas-de-derechos-de-autor">Políticas de derechos de autor</a>
             <a href="/politicas-de-cookies">Políticas de Cookies</a>
-            <a href="/terminos-de-uso">Terminos de uso</a>
+            <a href="/terminos-de-uso">Términos de uso</a>
           </div>
         </div>
       </footer>

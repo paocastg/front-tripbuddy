@@ -138,7 +138,6 @@ const DetailsPage = () => {
         title="Detalles"
         description="A short description goes here."
       />
-      <Session>
         {loading && (
           <div
             style={{ margin: '30px', marginBottom: '30%', textAlign: 'center' }}
@@ -237,7 +236,6 @@ const DetailsPage = () => {
             </section>
           </>
         )}
-      </Session>
     </Wrapper>
   )
 }

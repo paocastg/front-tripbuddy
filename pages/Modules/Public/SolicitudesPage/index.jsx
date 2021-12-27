@@ -41,16 +41,18 @@ export default function SolicitudesPage() {
         <section className={styles.booksContainer}>
           {currentPosts.map((item) => 
           <div className={styles.minimo}>
-         <center>
-         <h4 style={{ backgroundColor: '#00B2E3', width: '70%', color: 'rgb(250, 244, 244)' }}>
-         <div style={{ position: 'absolute', left: '50px', top: '60px' }}>{' ' + ((moment(item.fecha_fin).diff(moment(item.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }<br/>{ item.destino && item.destino.map((destinos) => destinos.nombre + ' ') + '    ' }
-         </div>
-         </h4>
-         <img style={{ width: '380px', height: '180px' }} src='https://media.staticontent.com/media/pictures/8d0efdc4-38ac-4d12-b54e-a21c9b3583eb/300x200'/>
+         
+         <center><h4 style={{ backgroundColor: '#00B2E3', width: '70%', color: 'rgb(250, 244, 244)' }}>
+         <div style={{ position: 'absolute', left: '120px', top: '70px' }}>{' ' + ((moment(item.fecha_fin).diff(moment(item.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }
+         </div>       
+         <center><div style={{ position: 'absolute', top: '80px' }}><br/>{ item.destino && item.destino.map((destinos) => destinos.nombre + ' ') + '    ' }
+         </div></center>
+         </h4></center>
+         <center><div><img style={{ width: '385px', height: '180px' }} src='https://media.staticontent.com/media/pictures/8d0efdc4-38ac-4d12-b54e-a21c9b3583eb/300x200'/></div></center>
          <article
               className={styles.heroImage}
               style={{ backgroundImage: 'url("/banner-interno.png")' }}
-            ></article></center>
+            ></article>
           <h4><strong>Viajeros</strong></h4>
           <div className={styles.tag_container}>
             <Tag className={styles.tag}>{item.numero_adultos} Adultos</Tag>
