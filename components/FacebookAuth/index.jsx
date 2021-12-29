@@ -30,10 +30,9 @@ const FacebookAuth = ({ quotation }) => {
           console.log(resQuotation)
 
         if (resQuotation.error) throw resQuotation
-        window.location.href = '/cotizaciones'
-        }else{
-          window.location.href = '/cotizaciones'
         }
+          window.location.href = '/cotizaciones'
+        
         /*
           Redirect to /cotizaciones
         */
