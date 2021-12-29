@@ -22,14 +22,20 @@ const FacebookAuth = ({ quotation }) => {
         */
         const userData = Auth.getSession()
         const newQuotationData = { ...quotation, usuario: userData.usuario.id }
-        const resQuotation = await api.sendQuotation(newQuotationData)
+        console.log(quotation)
+        console.log(newQuotationData)
+        if(quotation!= null){
+        //const resQuotation = await api.sendQuotation(newQuotationData)
+        //console.log(resQuotation)
 
-        if (resQuotation.error) throw resQuotation
-
+        //if (resQuotation!=''&&resQuotation.error) throw resQuotation
+        window.location.href = '/cotizaciones'
+        }else{
+          window.location.href = '/cotizaciones'
+        }
         /*
           Redirect to /cotizaciones
         */
-        window.location.href = '/cotizaciones'
       } catch (err) {
         console.log(err)
       }
