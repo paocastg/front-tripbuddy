@@ -14,6 +14,7 @@ const Header = () => {
   const router = useRouter()
   useEffect(() => {
     const session = Auth.getSession()
+    console.log(session?.token)
     if (session?.usuario && session?.token) {
       setLogged(true)
       setUser(session?.usuario)

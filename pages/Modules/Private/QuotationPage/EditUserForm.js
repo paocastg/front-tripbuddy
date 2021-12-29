@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Table } from 'reactstrap'
 import moment from 'moment'
 import styles from './index.module.scss'
+import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 const EditUserForm = props => {
   const initialFormState = { agencia: null, descripcion: '', estado: '', lista: '' }
@@ -14,37 +15,37 @@ const EditUserForm = props => {
     console.log('user')
   }, [props])
   console.log(user)
+  
   return (
   <div>
   <div className={ styles.quotation_Dos }>
-    <center><Table>
-    <thead>
-    <tr style={{ color: '#fff', backgroundColor: 'rgb(75, 4, 240)', height: '60px' }} key={1}>
-      <th>Viaje:</th>
-      <th>{ user.destino && user.destino.map((destinos) => destinos.nombre + ' ') + '    ' }</th>
-      <th>{'/ ' + ((moment(user.fecha_fin).diff(moment(user.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }{ ' / ' + (user.numero_adultos + user.numero_adolescentes + user.numero_ninos) + ' Personas ' }</th>
-      <th></th>
-    </tr>
-    <tr style={{ backgroundColor: '#f7f3f3', height: '10px' }} key={1}></tr>
-    <tr style={{ fontFamily: 'Geomanist-Regular', color: '#fff', backgroundColor: '#00B2E3', height: '60px' }}>
-      <th>Agencia</th>
-      <th>Descripcion</th>
-      <th>Destinos</th>
-      <th>Precio</th>
-    </tr>
-    </thead>
-    <tbody>
-      { user.cotizaciones && user.cotizaciones.map((item) =>
-      <tr key={ 10 } style={{ border: ' 0.2px solid', height: '100px' }}>
-      <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.agencia }</a></center></td>
-      <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.descripcion }</a></td>
-      <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.estado }</a></td>
-      <td><center><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.precio + '  '}</a></center></td>
-      </tr>
-      )
-      }
-    </tbody>
-  </Table></center>
+    <center><Table striped>
+        <thead>
+        <tr style={{ color: '#fff', backgroundColor: 'rgb(75, 4, 240)', height: '30px' }} key={1}>
+            <th>Viaje:</th>
+            <th>{ user.destino && user.destino.map((destinos) => destinos.nombre + ' ') + '    ' }</th>
+            <th>{'/ ' + ((moment(user.fecha_fin).diff(moment(user.fecha_inicio), 'días')) / (1000 * 60 * 60 * 24)) + 'días' }{ ' / ' + (user.numero_adultos + user.numero_adolescentes + user.numero_ninos) + ' Personas ' }</th>
+            <th></th>
+          </tr>
+          <tr style={{ backgroundColor: '#f7f3f3', height: '10px' }} key={1}></tr>
+          <tr style={{ height: '50px' }}>
+          <th>Agencia</th>
+          <th style={{ textAlign: 'center' }}>Descripcion</th>
+          <th style={{ textAlign: 'center' }}>Destinos</th>
+          <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+        { user.cotizaciones && user.cotizaciones.map((item) =>
+        <tr>
+            <th scope="row"><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.agencia }</a></th>
+            <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.descripcion }</a></td>
+            <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.estado }</a></td>
+            <td><a href={ `/cotizaciones/detalles/${item.id}` }>{ item.precio + '  '}</a></td>
+        </tr>
+        )}
+        </tbody>
+      </Table></center>
   </div>
     </div>
   )

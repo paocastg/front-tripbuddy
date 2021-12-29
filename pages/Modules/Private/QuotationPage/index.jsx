@@ -15,6 +15,8 @@ import H2 from 'components/H2'
 import SweetAlert from 'sweetalert2'
 import { toast } from 'react-toastify'
 import withReactContent from 'sweetalert2-react-content'
+import { Table } from 'reactstrap'
+import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 toast.configure()
 
 const MySwal = withReactContent(SweetAlert)
@@ -24,12 +26,11 @@ const QuotationPage = () => {
   const [editing, setEditing] = useState(false)
   const [currentUser, setCurrentUser] = useState(initialFormState)
   const [loading, setLoading] = useState(false)
-  // console.log(saved)
   const fetchUsers = async () => {
     const user = Auth.getSession().usuario.id
+    const session = Auth.getSession()
     const config = {
-      // headers: { Authorization: `Token ${token}` },d4e97b7df5a2785717f9889d9c870525d3222f1a
-      headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
+      headers: { Authorization: `Token ${session?.token}`}
     }
     const response = await axios.get(HOST + '/solicitud/list_cotizaciones/' + user +'/pendiente', config)
     setUsers(response.data.solicitud)
@@ -57,7 +58,6 @@ const QuotationPage = () => {
     document.getElementById('solicitud').style.display = 'block'
     document.getElementById('cotizaciones').style.display = 'none'
   }
-  console.log(loading)
   const updateSolicitud = (item) => {
     console.log(item)
     SweetAlert.fire({
@@ -71,9 +71,11 @@ const QuotationPage = () => {
     }).then(async (result) => {
       if (result.value) {
         setLoading(true)
-        try {
+        try {          
+          const session = Auth.getSession()
+          console.log( session?.token )
           const config = {
-            headers: { Authorization: 'Token d4e97b7df5a2785717f9889d9c870525d3222f1a' }
+            headers: { Authorization: `Token ${session?.token}`}
           }
           const res = await axios.delete(HOST + '/solicitud/cancelar/15',
             config
@@ -96,7 +98,6 @@ const QuotationPage = () => {
       }
     })
   }
-  // const [solicitud, setSolicitud] = useState('')
   const eliminar = () => {
     currentUser.cotizaciones && currentUser.cotizaciones.map((item) => {
       updateSolicitud(item)
@@ -108,8 +109,6 @@ const QuotationPage = () => {
     <Wrapper>
       <Session>
         <div className={styles.quotation}>
-          <div style = {{ display: 'none' }}>
-            </div>
           <div id='cotizaciones' style = {{ display: 'none' }}>
       <H2>Cotizaciones</H2>
             <EditUserForm
@@ -122,7 +121,7 @@ const QuotationPage = () => {
             <center><div>
               <Button onClick={atras}>Atrás</Button>
               <Button onClick={updateSolicitud}>Eliminar viaje</Button>
-            </div></center>
+            </div></center>              
             </div>
       <div id='solicitud'>
           <H2>Solicitudes</H2>

@@ -32,7 +32,7 @@ export default function SolicitudesPage() {
           <div className={styles.minimo}>
          <center>
          <h4 style={{ backgroundColor: '#00B2E3', width: '70%', color: 'rgb(250, 244, 244)' }}>
-         <div style={{ position: 'absolute', left: '50px', top: '60px' }}>{' ' + ((moment(item.fecha_fin).diff(moment(item.fecha_inicio), 'dias')) / (1000 * 60 * 60 * 24)) + 'dias' }<br/>{ item.destino && item.destino.map((destinos) => destinos.nombre + ' ') + '    ' }
+         <div style={{ position: 'absolute', left: '50px', top: '60px' }}>{' ' + ((moment(item.fecha_fin).diff(moment(item.fecha_inicio), ' días ')) / (1000 * 60 * 60 * 24)) + ' días ' }<br/>{ item.destino && item.destino.map((destinos) => destinos.nombre + ' ') + '    ' }
          </div>
          </h4>
          <img style={{ width: '380px', height: '180px' }} src='https://media.staticontent.com/media/pictures/8d0efdc4-38ac-4d12-b54e-a21c9b3583eb/300x200'/>
