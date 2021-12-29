@@ -7,7 +7,7 @@ class Http {
 
     return await axios.get(url, {
       headers: {
-        Authorization: `Token ${session?.token}`,
+        // Authorization: `Token ${session?.token}`,
         ...options
       },
     })
