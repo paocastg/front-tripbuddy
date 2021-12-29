@@ -1,3 +1,4 @@
+
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import styles from './index.module.scss'
 import { Auth } from 'assets/Utils/Auth'
@@ -25,10 +26,10 @@ const FacebookAuth = ({ quotation }) => {
         console.log(quotation)
         console.log(newQuotationData)
         if(quotation!= null){
-        //const resQuotation = await api.sendQuotation(newQuotationData)
-        //console.log(resQuotation)
+          const resQuotation = await api.sendQuotation(newQuotationData)
+          console.log(resQuotation)
 
-        //if (resQuotation!=''&&resQuotation.error) throw resQuotation
+        if (resQuotation.error) throw resQuotation
         window.location.href = '/cotizaciones'
         }else{
           window.location.href = '/cotizaciones'
