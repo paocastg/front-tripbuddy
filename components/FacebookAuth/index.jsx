@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import styles from './index.module.scss'
 import { Auth } from 'assets/Utils/Auth'
